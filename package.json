@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "cp .env.local .env 2>/dev/null || true && next dev",
+    "build": "cp .env.prod .env 2>/dev/null || true && next build",
+    "start": "cp .env.prod .env 2>/dev/null || true && next start",
+    "lint": "eslint",
+    "dev:local": "next dev",
+    "build:prod": "cp .env.prod .env && next build",
+    "start:prod": "cp .env.prod .env && next start"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 const handler = toNextJsHandler(auth);
 
 // Add CORS headers to the response
-function withCorsHeaders(handler: any) {
+function withCorsHeaders(handler: (req: Request) => Promise<Response>) {
   return async (req: Request) => {
     // Handle OPTIONS request for CORS preflight
     if (req.method === 'OPTIONS') {
