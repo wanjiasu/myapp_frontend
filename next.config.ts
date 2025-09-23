@@ -7,6 +7,16 @@ const nextConfig: NextConfig = {
     // Explicitly expose environment variables to the client
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'api.qrserver.com',
+        port: '',
+        pathname: '/v1/create-qr-code/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

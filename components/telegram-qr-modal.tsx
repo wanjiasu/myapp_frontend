@@ -42,14 +42,25 @@ export default function TelegramQRModal({ isOpen, onClose, userId }: TelegramQRM
         {/* 二维码区域 */}
         <div className="text-center mb-6">
           <div className="bg-white p-4 rounded-lg inline-block mb-4">
-            {qrCodeUrl && (
+            {qrCodeUrl ? (
               <Image 
                 src={qrCodeUrl} 
                 alt="Telegram Bot QR Code" 
                 className="w-48 h-48 mx-auto"
                 width={192}
                 height={192}
+                unoptimized={true}
+                onError={(e) => {
+                  console.error('QR Code image failed to load:', e);
+                  // 如果图片加载失败，显示备用内容
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
               />
+            ) : (
+              <div className="w-48 h-48 mx-auto flex items-center justify-center bg-gray-100 rounded">
+                <span className="text-gray-500">加载中...</span>
+              </div>
             )}
           </div>
           <p className="text-white/80 text-sm mb-4">
