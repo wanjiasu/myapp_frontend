@@ -8,6 +8,15 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Betaione Custom Colors */
+  --color-bg1: #0B1224;
+  --color-bg2: #0E1630;
+  --color-brand: #6EE7F9;
+  --color-accent: #A5B4FC;
+  --color-ink: #E5EAF5;
+  --color-good: #34D399;
+  --color-warn: #F59E0B;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -119,4 +128,60 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Betaione Custom Styles */
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.chip {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btn {
+  border-radius: 14px;
+  padding: 0.6rem 1rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: #fff;
+  color: #0B1224;
+}
+
+.btn-primary:hover {
+  background: #f0f0f0;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.grad-text {
+  background: linear-gradient(90deg, #A5B4FC, #6EE7F9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.fav-on {
+  color: #34d399;
+}
+
+.banner {
+  min-height: 110px;
+}
+
+.table th, .table td {
+  padding: 0.65rem 0.75rem;
 }
