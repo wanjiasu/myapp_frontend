@@ -12,6 +12,11 @@ export default function Home() {
       try {
         setLoading(true);
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+        console.log("🔍 Debug Info:");
+        console.log("- API URL:", apiUrl);
+        console.log("- Full request URL:", `${apiUrl}/api/hello`);
+        console.log("- Environment:", process.env.NODE_ENV);
+        
         const response = await fetch(`${apiUrl}/api/hello`);
         
         if (!response.ok) {
@@ -21,8 +26,12 @@ export default function Home() {
         const data = await response.json();
         setMessage(data.message);
       } catch (err) {
+        console.error("🚨 Detailed Error Info:");
+        console.error("- Error type:", err instanceof Error ? err.constructor.name : typeof err);
+        console.error("- Error message:", err instanceof Error ? err.message : String(err));
+        console.error("- Full error object:", err);
+        
         setError(err instanceof Error ? err.message : "获取数据失败");
-        console.error("Error fetching hello:", err);
       } finally {
         setLoading(false);
       }
