@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Heart, Sparkles, ListFilter, Newspaper, Send, Gift, Bot, X } from "lucide-react";
+import { Heart, Sparkles, ListFilter, Newspaper, Send, Gift, Bot, X, LogOut } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
 
 // Generate timestamps on client side to avoid hydration mismatch
 const getClientTimestamp = (hoursOffset: number) => {
@@ -132,9 +133,41 @@ export default function Home() {
   const [showDealModal, setShowDealModal] = useState(false);
   const [selectedMatch, setSelectedMatch] = useState<string>('');
   const [isClient, setIsClient] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+      await authClient.signOut();
+      setUser(null);
+      setShowDropdown(false);
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
 
   useEffect(() => {
-    setIsClient(true)
+    setIsClient(true);
+    
+    // 获取用户会话信息
+    const getSession = async () => {
+      try {
+        const session = await authClient.getSession();
+        if (session?.data?.user) {
+          setUser(session.data.user);
+        } else {
+          setUser(null);
+        }
+      } catch (error) {
+        console.error('Failed to get session:', error);
+        setUser(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getSession();
   }, [])
 
   // Load favorites from localStorage
@@ -233,7 +266,44 @@ export default function Home() {
             <a href="#promos" className="hover:text-white">活动</a>
           </nav>
           <div className="flex items-center gap-2">
-            <a href="#" className="btn btn-primary">登录</a>
+            {isLoading ? (
+              <div className="text-sm opacity-70">加载中...</div>
+            ) : user ? (
+              <div className="relative">
+                <div 
+                  className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+                  onMouseEnter={() => setShowDropdown(true)}
+                >
+                  <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                    {user.name?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-medium">{user.name || user.email}</div>
+                  </div>
+                </div>
+                
+                {/* 下拉菜单 */}
+                {showDropdown && (
+                  <div 
+                    className="absolute right-0 top-full mt-2 w-48 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-lg z-50"
+                    onMouseEnter={() => setShowDropdown(true)}
+                    onMouseLeave={() => setShowDropdown(false)}
+                  >
+                    <div className="p-2">
+                      <button
+                        onClick={handleLogout}
+                        className="w-full flex items-center gap-2 px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors"
+                      >
+                        <LogOut size={16} />
+                        登出
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <a href="/login" className="btn btn-primary">登录</a>
+            )}
           </div>
         </div>
       </header>

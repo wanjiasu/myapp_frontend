@@ -53,7 +53,7 @@ export function SignupForm({
   const signInWithGoogle = async () => {
     await authClient.signIn.social({
       provider: "google",
-      callbackURL: "/dashboard",
+      callbackURL: "/",
     });
   };
  
@@ -63,7 +63,7 @@ export function SignupForm({
     const {success, message} = await signUp(values.username, values.email, values.password)
       if (success)  {
         toast.success(message as string)
-        router.push("/dashboard")
+        router.push("/")
       } else {
         toast.error(message as string)
       }
