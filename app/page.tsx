@@ -581,6 +581,7 @@ export default function Home() {
       <TelegramQRModal 
         isOpen={showTelegramModal} 
         onClose={() => setShowTelegramModal(false)} 
+        userId={user?.id}
       />
     </div>
   );

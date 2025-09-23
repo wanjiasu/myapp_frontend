@@ -6,11 +6,13 @@ import { X, ExternalLink } from 'lucide-react';
 interface TelegramQRModalProps {
   isOpen: boolean;
   onClose: () => void;
+  userId?: string; // 添加用户ID属性
 }
 
-export default function TelegramQRModal({ isOpen, onClose }: TelegramQRModalProps) {
+export default function TelegramQRModal({ isOpen, onClose, userId }: TelegramQRModalProps) {
   const [qrCodeUrl, setQrCodeUrl] = useState('');
-  const telegramBotUrl = 'https://t.me/betaione_bot?start=betaione';
+  // 使用用户ID生成个性化链接，如果没有用户ID则使用默认值
+  const telegramBotUrl = `https://t.me/betaione_bot?start=${userId || 'betaione'}`;
 
   useEffect(() => {
     if (isOpen) {
