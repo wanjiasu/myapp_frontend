@@ -12,4 +12,10 @@ npm run dev
 npm run build:prod
 
 npm run start
+
+pm2 start npm --name "nextjs" -- run start -- -p 3000
+
+pm2 start "/root/myapp/myapp_backend/env/bin/python" --name "fastapi-app" -- -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
+
+
