@@ -36,6 +36,24 @@ interface AIRecommendation {
   prediction_result: string;
 }
 
+// 比赛数据接口
+interface Match {
+  id: string;
+  date: string;
+  time: string;
+  league: string;
+  home_team: string;
+  away_team: string;
+  home_odds: number;
+  draw_odds: number;
+  away_odds: number;
+  ai_prediction: string;
+  is_recommended: boolean;
+  analysis: string;
+  fixture_date: string;
+  recommendation_index: number;
+}
+
 // Mock data
 const bestBets = [
   {
@@ -163,6 +181,8 @@ export default function Home() {
   const [showTelegramModal, setShowTelegramModal] = useState(false);
   const [aiRecommendations, setAiRecommendations] = useState<AIRecommendation[]>([]);
   const [loadingRecommendations, setLoadingRecommendations] = useState(true);
+  const [matches, setMatches] = useState<Match[]>([]);
+  const [loadingMatches, setLoadingMatches] = useState(true);
 
   // 获取AI推荐数据
   const fetchAIRecommendations = async () => {
@@ -184,6 +204,29 @@ export default function Home() {
       setAiRecommendations([]);
     } finally {
       setLoadingRecommendations(false);
+    }
+  };
+
+  // 获取比赛数据
+  const fetchMatches = async () => {
+    try {
+      setLoadingMatches(true);
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/api/matches`);
+      if (response.ok) {
+        const data = await response.json();
+        setMatches(data);
+      } else {
+        console.error('Failed to fetch matches:', response.statusText);
+        // 如果API失败，使用空数组
+        setMatches([]);
+      }
+    } catch (error) {
+      console.error('Error fetching matches:', error);
+      // 如果API失败，使用空数组
+      setMatches([]);
+    } finally {
+      setLoadingMatches(false);
     }
   };
 
@@ -230,6 +273,8 @@ export default function Home() {
     getSession();
     // 获取AI推荐数据
     fetchAIRecommendations();
+    // 获取比赛数据
+    fetchMatches();
   }, [])
 
   // Load favorites from localStorage
@@ -276,7 +321,7 @@ export default function Home() {
     
     // 时间筛选
     if (filters.time) {
-      const matchDate = new Date(match.ts);
+      const matchDate = new Date(match.fixture_date);
       const today = new Date();
       const tomorrow = new Date(today);
       tomorrow.setDate(today.getDate() + 1);
@@ -302,8 +347,8 @@ export default function Home() {
     // 搜索筛选
     if (filters.search) {
       const searchTerm = filters.search.toLowerCase();
-      if (!match.home.toLowerCase().includes(searchTerm) && 
-          !match.away.toLowerCase().includes(searchTerm)) {
+      if (!match.home_team.toLowerCase().includes(searchTerm) && 
+          !match.away_team.toLowerCase().includes(searchTerm)) {
         return false;
       }
     }
@@ -623,41 +668,57 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              {filteredMatches.map((match) => {
-                const matchTime = isClient ? new Date(match.ts) : new Date();
-                const isFav = favorites[match.home];
-                const oddsFormatted = match.odds.map(o => o === '-' ? '-' : Number(o).toFixed(2));
-                
-                return (
-                  <tr key={match.id} className="border-b border-white/10">
-                    <td>{isClient ? matchTime.toLocaleDateString() : '--/--/--'}</td>
-                    <td>{isClient ? matchTime.toTimeString().slice(0, 5) : '--:--'}</td>
-                    <td>{match.league}</td>
-                    <td className="whitespace-nowrap">
-                      <button 
-                        className={`mr-2 ${isFav ? 'fav-on' : ''}`}
-                        onClick={() => toggleFavorite(match.home)}
-                        title={isFav ? '已关注' : '关注'}
-                      >
-                        <Heart className="w-4 h-4" fill={isFav ? 'currentColor' : 'none'} />
-                      </button>
-                      <span>{match.home} <span className="opacity-60">vs</span> {match.away}</span>
-                    </td>
-                    <td>{oddsFormatted[0]}</td>
-                    <td>{oddsFormatted[1]}</td>
-                    <td>{oddsFormatted[2]}</td>
-                    <td>{match.ai || ''}</td>
-                    <td>
-                      <button 
-                        className="btn btn-secondary text-xs"
-                        onClick={() => openDealModal(match.id)}
-                      >
-                        最划算渠道
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
+              {loadingMatches ? (
+                <tr>
+                  <td colSpan={9} className="text-center py-8">
+                    <div className="flex items-center justify-center gap-2">
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                      加载比赛数据中...
+                    </div>
+                  </td>
+                </tr>
+              ) : filteredMatches.length === 0 ? (
+                <tr>
+                  <td colSpan={9} className="text-center py-8 opacity-60">
+                    暂无比赛数据
+                  </td>
+                </tr>
+              ) : (
+                filteredMatches.map((match) => {
+                  const matchTime = isClient ? new Date(match.fixture_date) : new Date();
+                  const isFav = favorites[match.home_team];
+                  
+                  return (
+                    <tr key={match.id} className="border-b border-white/10">
+                      <td>{match.date}</td>
+                      <td>{match.time}</td>
+                      <td>{match.league}</td>
+                      <td className="whitespace-nowrap">
+                        <button 
+                          className={`mr-2 ${isFav ? 'fav-on' : ''}`}
+                          onClick={() => toggleFavorite(match.home_team)}
+                          title={isFav ? '已关注' : '关注'}
+                        >
+                          <Heart className="w-4 h-4" fill={isFav ? 'currentColor' : 'none'} />
+                        </button>
+                        <span>{match.home_team} <span className="opacity-60">vs</span> {match.away_team}</span>
+                      </td>
+                      <td>{match.home_odds.toFixed(2)}</td>
+                      <td>{match.draw_odds.toFixed(2)}</td>
+                      <td>{match.away_odds.toFixed(2)}</td>
+                      <td>{match.ai_prediction || ''}</td>
+                      <td>
+                        <button 
+                          className="btn btn-secondary text-xs"
+                          onClick={() => openDealModal(match.id)}
+                        >
+                          最划算渠道
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
             </tbody>
           </table>
         </div>
