@@ -143,9 +143,13 @@ export function LoginForm({
               </div>
               <div className="text-center text-sm">
                 Don&apos;t have an account?{" "}
-                <a href="#" className="underline underline-offset-4" onClick={signUp}>
+                <Button 
+                  variant="link" 
+                  className="underline underline-offset-4 p-0 h-auto font-normal" 
+                  onClick={() => router.push("/signup")}
+                >
                   Sign up
-                </a>
+                </Button>
               </div>
             </div>
           </form>
