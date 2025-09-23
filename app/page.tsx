@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Heart, Sparkles, ListFilter, Newspaper, Send, Gift, Bot, X, LogOut } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
+import TelegramQRModal from "@/components/telegram-qr-modal";
 
 // Generate timestamps on client side to avoid hydration mismatch
 const getClientTimestamp = (hoursOffset: number) => {
@@ -136,6 +137,17 @@ export default function Home() {
   const [user, setUser] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showTelegramModal, setShowTelegramModal] = useState(false);
+
+  const handleTelegramClick = () => {
+    if (!user) {
+      // 未登录，跳转到登录页面
+      window.location.href = '/login';
+    } else {
+      // 已登录，显示二维码弹窗
+      setShowTelegramModal(true);
+    }
+  };
 
   const handleLogout = async () => {
     try {
@@ -317,9 +329,12 @@ export default function Home() {
               <div className="text-lg font-extrabold">添加 Telegram，领专属下注建议</div>
               <div className="text-xs opacity-70 mt-1">赛前提醒 · 实时盘口变动 · 风险提示</div>
             </div>
-            <a href="https://t.me/" className="btn btn-primary whitespace-nowrap inline-flex items-center gap-2">
+            <button 
+              className="btn btn-primary whitespace-nowrap inline-flex items-center gap-2"
+              onClick={handleTelegramClick}
+            >
               <Send className="w-4 h-4" /> 立即添加
-            </a>
+            </button>
           </div>
         </div>
       </section>
@@ -335,9 +350,12 @@ export default function Home() {
           <aside className="glass rounded-2xl p-5">
             <div className="text-sm opacity-80 mb-2">AI 投注助理（Telegram）</div>
             <p className="text-sm text-white/75">把你关注的球队加到清单，AI 会根据盘口变动和历史模型，推送合适的下注窗口。</p>
-            <a href="https://t.me/" className="btn btn-primary mt-3 w-full inline-flex items-center justify-center gap-2">
+            <button 
+              className="btn btn-primary mt-3 w-full inline-flex items-center justify-center gap-2"
+              onClick={handleTelegramClick}
+            >
               <Bot className="w-4 h-4" /> 添加 Telegram
-            </a>
+            </button>
             <p className="text-[11px] opacity-50 mt-2">* 请遵循当地法律与 18+ 责任博彩。</p>
           </aside>
         </div>
@@ -370,9 +388,12 @@ export default function Home() {
                 >
                   去下注（最划算）
                 </button>
-                <a className="btn btn-secondary inline-flex items-center justify-center gap-2" href="https://t.me/">
+                <button 
+                  className="btn btn-secondary inline-flex items-center justify-center gap-2"
+                  onClick={handleTelegramClick}
+                >
                   <Send className="w-4 h-4" /> 让 AI 跟单
-                </a>
+                </button>
               </div>
             </div>
           ))}
@@ -555,6 +576,12 @@ export default function Home() {
           </div>
         </div>
       )}
+
+      {/* Telegram QR Modal */}
+      <TelegramQRModal 
+        isOpen={showTelegramModal} 
+        onClose={() => setShowTelegramModal(false)} 
+      />
     </div>
   );
 }
