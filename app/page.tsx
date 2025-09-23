@@ -418,14 +418,14 @@ export default function Home() {
       {/* Top banners */}
       <section id="promos" className="border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 py-3">
-          <div className="banner glass rounded-2xl p-4 flex items-center justify-between">
+          <div className="banner glass rounded-xl p-3 flex items-center justify-between">
             <div>
               <div className="text-xs opacity-70 mb-1">AI 投注助理</div>
-              <div className="text-lg font-extrabold">添加 Telegram，领专属下注建议</div>
+              <div className="text-base font-extrabold">添加 Telegram，领专属下注建议</div>
               <div className="text-xs opacity-70 mt-1">赛前提醒 · 实时盘口变动 · 风险提示</div>
             </div>
             <button 
-              className="btn btn-primary whitespace-nowrap inline-flex items-center gap-2"
+              className="btn btn-primary whitespace-nowrap inline-flex items-center gap-2 text-sm"
               onClick={handleTelegramClick}
             >
               <Send className="w-4 h-4" /> 立即添加
@@ -437,16 +437,16 @@ export default function Home() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0" style={{background: 'radial-gradient(ellipse at top, rgba(165,180,252,.18), transparent 60%)'}}></div>
-        <div className="relative max-w-7xl mx-auto px-4 py-10 grid lg:grid-cols-3 gap-6 items-start">
+        <div className="relative max-w-7xl mx-auto px-4 py-8 grid lg:grid-cols-3 gap-6 items-start">
           <div className="lg:col-span-2">
-            <h1 className="text-3xl md:text-5xl font-extrabold leading-tight">所有比赛 · 一站式可下注</h1>
-            <p className="mt-3 text-white/80">聚合主流联赛与电竞盘口，<b>AI 给出"最有把握"投注建议</b>，并提示"最划算渠道"。</p>
+            <h1 className="text-2xl md:text-4xl font-extrabold leading-tight">所有比赛 · 一站式可下注</h1>
+            <p className="mt-3 text-white/80 text-sm md:text-base">聚合主流联赛与电竞盘口，<b>AI 给出"最有把握"投注建议</b>，并提示"最划算渠道"。</p>
           </div>
-          <aside className="glass rounded-2xl p-5">
+          <aside className="glass rounded-xl p-4">
             <div className="text-sm opacity-80 mb-2">AI 投注助理（Telegram）</div>
             <p className="text-sm text-white/75">把你关注的球队加到清单，AI 会根据盘口变动和历史模型，推送合适的下注窗口。</p>
             <button 
-              className="btn btn-primary mt-3 w-full inline-flex items-center justify-center gap-2"
+              className="btn btn-primary mt-3 w-full inline-flex items-center justify-center gap-2 text-sm"
               onClick={handleTelegramClick}
             >
               <Bot className="w-4 h-4" /> 添加 Telegram
@@ -458,139 +458,207 @@ export default function Home() {
 
       {/* AI Best Bets */}
       <section id="best" className="max-w-7xl mx-auto px-4 py-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl md:text-2xl font-bold flex items-center gap-2">
-            🔥 AI 最有把握的投注
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-bold flex items-center gap-2">
+            <Sparkles className="w-5 h-5 text-cyan-400" />
+            AI 最有把握的投注
           </h2>
+          <div className="text-sm text-gray-400 flex items-center gap-2">
+            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+            实时数据（来自 PostgreSQL）
+          </div>
         </div>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center max-w-6xl mx-auto">
           {loadingRecommendations ? (
             // 加载状态
             Array.from({ length: 3 }).map((_, index) => (
-              <div key={index} className="relative overflow-hidden rounded-2xl" style={{
-                background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)'
+              <div key={index} className="relative overflow-hidden rounded-xl transition-all duration-300" style={{
+                background: 'rgba(255, 255, 255, 0.04)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                backdropFilter: 'blur(14px)',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)'
               }}>
-                <div className="p-6">
-                  <div className="animate-pulse">
-                    <div className="h-4 bg-gray-600 rounded mb-2"></div>
-                    <div className="h-6 bg-gray-600 rounded mb-4"></div>
-                    <div className="h-8 bg-gray-600 rounded mb-4"></div>
-                    <div className="h-16 bg-gray-600 rounded mb-6"></div>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="h-12 bg-gray-600 rounded"></div>
-                      <div className="h-12 bg-gray-600 rounded"></div>
-                    </div>
+                {/* 渐变边框效果 */}
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 via-cyan-400 to-emerald-500 opacity-80"></div>
+                <div className="p-4">
+                  <div className="text-center text-gray-400 py-6 flex items-center justify-center gap-2">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-cyan-400"></div>
+                    <span className="text-sm">正在获取最新推荐...</span>
                   </div>
                 </div>
               </div>
             ))
           ) : aiRecommendations.length > 0 ? (
             // 使用真实数据
-            aiRecommendations.map((recommendation) => (
-              <div key={recommendation.id} className="relative overflow-hidden rounded-2xl" style={{
-                background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)'
-              }}>
-                <div className="p-6">
-                  <div className="text-sm text-gray-400 mb-2">{recommendation.league}</div>
-                  <h3 className="text-xl font-bold text-white mb-4">
-                    {recommendation.home_team} vs {recommendation.away_team}
-                  </h3>
+            aiRecommendations.map((recommendation) => {
+              // 根据 predicted_result 确定哪个队伍应该高亮
+              const getHighlightedTeam = (predictedResult: string, homeTeam: string, awayTeam: string) => {
+                const result = predictedResult.toLowerCase()
+                if (result.includes('home') || result.includes('主')) {
+                  return 'home'
+                } else if (result.includes('away') || result.includes('客')) {
+                  return 'away'
+                }
+                return 'none'
+              }
+              
+              const highlightedTeam = getHighlightedTeam(recommendation.prediction_result, recommendation.home_team, recommendation.away_team)
+              
+              return (
+                <div key={recommendation.id} className="relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer hover:transform hover:-translate-y-0.5 hover:shadow-xl" style={{
+                  background: 'rgba(255, 255, 255, 0.04)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  backdropFilter: 'blur(14px)',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)'
+                }}>
+                  {/* 渐变边框效果 */}
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 via-cyan-400 to-emerald-500 opacity-80"></div>
+                  {/* 紧迫感指示器 */}
+                  <div className="absolute top-0 right-0 bg-gradient-to-r from-orange-400 to-red-400 text-white text-xs font-bold px-2 py-1 rounded-bl-md flex items-center gap-1">
+                    <span className="animate-pulse text-xs">🔥</span>
+                    限时推荐
+                  </div>
                   
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <div className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1">
-                        🎯 推荐指数 {recommendation.recommendation_index.toFixed(2)}
+                  <div className="p-4">
+                    {/* League Name */}
+                    <div className="text-xs text-gray-400 mb-2 font-medium">{recommendation.league}</div>
+                    
+                    {/* 高亮队伍名称 */}
+                    <div className="mb-3">
+                      <span className={`text-base font-bold transition-all duration-200 ${highlightedTeam === 'home' ? 'text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/30' : 'text-white'}`}>
+                        {recommendation.home_team}
+                      </span>
+                      <span className="text-gray-400 mx-1.5 text-base font-light"> vs </span>
+                      <span className={`text-base font-bold transition-all duration-200 ${highlightedTeam === 'away' ? 'text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/30' : 'text-white'}`}>
+                        {recommendation.away_team}
+                      </span>
+                    </div>
+                    
+                    {/* 增强的统计数据显示 */}
+                    <div className="flex items-center gap-1.5 mb-3">
+                      <div className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 text-emerald-400 px-2 py-1 rounded-full text-xs font-bold border border-emerald-500/30 flex items-center gap-1 transition-all duration-200 hover:scale-105">
+                        <span className="text-sm">🎯</span>
+                        推荐指数 {Math.round(recommendation.recommendation_index * 100)}
                       </div>
                       {recommendation.prediction_result && (
-                        <div className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1">
-                          ⚡ {recommendation.prediction_result}
+                        <div className="bg-gradient-to-r from-indigo-500/20 to-purple-500/20 text-indigo-400 px-2 py-1 rounded-full text-xs font-bold border border-indigo-500/30 flex items-center gap-1 transition-all duration-200 hover:scale-105">
+                          <span className="text-sm">⚡</span>
+                          {recommendation.prediction_result}
                         </div>
                       )}
                     </div>
-                  </div>
 
-                  <div className="text-sm text-gray-300 mb-4">
-                    <div className="mb-1">
-                      <span className="text-white font-medium">赔率:</span> 
-                      主胜 {recommendation.odds.home_avg.toFixed(2)} | 
-                      平局 {recommendation.odds.draw_avg.toFixed(2)} | 
-                      客胜 {recommendation.odds.away_avg.toFixed(2)}
+                    {/* 赔率分析 */}
+                    <div className="text-xs text-gray-300 mb-3 bg-gray-800/20 rounded-lg p-2.5 border border-gray-700/30">
+                      <div className="font-medium text-white mb-1.5 flex items-center gap-1.5">
+                        <span className="text-sm">📊</span>
+                        赔率分析
+                      </div>
+                      <div className="font-mono text-gray-200 text-xs">主 {recommendation.odds.home_avg.toFixed(2)} / 平 {recommendation.odds.draw_avg.toFixed(2)} / 客 {recommendation.odds.away_avg.toFixed(2)}</div>
+                      <div className="text-xs text-gray-400 mt-1.5 flex items-center gap-1">
+                        <span>⏰</span>
+                        比赛时间: {new Date(recommendation.fixture_date).toLocaleString('zh-CN')}
+                      </div>
                     </div>
-                    <div className="mb-1">
-                      <span className="text-white font-medium">比赛时间:</span> {new Date(recommendation.fixture_date).toLocaleString('zh-CN')}
+
+                    {/* 推荐分析 */}
+                    <div className="text-xs text-gray-400 mb-4 leading-relaxed bg-gray-900/20 rounded-lg p-2.5 border border-gray-700/20">
+                      <div className="font-medium text-white mb-1.5 flex items-center gap-1.5">
+                        <span className="text-sm">🤖</span>
+                        AI 分析
+                      </div>
+                      <div className="text-gray-300 leading-relaxed text-xs">
+                        {recommendation.analysis}
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="text-sm text-gray-400 mb-6 leading-relaxed">
-                    {recommendation.analysis}
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <button 
-                      className="bg-white text-black font-medium py-3 px-4 rounded-xl hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
-                      onClick={() => openDealModal(recommendation.id)}
-                    >
-                      🚀 去下注（最划算）
-                    </button>
-                    <button 
-                      className="bg-gray-700/50 text-white font-medium py-3 px-4 rounded-xl hover:bg-gray-600/50 transition-colors flex items-center justify-center gap-2"
-                      onClick={handleTelegramClick}
-                    >
-                      📱 让 AI 跟单
-                    </button>
+                    
+                    <div className="grid grid-cols-2 gap-2">
+                      <button 
+                        className="bg-gradient-to-r from-white to-gray-100 text-gray-900 font-bold py-2.5 px-3 rounded-lg hover:from-gray-100 hover:to-gray-200 transition-all duration-300 flex items-center justify-center gap-1.5 shadow-lg transform hover:scale-105 hover:-translate-y-0.5 relative overflow-hidden text-xs"
+                        onClick={() => openDealModal(recommendation.id)}
+                      >
+                        <span className="relative z-10 flex items-center gap-1">
+                          🚀 去下注
+                        </span>
+                        {/* 闪光效果 */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                      </button>
+                      <button 
+                        className="bg-gradient-to-r from-gray-800/60 to-gray-700/60 text-white font-medium py-2.5 px-3 rounded-lg hover:from-gray-700/60 hover:to-gray-600/60 transition-all duration-300 flex items-center justify-center gap-1.5 border border-gray-600/40 hover:border-gray-500/60 transform hover:scale-105 hover:-translate-y-0.5 text-xs"
+                        onClick={handleTelegramClick}
+                      >
+                        <Send className="w-3 h-3" /> AI 跟单
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
+              )
+            })
           ) : (
             // 使用mock数据作为后备
             bestBets.map((bet) => (
-              <div key={bet.id} className="relative overflow-hidden rounded-2xl" style={{
-                background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)'
+              <div key={bet.id} className="relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer hover:transform hover:-translate-y-0.5 hover:shadow-xl" style={{
+                background: 'rgba(255, 255, 255, 0.04)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                backdropFilter: 'blur(14px)',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)'
               }}>
-                <div className="p-6">
-                  <div className="text-sm text-gray-400 mb-2">{bet.league}</div>
-                  <h3 className="text-xl font-bold text-white mb-4">{bet.teams}</h3>
+                {/* 渐变边框效果 */}
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 via-cyan-400 to-emerald-500 opacity-80"></div>
+                {/* 紧迫感指示器 */}
+                <div className="absolute top-0 right-0 bg-gradient-to-r from-orange-400 to-red-400 text-white text-xs font-bold px-2 py-1 rounded-bl-md">
+                  限时推荐
+                </div>
+                
+                <div className="p-4">
+                  {/* League Name */}
+                  <div className="text-xs text-gray-400 mb-2 font-medium">{bet.league}</div>
                   
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <div className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1">
-                        🎯 推荐指数 {(bet.recommendation / 100).toFixed(2)}
-                      </div>
+                  {/* Teams */}
+                  <h3 className="text-base font-bold text-white mb-3">{bet.teams}</h3>
+                  
+                  {/* Stats with enhanced styling */}
+                  <div className="flex items-center gap-1.5 mb-3">
+                    <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-400 px-2 py-1 rounded-full text-xs font-bold border border-green-500/30">
+                      推荐指数 {bet.recommendation}
                     </div>
-                    <div className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm font-medium">
-                      ⚡ {bet.prediction}
-                    </div>
-                  </div>
-
-                  <div className="text-sm text-gray-300 mb-4">
-                    <div className="mb-1">
-                      <span className="text-white font-medium">赔率:</span> 主 {bet.odds} / 平 3.38 / 客 1.93
+                    <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-400 px-2 py-1 rounded-full text-xs font-bold border border-blue-500/30">
+                      {bet.prediction}
                     </div>
                   </div>
 
-                  <div className="text-sm text-gray-400 mb-6 leading-relaxed">
-                    {bet.reason}
+                  {/* Odds */}
+                  <div className="text-xs text-gray-300 mb-3 bg-gray-800/20 rounded-lg p-2.5 border border-gray-700/30">
+                    <div className="font-medium text-white mb-1.5 flex items-center gap-1.5">
+                      <span className="text-sm">📊</span>
+                      赔率分析
+                    </div>
+                    <div className="font-mono text-xs">主 {bet.odds} / 平 3.38 / 客 1.93</div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  {/* Reason */}
+                  <div className="text-xs text-gray-400 mb-4 leading-relaxed bg-gray-900/20 rounded-lg p-2.5 border border-gray-700/20">
+                    <div className="font-medium text-white mb-1.5 flex items-center gap-1.5">
+                      <span className="text-sm">🤖</span>
+                      AI 分析
+                    </div>
+                    <div className="text-gray-300 leading-relaxed text-xs">
+                      {bet.reason}
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-2">
                     <button 
-                      className="bg-white text-black font-medium py-3 px-4 rounded-xl hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
+                      className="bg-gradient-to-r from-white to-gray-100 text-gray-900 font-bold py-2.5 px-3 rounded-lg hover:from-gray-100 hover:to-gray-200 transition-all duration-300 flex items-center justify-center gap-1.5 shadow-lg transform hover:scale-105 text-xs"
                       onClick={() => openDealModal(bet.id)}
                     >
-                      🚀 去下注（最划算）
+                      🚀 去下注
                     </button>
                     <button 
-                      className="bg-gray-700/50 text-white font-medium py-3 px-4 rounded-xl hover:bg-gray-600/50 transition-colors flex items-center justify-center gap-2"
+                      className="bg-gradient-to-r from-gray-800/60 to-gray-700/60 text-white font-medium py-2.5 px-3 rounded-lg hover:from-gray-700/60 hover:to-gray-600/60 transition-all duration-300 flex items-center justify-center gap-1.5 border border-gray-600/40 hover:border-gray-500/60 transform hover:scale-105 text-xs"
                       onClick={handleTelegramClick}
                     >
-                      📱 让 AI 跟单
+                      <Send className="w-4 h-4" /> 让 AI 跟单
                     </button>
                   </div>
                 </div>
