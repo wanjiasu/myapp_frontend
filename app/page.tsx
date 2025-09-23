@@ -222,20 +222,8 @@ export default function Home() {
       <header className="sticky top-0 z-50 backdrop-blur bg-[#0B1224]/80 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="inline-block w-8 h-8 rounded-2xl overflow-hidden">
-              <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#A5B4FC"/>
-                    <stop offset="100%" stopColor="#6EE7F9"/>
-                  </linearGradient>
-                </defs>
-                <rect x="32" y="32" width="448" height="448" rx="96" fill="url(#g1)"/>
-                <text x="50%" y="57%" textAnchor="middle" dominantBaseline="middle" 
-                      fontFamily="Inter,system-ui" fontWeight="900" fontSize="280" fill="#0B1224">β</text>
-              </svg>
-            </span>
-            <b>Betaione</b>
+            <img src="/logo.png" alt="BetAIOne Logo" className="w-8 h-8 rounded-2xl" />
+            <b>BetAIOne</b>
             
           </div>
           <nav className="hidden md:flex items-center gap-6 text-sm text-white/80">
