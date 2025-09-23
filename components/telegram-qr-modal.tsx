@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { X, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
 
 interface TelegramQRModalProps {
   isOpen: boolean;
@@ -42,10 +43,12 @@ export default function TelegramQRModal({ isOpen, onClose, userId }: TelegramQRM
         <div className="text-center mb-6">
           <div className="bg-white p-4 rounded-lg inline-block mb-4">
             {qrCodeUrl && (
-              <img 
+              <Image 
                 src={qrCodeUrl} 
                 alt="Telegram Bot QR Code" 
                 className="w-48 h-48 mx-auto"
+                width={192}
+                height={192}
               />
             )}
           </div>

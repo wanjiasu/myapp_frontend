@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Heart, Sparkles, ListFilter, Newspaper, Send, Gift, Bot, X, LogOut } from "lucide-react";
+import { Heart, Sparkles, ListFilter, Newspaper, Send, Bot, X, LogOut } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import TelegramQRModal from "@/components/telegram-qr-modal";
+import Image from "next/image";
 
 // Generate timestamps on client side to avoid hydration mismatch
 const getClientTimestamp = (hoursOffset: number) => {
@@ -173,9 +174,8 @@ export default function Home() {
     search: ''
   });
   const [showDealModal, setShowDealModal] = useState(false);
-  const [selectedMatch, setSelectedMatch] = useState<string>('');
   const [isClient, setIsClient] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<{id: string; email: string; name?: string} | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showTelegramModal, setShowTelegramModal] = useState(false);
@@ -305,14 +305,12 @@ export default function Home() {
     saveFavorites(newFavorites);
   };
 
-  const openDealModal = (matchId: string) => {
-    setSelectedMatch(matchId);
+  const openDealModal = () => {
     setShowDealModal(true);
   };
 
   const closeDealModal = () => {
     setShowDealModal(false);
-    setSelectedMatch('');
   };
 
   // Filter matches
@@ -362,7 +360,7 @@ export default function Home() {
       <header className="sticky top-0 z-50 backdrop-blur bg-[#0B1224]/80 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="BetAIOne Logo" className="w-8 h-8 rounded-2xl" />
+            <Image src="/logo.png" alt="BetAIOne Logo" className="w-8 h-8 rounded-2xl" width={32} height={32} />
             <b>BetAIOne</b>
             
           </div>
@@ -440,7 +438,7 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 py-8 grid lg:grid-cols-3 gap-6 items-start">
           <div className="lg:col-span-2">
             <h1 className="text-2xl md:text-4xl font-extrabold leading-tight">所有比赛 · 一站式可下注</h1>
-            <p className="mt-3 text-white/80 text-sm md:text-base">聚合主流联赛与电竞盘口，<b>AI 给出"最有把握"投注建议</b>，并提示"最划算渠道"。</p>
+            <p className="mt-3 text-white/80 text-sm md:text-base">聚合主流联赛与电竞盘口，<b>AI 给出&quot;最有把握&quot;投注建议</b>，并提示&quot;最划算渠道&quot;。</p>
           </div>
           <aside className="glass rounded-xl p-4">
             <div className="text-sm opacity-80 mb-2">AI 投注助理（Telegram）</div>
@@ -492,7 +490,7 @@ export default function Home() {
             // 使用真实数据
             aiRecommendations.map((recommendation) => {
               // 根据 predicted_result 确定哪个队伍应该高亮
-              const getHighlightedTeam = (predictedResult: string, homeTeam: string, awayTeam: string) => {
+              const getHighlightedTeam = (predictedResult: string) => {
                 const result = predictedResult.toLowerCase()
                 if (result.includes('home') || result.includes('主')) {
                   return 'home'
@@ -502,7 +500,7 @@ export default function Home() {
                 return 'none'
               }
               
-              const highlightedTeam = getHighlightedTeam(recommendation.prediction_result, recommendation.home_team, recommendation.away_team)
+              const highlightedTeam = getHighlightedTeam(recommendation.prediction_result)
               
               return (
                 <div key={recommendation.id} className="relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer hover:transform hover:-translate-y-0.5 hover:shadow-xl" style={{
@@ -575,7 +573,7 @@ export default function Home() {
                     <div className="grid grid-cols-2 gap-2">
                       <button 
                         className="bg-gradient-to-r from-white to-gray-100 text-gray-900 font-bold py-2.5 px-3 rounded-lg hover:from-gray-100 hover:to-gray-200 transition-all duration-300 flex items-center justify-center gap-1.5 shadow-lg transform hover:scale-105 hover:-translate-y-0.5 relative overflow-hidden text-xs"
-                        onClick={() => openDealModal(recommendation.id)}
+                        onClick={() => openDealModal()}
                       >
                         <span className="relative z-10 flex items-center gap-1">
                           🚀 去下注
@@ -650,7 +648,7 @@ export default function Home() {
                   <div className="grid grid-cols-2 gap-2">
                     <button 
                       className="bg-gradient-to-r from-white to-gray-100 text-gray-900 font-bold py-2.5 px-3 rounded-lg hover:from-gray-100 hover:to-gray-200 transition-all duration-300 flex items-center justify-center gap-1.5 shadow-lg transform hover:scale-105 text-xs"
-                      onClick={() => openDealModal(bet.id)}
+                      onClick={() => openDealModal()}
                     >
                       🚀 去下注
                     </button>
@@ -753,7 +751,6 @@ export default function Home() {
                 </tr>
               ) : (
                 filteredMatches.map((match) => {
-                  const matchTime = isClient ? new Date(match.fixture_date) : new Date();
                   const isFav = favorites[match.home_team];
                   
                   return (
@@ -777,11 +774,11 @@ export default function Home() {
                       <td>{match.ai_prediction || ''}</td>
                       <td>
                         <button 
-                          className="btn btn-secondary text-xs"
-                          onClick={() => openDealModal(match.id)}
-                        >
-                          最划算渠道
-                        </button>
+                        className="btn btn-secondary text-xs"
+                        onClick={() => openDealModal()}
+                      >
+                        最划算渠道
+                      </button>
                       </td>
                     </tr>
                   );
@@ -856,7 +853,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <p className="text-[11px] text-white/50 mt-3">根据渠道福利与当前赔率折算为"等效赔率"。</p>
+            <p className="text-[11px] text-white/50 mt-3">根据渠道福利与当前赔率折算为&quot;等效赔率&quot;。</p>
           </div>
         </div>
       )}
