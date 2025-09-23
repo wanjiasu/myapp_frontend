@@ -13,6 +13,29 @@ const getClientTimestamp = (hoursOffset: number) => {
   return Date.now() + hoursOffset * 3600e3;
 };
 
+// AI推荐数据接口
+interface AIRecommendation {
+  id: string;
+  league: string;
+  home_team: string;
+  away_team: string;
+  odds: {
+    home_avg: number;
+    draw_avg: number;
+    away_avg: number;
+    statistics: {
+      total_bookmakers: number;
+      home_bookmakers_count: number;
+      draw_bookmakers_count: number;
+      away_bookmakers_count: number;
+    };
+  };
+  fixture_date: string;
+  recommendation_index: number;
+  analysis: string;
+  prediction_result: string;
+}
+
 // Mock data
 const bestBets = [
   {
@@ -138,6 +161,31 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showTelegramModal, setShowTelegramModal] = useState(false);
+  const [aiRecommendations, setAiRecommendations] = useState<AIRecommendation[]>([]);
+  const [loadingRecommendations, setLoadingRecommendations] = useState(true);
+
+  // 获取AI推荐数据
+  const fetchAIRecommendations = async () => {
+    try {
+      setLoadingRecommendations(true);
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/api/ai-recommendations`);
+      if (response.ok) {
+        const data = await response.json();
+        setAiRecommendations(data);
+      } else {
+        console.error('Failed to fetch AI recommendations:', response.statusText);
+        // 如果API失败，使用mock数据
+        setAiRecommendations([]);
+      }
+    } catch (error) {
+      console.error('Error fetching AI recommendations:', error);
+      // 如果API失败，使用mock数据
+      setAiRecommendations([]);
+    } finally {
+      setLoadingRecommendations(false);
+    }
+  };
 
   const handleTelegramClick = () => {
     if (!user) {
@@ -180,6 +228,8 @@ export default function Home() {
     };
 
     getSession();
+    // 获取AI推荐数据
+    fetchAIRecommendations();
   }, [])
 
   // Load favorites from localStorage
@@ -363,40 +413,145 @@ export default function Home() {
 
       {/* AI Best Bets */}
       <section id="best" className="max-w-7xl mx-auto px-4 py-6">
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl md:text-2xl font-bold flex items-center gap-2">
-            <Sparkles className="w-5 h-5" /> AI 最有把握的投注
+            🔥 AI 最有把握的投注
           </h2>
-          <div className="text-xs opacity-70">实时性：</div>
         </div>
         <div className="grid md:grid-cols-3 gap-4">
-          {bestBets.map((bet) => (
-            <div key={bet.id} className="glass rounded-2xl p-4">
-              <div className="text-xs opacity-70 mb-1">{bet.league}</div>
-              <div className="font-bold">{bet.teams}</div>
-              <div className="mt-1 text-sm">
-                <span className="chip px-2 py-0.5 rounded">推荐指数 {bet.recommendation}%</span>
+          {loadingRecommendations ? (
+            // 加载状态
+            Array.from({ length: 3 }).map((_, index) => (
+              <div key={index} className="relative overflow-hidden rounded-2xl" style={{
+                background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(10px)'
+              }}>
+                <div className="p-6">
+                  <div className="animate-pulse">
+                    <div className="h-4 bg-gray-600 rounded mb-2"></div>
+                    <div className="h-6 bg-gray-600 rounded mb-4"></div>
+                    <div className="h-8 bg-gray-600 rounded mb-4"></div>
+                    <div className="h-16 bg-gray-600 rounded mb-6"></div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="h-12 bg-gray-600 rounded"></div>
+                      <div className="h-12 bg-gray-600 rounded"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="mt-2 text-sm">
-                <b>预测：</b>{bet.prediction} · <span className="opacity-80">赔率：{bet.odds}</span>
+            ))
+          ) : aiRecommendations.length > 0 ? (
+            // 使用真实数据
+            aiRecommendations.map((recommendation) => (
+              <div key={recommendation.id} className="relative overflow-hidden rounded-2xl" style={{
+                background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(10px)'
+              }}>
+                <div className="p-6">
+                  <div className="text-sm text-gray-400 mb-2">{recommendation.league}</div>
+                  <h3 className="text-xl font-bold text-white mb-4">
+                    {recommendation.home_team} vs {recommendation.away_team}
+                  </h3>
+                  
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <div className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1">
+                        🎯 推荐指数 {recommendation.recommendation_index.toFixed(2)}
+                      </div>
+                      {recommendation.prediction_result && (
+                        <div className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1">
+                          ⚡ {recommendation.prediction_result}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="text-sm text-gray-300 mb-4">
+                    <div className="mb-1">
+                      <span className="text-white font-medium">赔率:</span> 
+                      主胜 {recommendation.odds.home_avg.toFixed(2)} | 
+                      平局 {recommendation.odds.draw_avg.toFixed(2)} | 
+                      客胜 {recommendation.odds.away_avg.toFixed(2)}
+                    </div>
+                    <div className="mb-1">
+                      <span className="text-white font-medium">比赛时间:</span> {new Date(recommendation.fixture_date).toLocaleString('zh-CN')}
+                    </div>
+                  </div>
+
+                  <div className="text-sm text-gray-400 mb-6 leading-relaxed">
+                    {recommendation.analysis}
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <button 
+                      className="bg-white text-black font-medium py-3 px-4 rounded-xl hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
+                      onClick={() => openDealModal(recommendation.id)}
+                    >
+                      🚀 去下注（最划算）
+                    </button>
+                    <button 
+                      className="bg-gray-700/50 text-white font-medium py-3 px-4 rounded-xl hover:bg-gray-600/50 transition-colors flex items-center justify-center gap-2"
+                      onClick={handleTelegramClick}
+                    >
+                      📱 让 AI 跟单
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="mt-2 text-xs text-white/80">理由：{bet.reason}</div>
-              <div className="mt-3 grid grid-cols-2 gap-2">
-                <button 
-                  className="btn btn-primary"
-                  onClick={() => openDealModal(bet.id)}
-                >
-                  去下注（最划算）
-                </button>
-                <button 
-                  className="btn btn-secondary inline-flex items-center justify-center gap-2"
-                  onClick={handleTelegramClick}
-                >
-                  <Send className="w-4 h-4" /> 让 AI 跟单
-                </button>
+            ))
+          ) : (
+            // 使用mock数据作为后备
+            bestBets.map((bet) => (
+              <div key={bet.id} className="relative overflow-hidden rounded-2xl" style={{
+                background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(10px)'
+              }}>
+                <div className="p-6">
+                  <div className="text-sm text-gray-400 mb-2">{bet.league}</div>
+                  <h3 className="text-xl font-bold text-white mb-4">{bet.teams}</h3>
+                  
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <div className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1">
+                        🎯 推荐指数 {(bet.recommendation / 100).toFixed(2)}
+                      </div>
+                    </div>
+                    <div className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm font-medium">
+                      ⚡ {bet.prediction}
+                    </div>
+                  </div>
+
+                  <div className="text-sm text-gray-300 mb-4">
+                    <div className="mb-1">
+                      <span className="text-white font-medium">赔率:</span> 主 {bet.odds} / 平 3.38 / 客 1.93
+                    </div>
+                  </div>
+
+                  <div className="text-sm text-gray-400 mb-6 leading-relaxed">
+                    {bet.reason}
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <button 
+                      className="bg-white text-black font-medium py-3 px-4 rounded-xl hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
+                      onClick={() => openDealModal(bet.id)}
+                    >
+                      🚀 去下注（最划算）
+                    </button>
+                    <button 
+                      className="bg-gray-700/50 text-white font-medium py-3 px-4 rounded-xl hover:bg-gray-600/50 transition-colors flex items-center justify-center gap-2"
+                      onClick={handleTelegramClick}
+                    >
+                      📱 让 AI 跟单
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </section>
 
