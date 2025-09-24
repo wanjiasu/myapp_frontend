@@ -7,13 +7,6 @@ import TelegramQRModal from "@/components/telegram-qr-modal";
 import Image from "next/image";
 
 // Generate timestamps on client side to avoid hydration mismatch
-const getClientTimestamp = (hoursOffset: number) => {
-  if (typeof window === 'undefined') {
-    return 0; // Return 0 on server side
-  }
-  return Date.now() + hoursOffset * 3600e3;
-};
-
 // AI推荐数据接口
 interface AIRecommendation {
   id: string;
@@ -83,65 +76,6 @@ const bestBets = [
     prediction: 'GenG胜',
     odds: 1.80,
     reason: '近期对位强势与滚盘节奏优势'
-  }
-];
-
-const matches = [
-  {
-    id: 'e1',
-    ts: getClientTimestamp(2),
-    sport: 'soccer',
-    region: 'TH',
-    league: 'THA League 1',
-    home: 'Buriram United',
-    away: 'BG Pathum United',
-    odds: [1.85, 3.20, 4.50],
-    ai: '主胜 61%',
-    favIds: ['BUR']
-  },
-  {
-    id: 'e2',
-    ts: getClientTimestamp(9),
-    sport: 'soccer',
-    region: 'BR',
-    league: 'Série A',
-    home: 'Flamengo',
-    away: 'Palmeiras',
-    odds: [2.10, 3.40, 3.20],
-    ai: '主胜 DNB 58%'
-  },
-  {
-    id: 'e3',
-    ts: getClientTimestamp(5),
-    sport: 'soccer',
-    region: 'EN',
-    league: 'Premier League',
-    home: 'Manchester City',
-    away: 'Liverpool',
-    odds: [2.25, 3.60, 2.90],
-    ai: '主胜 55%'
-  },
-  {
-    id: 'e4',
-    ts: getClientTimestamp(26),
-    sport: 'soccer',
-    region: 'ES',
-    league: 'La Liga',
-    home: 'Real Madrid',
-    away: 'Barcelona',
-    odds: [2.40, 3.30, 2.80],
-    ai: '客胜 52%'
-  },
-  {
-    id: 'e5',
-    ts: getClientTimestamp(1),
-    sport: 'tennis',
-    region: 'AR',
-    league: 'ATP Challenger',
-    home: 'Diaz',
-    away: 'Gomez',
-    odds: [1.70, '-', 2.20],
-    ai: '主胜 56%'
   }
 ];
 
@@ -502,7 +436,7 @@ export default function Home() {
               所有比赛 · 一站式可下注
             </h1>
             <p className="text-lg" style={{color: '#E5E8E9'}}>
-              聚合主流联赛与电竞盘口，<span className="font-bold" style={{color: '#00B8C8'}}>AI 给出"最有把握"投注建议</span>，并提示"最划算渠道"。
+              聚合主流联赛与电竞盘口，<span className="font-bold" style={{color: '#00B8C8'}}>AI 给出&ldquo;最有把握&rdquo;投注建议</span>，并提示&ldquo;最划算渠道&rdquo;。
             </p>
           </div>
           <aside className="rounded-xl p-6 backdrop-blur-md border" style={{
