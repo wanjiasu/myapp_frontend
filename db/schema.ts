@@ -60,9 +60,39 @@ export const verification = pgTable("verification", {
     .notNull(),
 });
 
+export const telegramBinding = pgTable("telegram_binding", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  telegramChatId: text("telegram_chat_id").notNull().unique(),
+  telegramUserId: text("telegram_user_id").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
+
+export const bindToken = pgTable("bind_token", {
+  id: text("id").primaryKey(),
+  token: text("token").notNull().unique(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  state: text("state").notNull(),
+  telegramChatId: text("telegram_chat_id"),
+  telegramUserId: text("telegram_user_id"),
+  expiresAt: timestamp("expires_at").notNull(),
+  used: boolean("used").default(false).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const schema = {
   user,
   session,
   account,
   verification,
+  telegramBinding,
+  bindToken,
 }

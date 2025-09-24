@@ -25,8 +25,8 @@ import {
 
 import { z } from "zod";
 import { toast } from "sonner"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import { useState, useEffect } from "react"
 import { authClient } from "@/lib/auth-client"
 
 const formSchema = z.object({
@@ -41,7 +41,16 @@ export function SignupForm({
 }: React.ComponentProps<"div">) {
 
   const [isloading, setIsloading] = useState(false)
+  const [bindToken, setBindToken] = useState<string | null>(null)
+  const [isBindingLoading, setIsBindingLoading] = useState(false)
   const router = useRouter()
+  const searchParams = useSearchParams()
+  
+  // 获取 Telegram 参数
+  const tgUserId = searchParams.get('tg_user_id')
+  const tgChatId = searchParams.get('tg_chat_id')
+  const tgStartParam = searchParams.get('tg_start_param')
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -49,6 +58,71 @@ export function SignupForm({
       password: "",
     },
   })
+
+  // 检查用户是否已登录并生成 bind_token
+  useEffect(() => {
+    const checkAuthAndGenerateToken = async () => {
+      if (tgUserId && tgChatId) {
+        try {
+          // 检查用户是否已登录
+          const session = await authClient.getSession()
+          if (session?.data?.user) {
+            // 生成 bind_token
+            const response = await fetch('/api/telegram/bind-token', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                tg_user_id: tgUserId,
+                tg_chat_id: tgChatId,
+              }),
+            })
+            
+            if (response.ok) {
+              const data = await response.json()
+              setBindToken(data.bind_token)
+            }
+          }
+        } catch (error) {
+          console.error('Error generating bind token:', error)
+        }
+      }
+    }
+    
+    checkAuthAndGenerateToken()
+  }, [tgUserId, tgChatId])
+
+  const handleTelegramBind = async () => {
+    if (!bindToken) return
+    
+    setIsBindingLoading(true)
+    try {
+      const response = await fetch('/api/bind/confirm', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          bind_token: bindToken,
+          tg_start_param: tgStartParam,
+        }),
+      })
+      
+      if (response.ok) {
+        toast.success('Telegram 账户绑定成功！')
+        router.push('/')
+      } else {
+        const error = await response.json()
+        toast.error(error.error || '绑定失败')
+      }
+    } catch (error) {
+      console.error('Binding error:', error)
+      toast.error('绑定过程中发生错误')
+    } finally {
+      setIsBindingLoading(false)
+    }
+  }
 
   const signInWithGoogle = async () => {
     await authClient.signIn.social({
@@ -83,6 +157,29 @@ export function SignupForm({
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="grid gap-6">
+              {/* 显示一键绑定按钮（如果有 Telegram 参数且用户已登录） */}
+              {bindToken && (
+                <div className="flex flex-col gap-4">
+                  <div className="text-center text-sm text-muted-foreground">
+                    检测到 Telegram 账户，可以直接绑定
+                  </div>
+                  <Button 
+                    variant="default" 
+                    className="w-full" 
+                    type="button" 
+                    onClick={handleTelegramBind}
+                    disabled={isBindingLoading}
+                  >
+                    {isBindingLoading ? "绑定中..." : "🔗 一键绑定 Telegram"}
+                  </Button>
+                  <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
+                    <span className="bg-card text-muted-foreground relative z-10 px-2">
+                      或者继续注册新账户
+                    </span>
+                  </div>
+                </div>
+              )}
+              
               <div className="flex flex-col gap-4">
                 <Button variant="outline" className="w-full" type="button" onClick={signInWithGoogle}>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
