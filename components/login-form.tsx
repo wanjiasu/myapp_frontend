@@ -25,7 +25,7 @@ import {
 
 import { z } from "zod";
 import { toast } from "sonner"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react"
 import { authClient } from "@/lib/auth-client"
 
@@ -40,7 +40,18 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
 
   const [isloading, setIsloading] = useState(false)
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false)
   const router = useRouter()
+  const searchParams = useSearchParams()
+  
+  // 获取 Telegram 参数
+  const tgUserId = searchParams.get('tg_user_id')
+  const tgChatId = searchParams.get('tg_chat_id')
+  const tgStartParam = searchParams.get('tg_start_param')
+  
+  // 检查是否来自 Telegram
+  const isFromTelegram = !!(tgUserId && tgChatId)
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -49,33 +60,117 @@ export function LoginForm({
     },
   })
 
+  // 自动绑定 Telegram 账户的函数
+  const autoBindTelegram = async () => {
+    if (!isFromTelegram) return
+    
+    try {
+      // 1. 生成 bind_token
+      const tokenResponse = await fetch('/api/telegram/bind-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          tg_user_id: tgUserId,
+          tg_chat_id: tgChatId,
+        }),
+      })
+      
+      if (!tokenResponse.ok) {
+        throw new Error('Failed to generate bind token')
+      }
+      
+      const tokenData = await tokenResponse.json()
+      
+      // 2. 确认绑定
+      const bindResponse = await fetch('/api/bind/confirm', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          bind_token: tokenData.bind_token,
+          tg_start_param: tgStartParam,
+        }),
+      })
+      
+      if (bindResponse.ok) {
+        toast.success('🎉 Telegram 账户绑定成功！')
+      } else {
+        const error = await bindResponse.json()
+        toast.error(error.error || '绑定失败')
+      }
+    } catch (error) {
+      console.error('Auto binding error:', error)
+      toast.error('自动绑定过程中发生错误')
+    }
+  }
+
+  // Google 登录并自动绑定
   const signInWithGoogle = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/",
-    });
+    setIsGoogleLoading(true)
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+      
+      // 登录成功后检查会话并自动绑定
+      if (isFromTelegram) {
+        // 等待一下让登录状态更新
+        setTimeout(async () => {
+          const session = await authClient.getSession()
+          if (session?.data?.user) {
+            await autoBindTelegram()
+          }
+        }, 1000)
+      }
+    } catch (error) {
+      console.error('Google sign in error:', error)
+      toast.error('Google 登录失败')
+    } finally {
+      setIsGoogleLoading(false)
+    }
   };
  
-  // 2. Define a submit handler.
+  // 邮箱登录并自动绑定
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsloading(true)
-    const {success, message} = await signIn(values.email, values.password)
-      if (success)  {
+    try {
+      const {success, message} = await signIn(values.email, values.password)
+      if (success) {
         toast.success(message as string)
+        
+        // 登录成功后自动绑定 Telegram
+        if (isFromTelegram) {
+          await autoBindTelegram()
+        }
+        
         router.push("/")
       } else {
         toast.error(message as string)
       }
+    } catch (error) {
+      console.error('Login error:', error)
+      toast.error('登录过程中发生错误')
+    } finally {
       setIsloading(false)
+    }
   }
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">Welcome back</CardTitle>
+          <CardTitle className="text-xl">
+            {isFromTelegram ? "绑定 Telegram 账号" : "Welcome back"}
+          </CardTitle>
           <CardDescription>
-            Login with your Google account
+            {isFromTelegram 
+              ? "检测到来自 Telegram，登录后将自动绑定您的 Telegram 账号" 
+              : "Login with your Google account"
+            }
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -83,14 +178,25 @@ export function LoginForm({
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="grid gap-6">
               <div className="flex flex-col gap-4">
-                <Button variant="outline" className="w-full" type="button" onClick={signInWithGoogle}>
+                <Button 
+                  variant="outline" 
+                  className="w-full" 
+                  type="button" 
+                  onClick={signInWithGoogle}
+                  disabled={isGoogleLoading}
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path
                       d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
                       fill="currentColor"
                     />
                   </svg>
-                  Login with Google
+                  {isGoogleLoading 
+                    ? "登录中..." 
+                    : isFromTelegram 
+                      ? "🔗 使用 Google 立即绑定账号" 
+                      : "Login with Google"
+                  }
                 </Button>
               </div>
               <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
@@ -107,13 +213,13 @@ export function LoginForm({
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="m@example.com" {...field} />
+                <Input placeholder="Email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-                </div>
+        </div>
                 <div className="grid gap-3">
                   <div className="flex flex-col gap-2">
                     <FormField
@@ -129,27 +235,23 @@ export function LoginForm({
             </FormItem>
           )}
         />
-                    <a
-                      href="#"
-                      className="ml-auto text-sm underline-offset-4 hover:underline"
-                    >
-                      Forgot your password?
-                    </a>
+    
                   </div>
                 </div>
                 <Button type="submit" className="w-full" disabled={isloading}>
-                  {isloading ? "Loading..." : "Login"}
+                  {isloading 
+                    ? "登录中..." 
+                    : isFromTelegram 
+                      ? "🔗 登录并绑定 Telegram" 
+                      : "Login"
+                  }
                 </Button>
               </div>
               <div className="text-center text-sm">
                 Don&apos;t have an account?{" "}
-                <Button 
-                  variant="link" 
-                  className="underline underline-offset-4 p-0 h-auto font-normal" 
-                  onClick={() => router.push("/signup")}
-                >
-                  Sign up
-                </Button>
+                <a href="/signup" className="underline underline-offset-4">
+                  {isFromTelegram ? "注册并绑定" : "Sign up"}
+                </a>
               </div>
             </div>
           </form>

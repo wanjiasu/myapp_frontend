@@ -3,6 +3,15 @@
 import { GalleryVerticalEnd } from "lucide-react"
 import Link from "next/link"
 import { LoginForm } from "@/components/login-form"
+import { Suspense } from "react"
+
+function LoginFormFallback() {
+  return (
+    <div className="flex items-center justify-center p-4">
+      <div className="text-sm text-muted-foreground">Loading...</div>
+    </div>
+  )
+}
 
 export default function LoginPage() {
   return (
@@ -14,7 +23,9 @@ export default function LoginPage() {
           </div>
           Acme Inc.
         </Link>
-        <LoginForm />
+        <Suspense fallback={<LoginFormFallback />}>
+          <LoginForm />
+        </Suspense>
       </div>
     </div>
   )
