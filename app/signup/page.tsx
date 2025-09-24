@@ -1,6 +1,15 @@
 import { GalleryVerticalEnd } from "lucide-react"
+import { Suspense } from "react"
 
 import { SignupForm } from "@/components/signup-form"
+
+function SignupFormFallback() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <div className="text-muted-foreground">加载中...</div>
+    </div>
+  )
+}
 
 export default function SignupPage() {
   return (
@@ -12,7 +21,9 @@ export default function SignupPage() {
           </div>
           Acme Inc.
         </a>
-        <SignupForm />
+        <Suspense fallback={<SignupFormFallback />}>
+          <SignupForm />
+        </Suspense>
       </div>
     </div>
   )
