@@ -183,12 +183,16 @@ export default function Home() {
   const [loadingRecommendations, setLoadingRecommendations] = useState(true);
   const [matches, setMatches] = useState<Match[]>([]);
   const [loadingMatches, setLoadingMatches] = useState(true);
+  
+  // 分页状态
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   // 获取AI推荐数据
   const fetchAIRecommendations = async () => {
     try {
       setLoadingRecommendations(true);
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001';
       const response = await fetch(`${apiUrl}/api/ai-recommendations`);
       if (response.ok) {
         const data = await response.json();
@@ -211,7 +215,7 @@ export default function Home() {
   const fetchMatches = async () => {
     try {
       setLoadingMatches(true);
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001';
       const response = await fetch(`${apiUrl}/api/matches`);
       if (response.ok) {
         const data = await response.json();
@@ -354,32 +358,67 @@ export default function Home() {
     return true;
   });
 
+  // 分页逻辑
+  const totalPages = Math.ceil(filteredMatches.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedMatches = filteredMatches.slice(startIndex, endIndex);
+
+  // 分页控制函数
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
-    <div className="min-h-screen" style={{background: 'linear-gradient(#0B1224, #0E1630)', color: '#E5EAF5'}}>
+    <div className="min-h-screen" style={{
+      background: 'linear-gradient(135deg, #1A2226 0%, #152A35 50%, #1A2226 100%)',
+      color: '#FFFFFF'
+    }}>
       {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur bg-[#0B1224]/80 border-b border-white/10">
+      <header className="sticky top-0 z-50 backdrop-blur-md border-b" style={{
+        backgroundColor: 'rgba(26, 34, 38, 0.9)',
+        borderColor: 'rgba(255, 255, 255, 0.08)'
+      }}>
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Image src="/logo.png" alt="BetAIOne Logo" className="w-8 h-8 rounded-2xl" width={32} height={32} />
-            <b>BetAIOne</b>
-            
+          <div className="flex items-center gap-3">
+            <Image 
+              src="/logo横向-白字.svg" 
+              alt="BetAIOne Logo" 
+              className="h-8 w-auto" 
+              width={120} 
+              height={32} 
+            />
           </div>
-          <nav className="hidden md:flex items-center gap-6 text-sm text-white/80">
-            <a href="#best" className="hover:text-white">AI 最佳推荐</a>
-            <a href="#all" className="hover:text-white">全部比赛</a>
-            <a href="#consultation" className="hover:text-white">咨询中心</a>
-            <a href="#promos" className="hover:text-white">活动</a>
+          <nav className="hidden md:flex items-center gap-8 text-sm" style={{color: '#E5E8E9'}}>
+            <a href="#best" className="hover:text-white transition-colors duration-200 hover:scale-105">AI 最佳推荐</a>
+            <a href="#all" className="hover:text-white transition-colors duration-200 hover:scale-105">全部比赛</a>
+            <a href="#consultation" className="hover:text-white transition-colors duration-200 hover:scale-105">咨询中心</a>
+            <a href="#promos" className="hover:text-white transition-colors duration-200 hover:scale-105">活动</a>
           </nav>
           <div className="flex items-center gap-2">
             {isLoading ? (
-              <div className="text-sm opacity-70">加载中...</div>
+              <div className="text-sm" style={{color: '#8A9499'}}>加载中...</div>
             ) : user ? (
               <div className="relative">
                 <div 
                   className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
                   onMouseEnter={() => setShowDropdown(true)}
                 >
-                  <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{
+                    background: 'linear-gradient(135deg, #00B8C8 0%, #4FCFD9 100%)'
+                  }}>
                     {user.name?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}
                   </div>
                   <div className="text-sm">
@@ -390,14 +429,18 @@ export default function Home() {
                 {/* 下拉菜单 */}
                 {showDropdown && (
                   <div 
-                    className="absolute right-0 top-full mt-2 w-48 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-lg z-50"
+                    className="absolute right-0 top-full mt-2 w-48 backdrop-blur-md border rounded-lg shadow-lg z-50"
+                    style={{
+                      backgroundColor: 'rgba(42, 59, 64, 0.9)',
+                      borderColor: 'rgba(255, 255, 255, 0.2)'
+                    }}
                     onMouseEnter={() => setShowDropdown(true)}
                     onMouseLeave={() => setShowDropdown(false)}
                   >
                     <div className="p-2">
                       <button
                         onClick={handleLogout}
-                        className="w-full flex items-center gap-2 px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors"
+                        className="w-full flex items-center gap-2 px-3 py-2 text-sm text-white rounded-md transition-colors duration-200 hover:bg-white/10"
                       >
                         <LogOut size={16} />
                         登出
@@ -407,23 +450,39 @@ export default function Home() {
                 )}
               </div>
             ) : (
-              <a href="/login" className="btn btn-primary">登录</a>
+              <a 
+                href="/login" 
+                className="px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:scale-105"
+                style={{
+                  background: 'linear-gradient(135deg, #00B8C8 0%, #4FCFD9 100%)',
+                  color: '#FFFFFF'
+                }}
+              >
+                登录
+              </a>
             )}
           </div>
         </div>
       </header>
 
       {/* Top banners */}
-      <section id="promos" className="border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-3">
-          <div className="banner glass rounded-xl p-3 flex items-center justify-between">
+      <section id="promos" className="border-b" style={{borderColor: 'rgba(255, 255, 255, 0.08)'}}>
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="rounded-xl p-4 flex items-center justify-between backdrop-blur-md border" style={{
+            background: 'rgba(42, 59, 64, 0.3)',
+            borderColor: 'rgba(255, 255, 255, 0.1)'
+          }}>
             <div>
-              <div className="text-xs opacity-70 mb-1">AI 投注助理</div>
-              <div className="text-base font-extrabold">添加 Telegram，领专属下注建议</div>
-              <div className="text-xs opacity-70 mt-1">赛前提醒 · 实时盘口变动 · 风险提示</div>
+              <div className="text-xs mb-1" style={{color: '#8A9499'}}>AI 投注助理</div>
+              <div className="text-lg font-bold">添加 Telegram，领专属下注建议</div>
+              <div className="text-xs mt-1" style={{color: '#8A9499'}}>赛前提醒 · 实时盘口变动 · 风险提示</div>
             </div>
             <button 
-              className="btn btn-primary whitespace-nowrap inline-flex items-center gap-2 text-sm"
+              className="whitespace-nowrap inline-flex items-center gap-2 text-sm px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105"
+              style={{
+                background: 'linear-gradient(135deg, #00B8C8 0%, #4FCFD9 100%)',
+                color: '#FFFFFF'
+              }}
               onClick={handleTelegramClick}
             >
               <Send className="w-4 h-4" /> 立即添加
@@ -434,53 +493,73 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0" style={{background: 'radial-gradient(ellipse at top, rgba(165,180,252,.18), transparent 60%)'}}></div>
-        <div className="relative max-w-7xl mx-auto px-4 py-8 grid lg:grid-cols-3 gap-6 items-start">
+        <div className="absolute inset-0" style={{
+          background: 'radial-gradient(ellipse at top, rgba(0, 184, 200, 0.15), transparent 60%)'
+        }}></div>
+        <div className="relative max-w-7xl mx-auto px-4 py-12 grid lg:grid-cols-3 gap-8 items-start">
           <div className="lg:col-span-2">
-            <h1 className="text-2xl md:text-4xl font-extrabold leading-tight">所有比赛 · 一站式可下注</h1>
-            <p className="mt-3 text-white/80 text-sm md:text-base">聚合主流联赛与电竞盘口，<b>AI 给出&quot;最有把握&quot;投注建议</b>，并提示&quot;最划算渠道&quot;。</p>
+            <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4">
+              所有比赛 · 一站式可下注
+            </h1>
+            <p className="text-lg" style={{color: '#E5E8E9'}}>
+              聚合主流联赛与电竞盘口，<span className="font-bold" style={{color: '#00B8C8'}}>AI 给出"最有把握"投注建议</span>，并提示"最划算渠道"。
+            </p>
           </div>
-          <aside className="glass rounded-xl p-4">
-            <div className="text-sm opacity-80 mb-2">AI 投注助理（Telegram）</div>
-            <p className="text-sm text-white/75">把你关注的球队加到清单，AI 会根据盘口变动和历史模型，推送合适的下注窗口。</p>
+          <aside className="rounded-xl p-6 backdrop-blur-md border" style={{
+            background: 'rgba(42, 59, 64, 0.3)',
+            borderColor: 'rgba(255, 255, 255, 0.1)'
+          }}>
+            <div className="text-sm mb-3" style={{color: '#8A9499'}}>AI 投注助理（Telegram）</div>
+            <p className="text-sm mb-4" style={{color: '#E5E8E9'}}>
+              把你关注的球队加到清单，AI 会根据盘口变动和历史模型，推送合适的下注窗口。
+            </p>
             <button 
-              className="btn btn-primary mt-3 w-full inline-flex items-center justify-center gap-2 text-sm"
+              className="w-full inline-flex items-center justify-center gap-2 text-sm px-4 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105"
+              style={{
+                background: 'linear-gradient(135deg, #00B8C8 0%, #4FCFD9 100%)',
+                color: '#FFFFFF'
+              }}
               onClick={handleTelegramClick}
             >
               <Bot className="w-4 h-4" /> 添加 Telegram
             </button>
-            <p className="text-[11px] opacity-50 mt-2">* 请遵循当地法律与 18+ 责任博彩。</p>
+            <p className="text-xs mt-3" style={{color: '#5D6B70'}}>
+              * 请遵循当地法律与 18+ 责任博彩。
+            </p>
           </aside>
         </div>
       </section>
 
       {/* AI Best Bets */}
-      <section id="best" className="max-w-7xl mx-auto px-4 py-6">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-cyan-400" />
+      <section id="best" className="max-w-7xl mx-auto px-4 py-8 h-screen flex flex-col">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-2xl font-bold flex items-center gap-3">
+            <Sparkles className="w-6 h-6" style={{color: '#00B8C8'}} />
             AI 最有把握的投注
           </h2>
-          <div className="text-sm text-gray-400 flex items-center gap-2">
-            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+          <div className="text-sm flex items-center gap-2" style={{color: '#8A9499'}}>
+            <div className="w-2 h-2 rounded-full animate-pulse" style={{backgroundColor: '#00D084'}}></div>
             实时数据（来自 PostgreSQL）
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center max-w-6xl mx-auto">
+        <div className="flex-1">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center max-w-6xl mx-auto">
           {loadingRecommendations ? (
             // 加载状态
             Array.from({ length: 3 }).map((_, index) => (
-              <div key={index} className="relative overflow-hidden rounded-xl transition-all duration-300" style={{
-                background: 'rgba(255, 255, 255, 0.04)',
+                <div key={index} className="relative overflow-hidden rounded-xl transition-all duration-300 w-full h-[540px] flex flex-col" style={{
+                background: 'rgba(42, 59, 64, 0.4)',
                 border: '1px solid rgba(255, 255, 255, 0.08)',
                 backdropFilter: 'blur(14px)',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)'
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
               }}>
                 {/* 渐变边框效果 */}
-                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 via-cyan-400 to-emerald-500 opacity-80"></div>
-                <div className="p-4">
-                  <div className="text-center text-gray-400 py-6 flex items-center justify-center gap-2">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-cyan-400"></div>
+                <div className="absolute top-0 left-0 right-0 h-0.5" style={{
+                  background: 'linear-gradient(90deg, #00B8C8 0%, #4FCFD9 50%, #00B8C8 100%)'
+                }}></div>
+                <div className="p-6 flex-1 flex items-center justify-center">
+                  <div className="text-center flex items-center justify-center gap-2" style={{color: '#8A9499'}}>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2" style={{borderColor: '#00B8C8'}}></div>
                     <span className="text-sm">正在获取最新推荐...</span>
                   </div>
                 </div>
@@ -503,43 +582,73 @@ export default function Home() {
               const highlightedTeam = getHighlightedTeam(recommendation.prediction_result)
               
               return (
-                <div key={recommendation.id} className="relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer hover:transform hover:-translate-y-0.5 hover:shadow-xl" style={{
-                  background: 'rgba(255, 255, 255, 0.04)',
+                <div key={recommendation.id} className="relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer hover:transform hover:-translate-y-1 w-full hover:shadow-2xl h-[540px] flex flex-col" style={{
+                  background: 'rgba(42, 59, 64, 0.4)',
                   border: '1px solid rgba(255, 255, 255, 0.08)',
                   backdropFilter: 'blur(14px)',
-                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)'
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
                 }}>
                   {/* 渐变边框效果 */}
-                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 via-cyan-400 to-emerald-500 opacity-80"></div>
+                  <div className="absolute top-0 left-0 right-0 h-0.5" style={{
+                    background: 'linear-gradient(90deg, #00B8C8 0%, #4FCFD9 50%, #00B8C8 100%)'
+                  }}></div>
                   {/* 紧迫感指示器 */}
-                  <div className="absolute top-0 right-0 bg-gradient-to-r from-orange-400 to-red-400 text-white text-xs font-bold px-2 py-1 rounded-bl-md flex items-center gap-1">
+                  <div className="absolute top-0 right-0 text-white text-xs font-bold px-3 py-1 rounded-bl-lg flex items-center gap-1" style={{
+                    background: 'linear-gradient(135deg, #FF3B5C 0%, #FF6B7A 100%)'
+                  }}>
                     <span className="animate-pulse text-xs">🔥</span>
                     限时推荐
                   </div>
                   
-                  <div className="p-4">
+                  <div className="p-6 flex-1 flex flex-col">
                     {/* League Name */}
-                    <div className="text-xs text-gray-400 mb-2 font-medium">{recommendation.league}</div>
+                    <div className="text-xs font-medium mb-3" style={{color: '#8A9499'}}>
+                      {recommendation.league}
+                    </div>
                     
                     {/* 高亮队伍名称 */}
-                    <div className="mb-3">
-                      <span className={`text-base font-bold transition-all duration-200 ${highlightedTeam === 'home' ? 'text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/30' : 'text-white'}`}>
+                    <div className="mb-4">
+                      <span className={`text-base font-bold transition-all duration-200 ${
+                        highlightedTeam === 'home' 
+                          ? 'px-2 py-1 rounded border' 
+                          : ''
+                      }`} style={{
+                        color: highlightedTeam === 'home' ? '#00B8C8' : '#FFFFFF',
+                        backgroundColor: highlightedTeam === 'home' ? 'rgba(0, 184, 200, 0.1)' : 'transparent',
+                        borderColor: highlightedTeam === 'home' ? 'rgba(0, 184, 200, 0.3)' : 'transparent'
+                      }}>
                         {recommendation.home_team}
                       </span>
-                      <span className="text-gray-400 mx-1.5 text-base font-light"> vs </span>
-                      <span className={`text-base font-bold transition-all duration-200 ${highlightedTeam === 'away' ? 'text-cyan-400 bg-cyan-400/10 px-1.5 py-0.5 rounded border border-cyan-400/30' : 'text-white'}`}>
+                      <span className="mx-2 text-base font-light" style={{color: '#8A9499'}}> vs </span>
+                      <span className={`text-base font-bold transition-all duration-200 ${
+                        highlightedTeam === 'away' 
+                          ? 'px-2 py-1 rounded border' 
+                          : ''
+                      }`} style={{
+                        color: highlightedTeam === 'away' ? '#00B8C8' : '#FFFFFF',
+                        backgroundColor: highlightedTeam === 'away' ? 'rgba(0, 184, 200, 0.1)' : 'transparent',
+                        borderColor: highlightedTeam === 'away' ? 'rgba(0, 184, 200, 0.3)' : 'transparent'
+                      }}>
                         {recommendation.away_team}
                       </span>
                     </div>
                     
                     {/* 增强的统计数据显示 */}
-                    <div className="flex items-center gap-1.5 mb-3">
-                      <div className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 text-emerald-400 px-2 py-1 rounded-full text-xs font-bold border border-emerald-500/30 flex items-center gap-1 transition-all duration-200 hover:scale-105">
+                    <div className="flex items-center gap-2 mb-4 flex-wrap">
+                      <div className="px-3 py-1.5 rounded-full text-xs font-bold border flex items-center gap-1 transition-all duration-200 hover:scale-105" style={{
+                        background: 'rgba(0, 208, 132, 0.2)',
+                        color: '#00D084',
+                        borderColor: 'rgba(0, 208, 132, 0.3)'
+                      }}>
                         <span className="text-sm">🎯</span>
                         推荐指数 {Math.round(recommendation.recommendation_index * 100)}
                       </div>
                       {recommendation.prediction_result && (
-                        <div className="bg-gradient-to-r from-indigo-500/20 to-purple-500/20 text-indigo-400 px-2 py-1 rounded-full text-xs font-bold border border-indigo-500/30 flex items-center gap-1 transition-all duration-200 hover:scale-105">
+                        <div className="px-3 py-1.5 rounded-full text-xs font-bold border flex items-center gap-1 transition-all duration-200 hover:scale-105" style={{
+                          background: 'rgba(79, 207, 217, 0.2)',
+                          color: '#4FCFD9',
+                          borderColor: 'rgba(79, 207, 217, 0.3)'
+                        }}>
                           <span className="text-sm">⚡</span>
                           {recommendation.prediction_result}
                         </div>
@@ -547,122 +656,142 @@ export default function Home() {
                     </div>
 
                     {/* 赔率分析 */}
-                    <div className="text-xs text-gray-300 mb-3 bg-gray-800/20 rounded-lg p-2.5 border border-gray-700/30">
-                      <div className="font-medium text-white mb-1.5 flex items-center gap-1.5">
+                    <div className="text-xs mb-4 rounded-lg p-3 border" style={{
+                      color: '#E5E8E9',
+                      backgroundColor: 'rgba(26, 34, 38, 0.3)',
+                      borderColor: 'rgba(93, 107, 112, 0.3)'
+                    }}>
+                      <div className="font-medium text-white mb-2 flex items-center gap-2">
                         <span className="text-sm">📊</span>
                         赔率分析
                       </div>
-                      <div className="font-mono text-gray-200 text-xs">主 {recommendation.odds.home_avg.toFixed(2)} / 平 {recommendation.odds.draw_avg.toFixed(2)} / 客 {recommendation.odds.away_avg.toFixed(2)}</div>
-                      <div className="text-xs text-gray-400 mt-1.5 flex items-center gap-1">
-                        <span>⏰</span>
-                        比赛时间: {new Date(recommendation.fixture_date).toLocaleString('zh-CN')}
+                      <div className="grid grid-cols-3 gap-2 text-center">
+                        <div>
+                          <div className="text-xs" style={{color: '#8A9499'}}>主胜</div>
+                          <div className="font-bold" style={{color: '#FFFFFF'}}>
+                            {recommendation.odds.home_avg.toFixed(2)}
+                          </div>
+                        </div>
+                        <div>
+                          <div className="text-xs" style={{color: '#8A9499'}}>平局</div>
+                          <div className="font-bold" style={{color: '#FFFFFF'}}>
+                            {recommendation.odds.draw_avg.toFixed(2)}
+                          </div>
+                        </div>
+                        <div>
+                          <div className="text-xs" style={{color: '#8A9499'}}>客胜</div>
+                          <div className="font-bold" style={{color: '#FFFFFF'}}>
+                            {recommendation.odds.away_avg.toFixed(2)}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="text-xs mt-2 flex items-center justify-center gap-1" style={{color: '#8A9499'}}>
+                        <div className="w-1 h-1 rounded-full" style={{backgroundColor: '#00D084'}}></div>
+                        实时数据
                       </div>
                     </div>
 
-                    {/* 推荐分析 */}
-                    <div className="text-xs text-gray-400 mb-4 leading-relaxed bg-gray-900/20 rounded-lg p-2.5 border border-gray-700/20">
-                      <div className="font-medium text-white mb-1.5 flex items-center gap-1.5">
-                        <span className="text-sm">🤖</span>
-                        AI 分析
+                    {/* AI 分析 */}
+                    {recommendation.analysis && (
+                      <div className="text-xs rounded-lg p-3 border flex-1 flex flex-col max-h-48" style={{
+                        color: '#E5E8E9',
+                        backgroundColor: 'rgba(0, 184, 200, 0.05)',
+                        borderColor: 'rgba(0, 184, 200, 0.2)'
+                      }}>
+                        <div className="font-medium mb-1 flex items-center gap-2" style={{color: '#00B8C8'}}>
+                          <span className="text-sm">🤖</span>
+                          AI 分析
+                        </div>
+                        <div className="leading-relaxed overflow-y-auto flex-1">
+                          {recommendation.analysis}
+                        </div>
                       </div>
-                      <div className="text-gray-300 leading-relaxed text-xs">
-                        {recommendation.analysis}
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-2">
-                      <button 
-                        className="bg-gradient-to-r from-white to-gray-100 text-gray-900 font-bold py-2.5 px-3 rounded-lg hover:from-gray-100 hover:to-gray-200 transition-all duration-300 flex items-center justify-center gap-1.5 shadow-lg transform hover:scale-105 hover:-translate-y-0.5 relative overflow-hidden text-xs"
-                        onClick={() => openDealModal()}
-                      >
-                        <span className="relative z-10 flex items-center gap-1">
-                          🚀 去下注
-                        </span>
-                        {/* 闪光效果 */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                      </button>
-                      <button 
-                        className="bg-gradient-to-r from-gray-800/60 to-gray-700/60 text-white font-medium py-2.5 px-3 rounded-lg hover:from-gray-700/60 hover:to-gray-600/60 transition-all duration-300 flex items-center justify-center gap-1.5 border border-gray-600/40 hover:border-gray-500/60 transform hover:scale-105 hover:-translate-y-0.5 text-xs"
-                        onClick={handleTelegramClick}
-                      >
-                        <Send className="w-3 h-3" /> AI 跟单
-                      </button>
-                    </div>
+                    )}
                   </div>
                 </div>
               )
             })
           ) : (
-            // 使用mock数据作为后备
+            // 使用 mock 数据
             bestBets.map((bet) => (
-              <div key={bet.id} className="relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer hover:transform hover:-translate-y-0.5 hover:shadow-xl" style={{
-                background: 'rgba(255, 255, 255, 0.04)',
+              <div key={bet.id} className="relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer hover:transform hover:-translate-y-1 w-full h-[540px] flex flex-col" style={{
+                background: 'rgba(42, 59, 64, 0.4)',
                 border: '1px solid rgba(255, 255, 255, 0.08)',
                 backdropFilter: 'blur(14px)',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)'
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
               }}>
                 {/* 渐变边框效果 */}
-                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 via-cyan-400 to-emerald-500 opacity-80"></div>
+                <div className="absolute top-0 left-0 right-0 h-0.5" style={{
+                  background: 'linear-gradient(90deg, #00B8C8 0%, #4FCFD9 50%, #00B8C8 100%)'
+                }}></div>
                 {/* 紧迫感指示器 */}
-                <div className="absolute top-0 right-0 bg-gradient-to-r from-orange-400 to-red-400 text-white text-xs font-bold px-2 py-1 rounded-bl-md">
+                <div className="absolute top-0 right-0 text-white text-xs font-bold px-3 py-1 rounded-bl-lg flex items-center gap-1" style={{
+                  background: 'linear-gradient(135deg, #FF3B5C 0%, #FF6B7A 100%)'
+                }}>
+                  <span className="animate-pulse text-xs">🔥</span>
                   限时推荐
                 </div>
                 
-                <div className="p-4">
+                <div className="p-6 flex-1 flex flex-col">
                   {/* League Name */}
-                  <div className="text-xs text-gray-400 mb-2 font-medium">{bet.league}</div>
+                  <div className="text-xs font-medium mb-3" style={{color: '#8A9499'}}>
+                    {bet.league}
+                  </div>
                   
                   {/* Teams */}
-                  <h3 className="text-base font-bold text-white mb-3">{bet.teams}</h3>
+                  <div className="text-base font-bold mb-4">{bet.teams}</div>
                   
-                  {/* Stats with enhanced styling */}
-                  <div className="flex items-center gap-1.5 mb-3">
-                    <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-400 px-2 py-1 rounded-full text-xs font-bold border border-green-500/30">
+                  {/* Stats */}
+                  <div className="flex items-center gap-2 mb-4 flex-wrap">
+                    <div className="px-3 py-1.5 rounded-full text-xs font-bold border flex items-center gap-1 transition-all duration-200 hover:scale-105" style={{
+                      background: 'rgba(0, 208, 132, 0.2)',
+                      color: '#00D084',
+                      borderColor: 'rgba(0, 208, 132, 0.3)'
+                    }}>
+                      <span className="text-sm">🎯</span>
                       推荐指数 {bet.recommendation}
                     </div>
-                    <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-400 px-2 py-1 rounded-full text-xs font-bold border border-blue-500/30">
+                    <div className="px-3 py-1.5 rounded-full text-xs font-bold border flex items-center gap-1 transition-all duration-200 hover:scale-105" style={{
+                      background: 'rgba(79, 207, 217, 0.2)',
+                      color: '#4FCFD9',
+                      borderColor: 'rgba(79, 207, 217, 0.3)'
+                    }}>
+                      <span className="text-sm">⚡</span>
                       {bet.prediction}
                     </div>
                   </div>
 
                   {/* Odds */}
-                  <div className="text-xs text-gray-300 mb-3 bg-gray-800/20 rounded-lg p-2.5 border border-gray-700/30">
-                    <div className="font-medium text-white mb-1.5 flex items-center gap-1.5">
-                      <span className="text-sm">📊</span>
-                      赔率分析
+                  <div className="text-xs mb-4 rounded-lg p-3 border" style={{
+                    color: '#E5E8E9',
+                    backgroundColor: 'rgba(26, 34, 38, 0.3)',
+                    borderColor: 'rgba(93, 107, 112, 0.3)'
+                  }}>
+                    <div className="font-medium text-white mb-2 flex items-center gap-2">
+                      <span className="text-sm">💰</span>
+                      推荐赔率: {bet.odds}
                     </div>
-                    <div className="font-mono text-xs">主 {bet.odds} / 平 3.38 / 客 1.93</div>
                   </div>
 
                   {/* Reason */}
-                  <div className="text-xs text-gray-400 mb-4 leading-relaxed bg-gray-900/20 rounded-lg p-2.5 border border-gray-700/20">
-                    <div className="font-medium text-white mb-1.5 flex items-center gap-1.5">
+                  <div className="text-xs rounded-lg p-3 border flex-1 flex flex-col max-h-48" style={{
+                    color: '#E5E8E9',
+                    backgroundColor: 'rgba(0, 184, 200, 0.05)',
+                    borderColor: 'rgba(0, 184, 200, 0.2)'
+                  }}>
+                    <div className="font-medium mb-1 flex items-center gap-2" style={{color: '#00B8C8'}}>
                       <span className="text-sm">🤖</span>
                       AI 分析
                     </div>
-                    <div className="text-gray-300 leading-relaxed text-xs">
+                    <div className="leading-relaxed overflow-y-auto flex-1">
                       {bet.reason}
                     </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-2">
-                    <button 
-                      className="bg-gradient-to-r from-white to-gray-100 text-gray-900 font-bold py-2.5 px-3 rounded-lg hover:from-gray-100 hover:to-gray-200 transition-all duration-300 flex items-center justify-center gap-1.5 shadow-lg transform hover:scale-105 text-xs"
-                      onClick={() => openDealModal()}
-                    >
-                      🚀 去下注
-                    </button>
-                    <button 
-                      className="bg-gradient-to-r from-gray-800/60 to-gray-700/60 text-white font-medium py-2.5 px-3 rounded-lg hover:from-gray-700/60 hover:to-gray-600/60 transition-all duration-300 flex items-center justify-center gap-1.5 border border-gray-600/40 hover:border-gray-500/60 transform hover:scale-105 text-xs"
-                      onClick={handleTelegramClick}
-                    >
-                      <Send className="w-4 h-4" /> 让 AI 跟单
-                    </button>
                   </div>
                 </div>
               </div>
             ))
           )}
+          </div>
         </div>
       </section>
 
@@ -743,14 +872,14 @@ export default function Home() {
                     </div>
                   </td>
                 </tr>
-              ) : filteredMatches.length === 0 ? (
+              ) : paginatedMatches.length === 0 ? (
                 <tr>
                   <td colSpan={9} className="text-center py-8 opacity-60">
                     暂无比赛数据
                   </td>
                 </tr>
               ) : (
-                filteredMatches.map((match) => {
+                paginatedMatches.map((match) => {
                   const isFav = favorites[match.home_team];
                   
                   return (
@@ -787,6 +916,75 @@ export default function Home() {
             </tbody>
           </table>
         </div>
+        
+        {/* 分页组件 */}
+        {!loadingMatches && filteredMatches.length > 0 && (
+          <div className="flex items-center justify-between mt-6 px-4">
+            <div className="text-sm opacity-70">
+              显示 {startIndex + 1}-{Math.min(endIndex, filteredMatches.length)} 条，共 {filteredMatches.length} 条
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={goToPreviousPage}
+                disabled={currentPage === 1}
+                className={`px-3 py-1 rounded text-sm transition-colors ${
+                  currentPage === 1
+                    ? 'opacity-50 cursor-not-allowed'
+                    : 'hover:bg-white/10'
+                }`}
+              >
+                上一页
+              </button>
+              
+              <div className="flex items-center gap-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                  // 显示逻辑：当前页前后各2页
+                  if (
+                    page === 1 ||
+                    page === totalPages ||
+                    (page >= currentPage - 2 && page <= currentPage + 2)
+                  ) {
+                    return (
+                      <button
+                        key={page}
+                        onClick={() => goToPage(page)}
+                        className={`px-3 py-1 rounded text-sm transition-colors ${
+                          currentPage === page
+                            ? 'bg-blue-500 text-white'
+                            : 'hover:bg-white/10'
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    );
+                  } else if (
+                    page === currentPage - 3 ||
+                    page === currentPage + 3
+                  ) {
+                    return (
+                      <span key={page} className="px-2 opacity-50">
+                        ...
+                      </span>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+              
+              <button
+                onClick={goToNextPage}
+                disabled={currentPage === totalPages}
+                className={`px-3 py-1 rounded text-sm transition-colors ${
+                  currentPage === totalPages
+                    ? 'opacity-50 cursor-not-allowed'
+                    : 'hover:bg-white/10'
+                }`}
+              >
+                下一页
+              </button>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Consultation center */}

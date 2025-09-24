@@ -1,5 +1,5 @@
 // app/blog/[slug]/page.tsx
-import { client } from '@/sanity/sanity.client'
+import { client } from '../../../sanity/sanity.client'
 import { PortableText } from '@portabletext/react'
 
 type Props = { 
