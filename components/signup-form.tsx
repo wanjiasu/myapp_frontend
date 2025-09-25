@@ -131,7 +131,7 @@ export function SignupForm({
     try {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/",
+        callbackURL: isFromTelegram ? undefined : "/",
       });
       
       // 登录成功后检查会话并自动绑定
@@ -163,9 +163,11 @@ export function SignupForm({
         // 注册成功后自动绑定 Telegram
         if (isFromTelegram) {
           await autoBindTelegram()
+          // 如果是从 Telegram 来的，不跳转首页，让页面关闭逻辑处理
+        } else {
+          // 只有非 Telegram 用户才跳转首页
+          router.push("/")
         }
-        
-        router.push("/")
       } else {
         toast.error(message as string)
       }
