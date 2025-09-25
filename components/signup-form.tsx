@@ -267,7 +267,13 @@ export function SignupForm({
               </div>
               <div className="text-center text-sm">
                 Already have an account?{" "}
-                <a href="/login" className="underline underline-offset-4">
+                <a 
+                  href={isFromTelegram 
+                    ? `/login?tg_user_id=${tgUserId}&tg_chat_id=${tgChatId}${tgStartParam ? `&tg_start_param=${tgStartParam}` : ''}` 
+                    : "/login"
+                  } 
+                  className="underline underline-offset-4"
+                >
                   {isFromTelegram ? "登录并绑定" : "Login"}
                 </a>
               </div>

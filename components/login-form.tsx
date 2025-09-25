@@ -249,7 +249,13 @@ export function LoginForm({
               </div>
               <div className="text-center text-sm">
                 Don&apos;t have an account?{" "}
-                <a href="/signup" className="underline underline-offset-4">
+                <a 
+                  href={isFromTelegram 
+                    ? `/signup?tg_user_id=${tgUserId}&tg_chat_id=${tgChatId}${tgStartParam ? `&tg_start_param=${tgStartParam}` : ''}` 
+                    : "/signup"
+                  } 
+                  className="underline underline-offset-4"
+                >
                   {isFromTelegram ? "注册并绑定" : "Sign up"}
                 </a>
               </div>
