@@ -26,7 +26,7 @@ import {
 import { z } from "zod";
 import { toast } from "sonner"
 import { useRouter, useSearchParams } from "next/navigation"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { authClient } from "@/lib/auth-client"
 
 const formSchema = z.object({
@@ -48,9 +48,27 @@ export function LoginForm({
   const tgUserId = searchParams.get('tg_user_id')
   const tgChatId = searchParams.get('tg_chat_id')
   const tgStartParam = searchParams.get('tg_start_param')
+  const googleCallback = searchParams.get('google_callback')
   
   // 检查是否来自 Telegram
   const isFromTelegram = !!(tgUserId && tgChatId)
+  
+  // 处理 Google 登录回调后的自动绑定
+  useEffect(() => {
+    const handleGoogleCallback = async () => {
+      if (googleCallback === 'true' && isFromTelegram) {
+        // 等待一下让登录状态更新
+        setTimeout(async () => {
+          const session = await authClient.getSession()
+          if (session?.data?.user) {
+            await autoBindTelegram()
+          }
+        }, 1000)
+      }
+    }
+    
+    handleGoogleCallback()
+  }, [googleCallback, isFromTelegram])
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -147,21 +165,20 @@ export function LoginForm({
   const signInWithGoogle = async () => {
     setIsGoogleLoading(true)
     try {
+      // 如果是从 Telegram 来的，构建带参数的回调 URL
+      let callbackURL = "/"
+      if (isFromTelegram) {
+        const currentUrl = new URL(window.location.href)
+        callbackURL = `/login?tg_user_id=${tgUserId}&tg_chat_id=${tgChatId}&tg_start_param=${tgStartParam}&google_callback=true`
+      }
+      
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: isFromTelegram ? undefined : "/",
+        callbackURL: callbackURL,
       });
       
-      // 登录成功后检查会话并自动绑定
-      if (isFromTelegram) {
-        // 等待一下让登录状态更新
-        setTimeout(async () => {
-          const session = await authClient.getSession()
-          if (session?.data?.user) {
-            await autoBindTelegram()
-          }
-        }, 1000)
-      }
+      // 注意：Google 登录会跳转，所以这里的代码在回调后才会执行
+      // 实际的绑定逻辑会在页面重新加载后的 useEffect 中处理
     } catch (error) {
       console.error('Google sign in error:', error)
       toast.error('Google 登录失败')
