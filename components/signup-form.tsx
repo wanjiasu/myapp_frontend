@@ -99,6 +99,25 @@ export function SignupForm({
       if (bindResponse.ok) {
         toast.success('🎉 Telegram 账户绑定成功！页面将在 3 秒后自动关闭')
         
+        // 发送绑定成功通知到 Telegram
+        try {
+          const session = await authClient.getSession()
+          const userName = (session?.data?.user?.name || session?.data?.user?.email || '用户') as string
+          
+          await fetch('http://localhost:5001/binding-success', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              chat_id: parseInt(tgChatId!),
+              user_name: userName,
+            }),
+          })
+        } catch (error) {
+          console.error('Failed to send binding success notification:', error)
+        }
+        
         // 延迟 3 秒后关闭页面
         setTimeout(() => {
           // 尝试关闭当前窗口
