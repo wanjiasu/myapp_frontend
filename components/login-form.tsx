@@ -96,7 +96,24 @@ export function LoginForm({
       })
       
       if (bindResponse.ok) {
-        toast.success('🎉 Telegram 账户绑定成功！')
+        toast.success('🎉 Telegram 账户绑定成功！页面将在 3 秒后自动关闭')
+        
+        // 延迟 3 秒后关闭页面
+        setTimeout(() => {
+          // 尝试关闭当前窗口
+          if (window.opener) {
+            // 如果是弹出窗口，关闭自己
+            window.close()
+          } else {
+            // 如果不是弹出窗口，尝试返回上一页或关闭标签页
+            try {
+              window.close()
+            } catch (e) {
+              // 如果无法关闭，显示提示
+              toast.info('请手动关闭此页面返回 Telegram')
+            }
+          }
+        }, 3000)
       } else {
         const error = await bindResponse.json()
         toast.error(error.error || '绑定失败')
