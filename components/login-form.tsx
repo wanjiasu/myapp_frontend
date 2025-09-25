@@ -103,7 +103,7 @@ export function LoginForm({
           const session = await authClient.getSession()
           const userName = (session?.data?.user?.name || session?.data?.user?.email || '用户') as string
           
-          await fetch(process.env.NEXT_PUBLIC_TELEGRAM_WEBHOOK_URL + '/binding-success', {
+          await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/telegram/binding-success', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
