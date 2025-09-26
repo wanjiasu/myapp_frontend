@@ -535,11 +535,27 @@ export default function Home() {
                   </div>
                   
                   <div className="p-6 flex-1 flex flex-col">
-                    {/* League Name */}
-                    <div className="text-xs font-medium mb-3" style={{color: '#8A9499'}}>
-                      {recommendation.league}
+                    {/* League Name and Match Time */}
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="text-xs font-medium" style={{color: '#8A9499'}}>
+                        {recommendation.league}
+                      </div>
+                      {recommendation.fixture_date && (
+                        <div className="text-xs font-medium px-2 py-1 rounded border" style={{
+                          color: '#00B8C8',
+                          backgroundColor: 'rgba(0, 184, 200, 0.1)',
+                          borderColor: 'rgba(0, 184, 200, 0.3)'
+                        }}>
+                          {new Date(recommendation.fixture_date).toLocaleDateString('zh-CN', {
+                            month: 'short',
+                            day: 'numeric'
+                          })} {new Date(recommendation.fixture_date).toLocaleTimeString('zh-CN', {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                          })}
+                        </div>
+                      )}
                     </div>
-                    
                     {/* 高亮队伍名称 */}
                     <div className="mb-4">
                       <span className={`text-base font-bold transition-all duration-200 ${
