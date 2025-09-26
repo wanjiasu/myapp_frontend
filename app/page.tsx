@@ -473,7 +473,7 @@ export default function Home() {
           </h2>
           <div className="text-sm flex items-center gap-2" style={{color: '#8A9499'}}>
             <div className="w-2 h-2 rounded-full animate-pulse" style={{backgroundColor: '#00D084'}}></div>
-            实时数据（来自 PostgreSQL）
+            实时数据（来自 FootBall-API）
           </div>
         </div>
         <div className="flex-1">
