@@ -5,6 +5,8 @@ import { Heart, Sparkles, ListFilter, Newspaper, Send, Bot, X, LogOut } from "lu
 import { authClient } from "@/lib/auth-client";
 import TelegramQRModal from "@/components/telegram-qr-modal";
 import Image from "next/image";
+import Link from "next/link";
+import { client } from '../sanity/sanity.client';
 
 // Generate timestamps on client side to avoid hydration mismatch
 // AI推荐数据接口
@@ -46,6 +48,13 @@ interface Match {
   analysis: string;
   fixture_date: string;
   recommendation_index: number;
+}
+
+interface BlogPost {
+  _id: string;
+  title: string;
+  slug: string;
+  _createdAt: string;
 }
 
 // Mock data
@@ -117,6 +126,7 @@ export default function Home() {
   const [loadingRecommendations, setLoadingRecommendations] = useState(true);
   const [matches, setMatches] = useState<Match[]>([]);
   const [loadingMatches, setLoadingMatches] = useState(true);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   
   // 分页状态
   const [currentPage, setCurrentPage] = useState(1);
@@ -188,6 +198,20 @@ export default function Home() {
     }
   };
 
+  // 获取博客文章数据
+  const fetchBlogPosts = async () => {
+    try {
+      const QUERY = `*[_type == "post"] | order(_createdAt desc)[0...3]{
+        _id, title, "slug": slug.current, _createdAt
+      }`;
+      const posts = await client.fetch(QUERY);
+      setBlogPosts(posts || []);
+    } catch (error) {
+      console.error('Error fetching blog posts:', error);
+      setBlogPosts([]);
+    }
+  };
+
   useEffect(() => {
     setIsClient(true);
     
@@ -213,6 +237,8 @@ export default function Home() {
     fetchAIRecommendations();
     // 获取比赛数据
     fetchMatches();
+    // 获取博客文章数据
+    fetchBlogPosts();
   }, [])
 
   // Load favorites from localStorage
@@ -946,19 +972,34 @@ export default function Home() {
           <div className="text-xs opacity-70">支持自动更新到此区域</div>
         </div>
         <div className="grid md:grid-cols-3 gap-4">
-          {articles.map((article) => (
-            <a key={article.id} href="#" className="glass rounded-2xl p-4 block hover:border-white/30">
-              <div className="text-xs opacity-70 mb-1">
-                {isClient && article.date ? new Date(article.date).toLocaleString('zh-CN') : '加载中...'}
-              </div>
-              <div className="font-bold mb-2">{article.title}</div>
-              <div className="flex flex-wrap gap-2 text-xs">
-                {article.tag.map((tag, index) => (
-                  <span key={index} className="chip px-2 py-0.5 rounded">{tag}</span>
-                ))}
-              </div>
-            </a>
-          ))}
+          {blogPosts.length > 0 ? (
+            blogPosts.map((post) => (
+              <Link key={post._id} href={`/blog/${post.slug}`} className="glass rounded-2xl p-4 block hover:border-white/30">
+                <div className="text-xs opacity-70 mb-1">
+                  {isClient && post._createdAt ? new Date(post._createdAt).toLocaleString('zh-CN') : '加载中...'}
+                </div>
+                <div className="font-bold mb-2">{post.title}</div>
+                <div className="flex flex-wrap gap-2 text-xs">
+                  <span className="chip px-2 py-0.5 rounded">博客文章</span>
+                </div>
+              </Link>
+            ))
+          ) : (
+            // 如果没有博客文章，显示原来的 mock 数据
+            articles.map((article) => (
+              <a key={article.id} href="#" className="glass rounded-2xl p-4 block hover:border-white/30">
+                <div className="text-xs opacity-70 mb-1">
+                  {isClient && article.date ? new Date(article.date).toLocaleString('zh-CN') : '加载中...'}
+                </div>
+                <div className="font-bold mb-2">{article.title}</div>
+                <div className="flex flex-wrap gap-2 text-xs">
+                  {article.tag.map((tag, index) => (
+                    <span key={index} className="chip px-2 py-0.5 rounded">{tag}</span>
+                  ))}
+                </div>
+              </a>
+            ))
+          )}
         </div>
       </section>
 
