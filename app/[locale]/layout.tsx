@@ -21,9 +21,9 @@ export const metadata: Metadata = {
   title: "BetAIOne",
   description: "AI-powered sports betting platform",
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
   },
 };
 
