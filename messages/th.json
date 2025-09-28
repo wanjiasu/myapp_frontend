@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "home": "หน้าแรก",
+    "blog": "บล็อก",
+    "dashboard": "แดชบอร์ด",
+    "login": "เข้าสู่ระบบ",
+    "signup": "สมัครสมาชิก",
+    "logout": "ออกจากระบบ",
+    "aiBestRecommendations": "คำแนะนำ AI ที่ดีที่สุด",
+    "allMatches": "การแข่งขันทั้งหมด",
+    "consultationCenter": "ศูนย์ให้คำปรึกษา",
+    "promotions": "โปรโมชั่น"
+  },
+  "hero": {
+    "title": "การวิเคราะห์การเดิมพันกีฬาด้วย AI",
+    "subtitle": "คำแนะนำและการวิเคราะห์การเดิมพันกีฬาระดับมืออาชีพที่ขับเคลื่อนด้วย AI",
+    "cta": "เริ่มต้นใช้งาน",
+    "aiRecommendation": "คำแนะนำ AI",
+    "subtitleEnd": "ด้วยเทคโนโลยี AI ขั้นสูง"
+  },
+  "sections": {
+    "aiRecommendations": "คำแนะนำ AI",
+    "consultingCenter": "ศูนย์ให้คำปรึกษา",
+    "todayMatches": "การแข่งขันวันนี้",
+    "liveChat": "แชทสด"
+  },
+  "betting": {
+    "recommendation": "คำแนะนำ",
+    "prediction": "การทำนาย",
+    "odds": "อัตราต่อรอง",
+    "reason": "การวิเคราะห์",
+    "homeWin": "ทีมเหย้าชนะ",
+    "draw": "เสมอ",
+    "awayWin": "ทีมเยือนชนะ",
+    "recommended": "แนะนำ",
+    "aiBestBets": "การเดิมพัน AI ที่ดีที่สุด",
+    "realTimeData": "ข้อมูลแบบเรียลไทม์",
+    "loadingRecommendations": "กำลังโหลดคำแนะนำ..."
+  },
+  "telegram": {
+    "joinChannel": "เข้าร่วมช่อง Telegram",
+    "getUpdates": "รับการอัปเดต",
+    "exclusiveContent": "เนื้อหาพิเศษ",
+    "scanQR": "สแกน QR Code",
+    "openTelegram": "เปิด Telegram",
+    "aiAssistant": "ผู้ช่วย AI ใน Telegram",
+    "addTelegramTitle": "เพิ่ม Telegram เพื่อการวิเคราะห์ AI แบบทันที",
+    "features": "รับการวิเคราะห์การแข่งขันแบบทันที คำแนะนำการเดิมพัน และการแจ้งเตือนแบบเรียลไทม์ใน Telegram",
+    "addNow": "เพิ่มเลย",
+    "description": "รับการวิเคราะห์ AI และคำแนะนำการเดิมพันแบบทันที",
+    "addTelegram": "เพิ่ม Telegram"
+  },
+  "chat": {
+    "placeholder": "ถามเกี่ยวกับการวิเคราะห์การเดิมพัน...",
+    "send": "ส่ง",
+    "minimize": "ย่อเล็กสุด",
+    "close": "ปิด"
+  },
+  "allMatches": {
+    "title": "การแข่งขันทั้งหมด",
+    "filters": {
+      "time": "เวลา",
+      "all": "ทั้งหมด",
+      "today": "วันนี้",
+      "tomorrow": "พรุ่งนี้",
+      "thisWeek": "สัปดาห์นี้",
+      "league": "ลีก",
+      "search": "ค้นหา",
+      "searchTeams": "ค้นหาทีม..."
+    },
+    "table": {
+      "date": "วันที่",
+      "time": "เวลา",
+      "league": "ลีก",
+      "match": "การแข่งขัน",
+      "homeWin": "เจ้าบ้าน",
+      "draw": "เสมอ",
+      "awayWin": "ทีมเยือน",
+      "ai": "AI",
+      "action": "การดำเนินการ"
+    },
+    "loading": "กำลังโหลดข้อมูลการแข่งขัน...",
+    "noData": "ไม่มีข้อมูลการแข่งขัน",
+    "followed": "ติดตามแล้ว",
+    "follow": "ติดตาม",
+    "bestChannel": "ช่องทางที่ดีที่สุด",
+    "pagination": {
+      "showing": "แสดง",
+      "of": "จาก",
+      "entries": "รายการ",
+      "previous": "ก่อนหน้า",
+      "next": "ถัดไป"
+    }
+  },
+  "consultationCenter": {
+    "title": "ศูนย์ปรึกษา",
+    "loading": "กำลังโหลด...",
+    "blogArticle": "บทความบล็อก",
+    "odds": "อัตราต่อรอง",
+    "goTo": "ไปที่",
+    "equivalentOddsNote": "คำนวณเป็น \"อัตราต่อรองเทียบเท่า\" ตามผลประโยชน์ของช่องทางและอัตราต่อรองปัจจุบัน"
+  },
+  "common": {
+    "loading": "กำลังโหลด...",
+    "error": "ข้อผิดพลาด",
+    "retry": "ลองใหม่",
+    "readMore": "อ่านเพิ่มเติม",
+    "viewAll": "ดูทั้งหมด",
+    "disclaimer": "โปรดเดิมพันอย่างมีความรับผิดชอบ นี่เป็นเพียงเพื่อความบันเทิงเท่านั้น",
+    "followLocalLaws": "โปรดปฏิบัติตามกฎหมายท้องถิ่น"
+  },
+  "auth": {
+    "loginWithGoogle": "เข้าสู่ระบบด้วย Google",
+    "signupWithGoogle": "สมัครสมาชิกด้วย Google",
+    "loginWithTelegram": "เข้าสู่ระบบด้วย Telegram",
+    "signupWithTelegram": "สมัครสมาชิกด้วย Telegram",
+    "alreadyHaveAccount": "มีบัญชีแล้ว?",
+    "dontHaveAccount": "ยังไม่มีบัญชี?",
+    "loginHere": "เข้าสู่ระบบที่นี่",
+    "signupHere": "สมัครสมาชิกที่นี่",
+    "login": "เข้าสู่ระบบ",
+    "logout": "ออกจากระบบ"
+  }
+}

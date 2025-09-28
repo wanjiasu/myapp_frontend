@@ -6,7 +6,7 @@ import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
 // 从正确的相对路径导入 sanity client
-import { client } from '../../sanity/sanity.client'
+import { client } from '../../../sanity/sanity.client'
 
 interface Post {
   _id: string

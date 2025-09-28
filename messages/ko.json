@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "home": "홈",
+    "blog": "블로그",
+    "dashboard": "대시보드",
+    "login": "로그인",
+    "signup": "회원가입",
+    "logout": "로그아웃",
+    "aiBestRecommendations": "AI 최고 추천",
+    "allMatches": "모든 경기",
+    "consultationCenter": "상담 센터",
+    "promotions": "프로모션"
+  },
+  "hero": {
+    "title": "AI 스포츠 베팅 분석",
+    "subtitle": "전문적인",
+    "aiRecommendation": "AI 추천",
+    "subtitleEnd": "과 실시간 경기 분석을 받아보세요",
+    "cta": "시작하기"
+  },
+  "sections": {
+    "aiRecommendations": "AI 추천",
+    "consultingCenter": "컨설팅 센터",
+    "todayMatches": "오늘의 경기",
+    "liveChat": "실시간 채팅"
+  },
+  "betting": {
+    "recommendation": "추천",
+    "prediction": "예측",
+    "odds": "배당률",
+    "reason": "분석",
+    "homeWin": "홈 승",
+    "draw": "무승부",
+    "awayWin": "원정 승",
+    "recommended": "추천됨",
+    "aiBestBets": "AI 최고 베팅",
+    "realTimeData": "실시간 데이터 분석 및 AI 예측",
+    "loadingRecommendations": "AI 추천 로딩 중..."
+  },
+  "telegram": {
+    "aiAssistant": "텔레그램 AI 어시스턴트",
+    "addTelegramTitle": "즉시 AI 분석을 위해 텔레그램 추가",
+    "features": "텔레그램에서 직접 즉시 경기 분석, 베팅 팁, 실시간 알림을 받아보세요",
+    "addNow": "지금 추가",
+    "description": "즉시 AI 분석 및 베팅 추천 받기",
+    "addTelegram": "텔레그램 추가"
+  },
+  "chat": {
+    "placeholder": "베팅 분석에 대해 문의하세요...",
+    "send": "전송",
+    "minimize": "최소화",
+    "close": "닫기"
+  },
+  "allMatches": {
+    "title": "모든 경기",
+    "filters": {
+      "time": "시간",
+      "all": "전체",
+      "today": "오늘",
+      "tomorrow": "내일",
+      "thisWeek": "이번 주",
+      "league": "리그",
+      "search": "검색",
+      "searchTeams": "팀 검색..."
+    },
+    "table": {
+      "date": "날짜",
+      "time": "시간",
+      "league": "리그",
+      "match": "경기",
+      "homeWin": "홈승",
+      "draw": "무승부",
+      "awayWin": "원정승",
+      "ai": "AI",
+      "action": "액션"
+    },
+    "loading": "경기 데이터 로딩 중...",
+    "noData": "경기 데이터가 없습니다",
+    "followed": "팔로우됨",
+    "follow": "팔로우",
+    "bestChannel": "최고 채널",
+    "pagination": {
+      "showing": "표시 중",
+      "of": "중",
+      "entries": "항목",
+      "previous": "이전",
+      "next": "다음"
+    }
+  },
+  "consultationCenter": {
+    "title": "상담 센터",
+    "loading": "로딩 중...",
+    "blogArticle": "블로그 글",
+    "odds": "배당률",
+    "goTo": "이동",
+    "equivalentOddsNote": "채널 혜택과 현재 배당률을 기반으로 \"등가 배당률\"로 계산됩니다."
+  },
+  "common": {
+    "loading": "로딩 중...",
+    "error": "오류",
+    "retry": "다시 시도",
+    "readMore": "더 읽기",
+    "viewAll": "모두 보기",
+    "disclaimer": "책임감 있게 베팅하세요. 이것은 오락 목적으로만 사용됩니다.",
+    "followLocalLaws": "현지 법률을 준수하세요"
+  },
+  "auth": {
+    "loginWithGoogle": "Google로 로그인",
+    "signupWithGoogle": "Google로 회원가입",
+    "loginWithTelegram": "Telegram으로 로그인",
+    "signupWithTelegram": "Telegram으로 회원가입",
+    "alreadyHaveAccount": "이미 계정이 있으신가요?",
+    "dontHaveAccount": "계정이 없으신가요?",
+    "loginHere": "여기서 로그인",
+    "signupHere": "여기서 회원가입",
+    "login": "로그인",
+    "logout": "로그아웃"
+  }
+}

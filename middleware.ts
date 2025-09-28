@@ -1,19 +1,23 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getSessionCookie } from "better-auth/cookies";
+import createMiddleware from 'next-intl/middleware';
+import { locales } from './i18n';
 
-export async function middleware(request: NextRequest) {
-	const sessionCookie = getSessionCookie(request);
+export default createMiddleware({
+  // A list of all locales that are supported
+  locales,
 
-    // THIS IS NOT SECURE!
-    // This is the recommended approach to optimistically redirect users
-    // We recommend handling auth checks in each page/route
-	if (!sessionCookie) {
-		return NextResponse.redirect(new URL("/", request.url));
-	}
+  // Used when no locale matches
+  defaultLocale: 'en',
 
-	return NextResponse.next();
-}
+  // Always use locale prefix to avoid confusion
+  localePrefix: 'always'
+});
 
 export const config = {
-	matcher: ["/dashboard"], 
+  // Match only internationalized pathnames
+  matcher: [
+    // Match all pathnames except for
+    // - … if they start with `/api`, `/_next` or `/_vercel`
+    // - … the ones containing a dot (e.g. `favicon.ico`)
+    '/((?!api|_next|_vercel|.*\\..*).*)'
+  ]
 };

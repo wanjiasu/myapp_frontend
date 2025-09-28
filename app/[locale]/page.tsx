@@ -6,7 +6,9 @@ import { authClient } from "@/lib/auth-client";
 import TelegramQRModal from "@/components/telegram-qr-modal";
 import Image from "next/image";
 import Link from "next/link";
-import { client } from '../sanity/sanity.client';
+import { client } from '../../sanity/sanity.client';
+import { useTranslations } from 'next-intl';
+import LanguageSwitcher from '@/components/language-switcher';
 
 // Generate timestamps on client side to avoid hydration mismatch
 // AI推荐数据接口
@@ -110,6 +112,7 @@ const articles = [
 ];
 
 export default function Home() {
+  const t = useTranslations();
   const [favorites, setFavorites] = useState<{[key: string]: boolean}>({});
   const [filters, setFilters] = useState({
     time: '',
@@ -362,14 +365,15 @@ export default function Home() {
             />
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm" style={{color: '#E5E8E9'}}>
-            <a href="#best" className="hover:text-white transition-colors duration-200 hover:scale-105">AI 最佳推荐</a>
-            <a href="#all" className="hover:text-white transition-colors duration-200 hover:scale-105">全部比赛</a>
-            <a href="#consultation" className="hover:text-white transition-colors duration-200 hover:scale-105">咨询中心</a>
-            <a href="#promos" className="hover:text-white transition-colors duration-200 hover:scale-105">活动</a>
+            <a href="#best" className="hover:text-white transition-colors duration-200 hover:scale-105">{t('nav.aiBestRecommendations')}</a>
+            <a href="#all" className="hover:text-white transition-colors duration-200 hover:scale-105">{t('nav.allMatches')}</a>
+            <a href="#consultation" className="hover:text-white transition-colors duration-200 hover:scale-105">{t('nav.consultationCenter')}</a>
+            <a href="#promos" className="hover:text-white transition-colors duration-200 hover:scale-105">{t('nav.promotions')}</a>
           </nav>
           <div className="flex items-center gap-2">
+            <LanguageSwitcher />
             {isLoading ? (
-              <div className="text-sm" style={{color: '#8A9499'}}>加载中...</div>
+              <div className="text-sm" style={{color: '#8A9499'}}>{t('common.loading')}</div>
             ) : user ? (
               <div className="relative">
                 <div 
@@ -403,14 +407,14 @@ export default function Home() {
                         className="w-full flex items-center gap-2 px-3 py-2 text-sm text-white rounded-md transition-colors duration-200 hover:bg-white/10"
                       >
                         <LogOut size={16} />
-                        登出
+                        {t('auth.logout')}
                       </button>
                     </div>
                   </div>
                 )}
               </div>
             ) : (
-              <a 
+              <Link 
                 href="/login" 
                 className="px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:scale-105"
                 style={{
@@ -418,8 +422,8 @@ export default function Home() {
                   color: '#FFFFFF'
                 }}
               >
-                登录
-              </a>
+                {t('auth.login')}
+              </Link>
             )}
           </div>
         </div>
@@ -433,9 +437,9 @@ export default function Home() {
             borderColor: 'rgba(255, 255, 255, 0.1)'
           }}>
             <div>
-              <div className="text-xs mb-1" style={{color: '#8A9499'}}>AI 投注助理</div>
-              <div className="text-lg font-bold">添加 Telegram，领专属下注建议</div>
-              <div className="text-xs mt-1" style={{color: '#8A9499'}}>赛前提醒 · 实时盘口变动 · 风险提示</div>
+              <div className="text-xs mb-1" style={{color: '#8A9499'}}>{t('telegram.aiAssistant')}</div>
+              <div className="text-lg font-bold">{t('telegram.addTelegramTitle')}</div>
+              <div className="text-xs mt-1" style={{color: '#8A9499'}}>{t('telegram.features')}</div>
             </div>
             <button 
               className="whitespace-nowrap inline-flex items-center gap-2 text-sm px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105"
@@ -445,7 +449,7 @@ export default function Home() {
               }}
               onClick={handleTelegramClick}
             >
-              <Send className="w-4 h-4" /> 立即添加
+              <Send className="w-4 h-4" /> {t('telegram.addNow')}
             </button>
           </div>
         </div>
@@ -459,19 +463,19 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 py-12 grid lg:grid-cols-3 gap-8 items-start">
           <div className="lg:col-span-2">
             <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4">
-              所有比赛 · 一站式可下注
+              {t('hero.title')}
             </h1>
             <p className="text-lg" style={{color: '#E5E8E9'}}>
-              聚合主流联赛与电竞盘口，<span className="font-bold" style={{color: '#00B8C8'}}>AI 给出&ldquo;最有把握&rdquo;投注建议</span>，并提示&ldquo;最划算渠道&rdquo;。
+              {t('hero.subtitle')} <span className="font-bold" style={{color: '#00B8C8'}}>{t('hero.aiRecommendation')}</span>{t('hero.subtitleEnd')}
             </p>
           </div>
           <aside className="rounded-xl p-6 backdrop-blur-md border" style={{
             background: 'rgba(42, 59, 64, 0.3)',
             borderColor: 'rgba(255, 255, 255, 0.1)'
           }}>
-            <div className="text-sm mb-3" style={{color: '#8A9499'}}>AI 投注助理（Telegram）</div>
+            <div className="text-sm mb-3" style={{color: '#8A9499'}}>{t('telegram.aiAssistant')}</div>
             <p className="text-sm mb-4" style={{color: '#E5E8E9'}}>
-              把你关注的球队加到清单，AI 会根据盘口变动和历史模型，推送合适的下注窗口。
+              {t('telegram.description')}
             </p>
             <button 
               className="w-full inline-flex items-center justify-center gap-2 text-sm px-4 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105"
@@ -481,10 +485,10 @@ export default function Home() {
               }}
               onClick={handleTelegramClick}
             >
-              <Bot className="w-4 h-4" /> 添加 Telegram
+              <Bot className="w-4 h-4" /> {t('telegram.addTelegram')}
             </button>
             <p className="text-xs mt-3" style={{color: '#5D6B70'}}>
-              * 请遵循当地法律与 18+ 责任博彩。
+              {t('common.disclaimer')}
             </p>
           </aside>
         </div>
@@ -495,11 +499,11 @@ export default function Home() {
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl font-bold flex items-center gap-3">
             <Sparkles className="w-6 h-6" style={{color: '#00B8C8'}} />
-            AI 最有把握的投注
+            {t('betting.aiBestBets')}
           </h2>
           <div className="text-sm flex items-center gap-2" style={{color: '#8A9499'}}>
             <div className="w-2 h-2 rounded-full animate-pulse" style={{backgroundColor: '#00D084'}}></div>
-            实时数据（来自 FootBall-API）
+            {t('betting.realTimeData')}
           </div>
         </div>
         <div className="flex-1">
@@ -520,7 +524,7 @@ export default function Home() {
                 <div className="p-6 flex-1 flex items-center justify-center">
                   <div className="text-center flex items-center justify-center gap-2" style={{color: '#8A9499'}}>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2" style={{borderColor: '#00B8C8'}}></div>
-                    <span className="text-sm">正在获取最新推荐...</span>
+                    <span className="text-sm">{t('betting.loadingRecommendations')}</span>
                   </div>
                 </div>
               </div>
@@ -775,7 +779,7 @@ export default function Home() {
       <section id="all" className="max-w-7xl mx-auto px-4 py-6">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-xl md:text-2xl font-bold flex items-center gap-2">
-            <ListFilter className="w-5 h-5" /> 全部比赛
+            <ListFilter className="w-5 h-5" /> {t('allMatches.title')}
           </h2>
         </div>
 
@@ -783,26 +787,26 @@ export default function Home() {
         <div className="glass rounded-2xl p-4">
           <div className="grid md:grid-cols-3 gap-3 text-sm">
             <div>
-              <div className="opacity-80 mb-1">时间</div>
+              <div className="opacity-80 mb-1">{t('allMatches.filters.time')}</div>
               <select 
                 className="w-full glass rounded-xl px-3 py-2"
                 value={filters.time}
                 onChange={(e) => setFilters({...filters, time: e.target.value})}
               >
-                <option value="">全部</option>
-                <option value="today">今天</option>
-                <option value="tomorrow">明天</option>
-                <option value="week">本周</option>
+                <option value="">{t('allMatches.filters.all')}</option>
+                <option value="today">{t('allMatches.filters.today')}</option>
+                <option value="tomorrow">{t('allMatches.filters.tomorrow')}</option>
+                <option value="week">{t('allMatches.filters.thisWeek')}</option>
               </select>
             </div>
             <div>
-              <div className="opacity-80 mb-1">联赛</div>
+              <div className="opacity-80 mb-1">{t('allMatches.filters.league')}</div>
               <select 
                 className="w-full glass rounded-xl px-3 py-2"
                 value={filters.league}
                 onChange={(e) => setFilters({...filters, league: e.target.value})}
               >
-                <option value="">全部</option>
+                <option value="">{t('allMatches.filters.all')}</option>
                 <option value="Premier League">Premier League</option>
                 <option value="La Liga">La Liga</option>
                 <option value="Série A">Série A</option>
@@ -810,10 +814,10 @@ export default function Home() {
               </select>
             </div>
             <div>
-              <div className="opacity-80 mb-1">搜索</div>
+              <div className="opacity-80 mb-1">{t('allMatches.filters.search')}</div>
               <input 
                 type="text"
-                placeholder="搜索队伍..."
+                placeholder={t('allMatches.filters.searchTeams')}
                 className="w-full glass rounded-xl px-3 py-2"
                 value={filters.search}
                 onChange={(e) => setFilters({...filters, search: e.target.value})}
@@ -827,15 +831,15 @@ export default function Home() {
           <table className="min-w-full text-sm table">
             <thead className="text-white/80">
               <tr className="border-b border-white/10">
-                <th className="text-left">日期</th>
-                <th className="text-left">时间</th>
-                <th className="text-left">联赛</th>
-                <th className="text-left">对阵</th>
-                <th className="text-left">主胜</th>
-                <th className="text-left">平</th>
-                <th className="text-left">客胜</th>
-                <th className="text-left">AI</th>
-                <th className="text-left">操作</th>
+                <th className="text-left">{t('allMatches.table.date')}</th>
+                <th className="text-left">{t('allMatches.table.time')}</th>
+                <th className="text-left">{t('allMatches.table.league')}</th>
+                <th className="text-left">{t('allMatches.table.match')}</th>
+                <th className="text-left">{t('allMatches.table.homeWin')}</th>
+                <th className="text-left">{t('allMatches.table.draw')}</th>
+                <th className="text-left">{t('allMatches.table.awayWin')}</th>
+                <th className="text-left">{t('allMatches.table.ai')}</th>
+                <th className="text-left">{t('allMatches.table.action')}</th>
               </tr>
             </thead>
             <tbody>
@@ -844,14 +848,14 @@ export default function Home() {
                   <td colSpan={9} className="text-center py-8">
                     <div className="flex items-center justify-center gap-2">
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                      加载比赛数据中...
+                      {t('allMatches.loading')}
                     </div>
                   </td>
                 </tr>
               ) : paginatedMatches.length === 0 ? (
                 <tr>
                   <td colSpan={9} className="text-center py-8 opacity-60">
-                    暂无比赛数据
+                    {t('allMatches.noData')}
                   </td>
                 </tr>
               ) : (
@@ -867,7 +871,7 @@ export default function Home() {
                         <button 
                           className={`mr-2 ${isFav ? 'fav-on' : ''}`}
                           onClick={() => toggleFavorite(match.home_team)}
-                          title={isFav ? '已关注' : '关注'}
+                          title={isFav ? t('allMatches.followed') : t('allMatches.follow')}
                         >
                           <Heart className="w-4 h-4" fill={isFav ? 'currentColor' : 'none'} />
                         </button>
@@ -882,7 +886,7 @@ export default function Home() {
                         className="btn btn-secondary text-xs"
                         onClick={() => openDealModal()}
                       >
-                        最划算渠道
+                        {t('allMatches.bestChannel')}
                       </button>
                       </td>
                     </tr>
@@ -897,7 +901,7 @@ export default function Home() {
         {!loadingMatches && filteredMatches.length > 0 && (
           <div className="flex items-center justify-between mt-6 px-4">
             <div className="text-sm opacity-70">
-              显示 {startIndex + 1}-{Math.min(endIndex, filteredMatches.length)} 条，共 {filteredMatches.length} 条
+              {t('allMatches.pagination.showing')} {startIndex + 1}-{Math.min(endIndex, filteredMatches.length)} {t('allMatches.pagination.of')} {filteredMatches.length} {t('allMatches.pagination.entries')}
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -909,7 +913,7 @@ export default function Home() {
                     : 'hover:bg-white/10'
                 }`}
               >
-                上一页
+                {t('allMatches.pagination.previous')}
               </button>
               
               <div className="flex items-center gap-1">
@@ -956,7 +960,7 @@ export default function Home() {
                     : 'hover:bg-white/10'
                 }`}
               >
-                下一页
+                {t('allMatches.pagination.next')}
               </button>
             </div>
           </div>
@@ -967,20 +971,20 @@ export default function Home() {
       <section id="consultation" className="max-w-7xl mx-auto px-4 py-6">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-xl md:text-2xl font-bold flex items-center gap-2">
-            <Newspaper className="w-5 h-5" /> 咨询中心
+            <Newspaper className="w-5 h-5" /> {t('consultationCenter.title')}
           </h2>
-          <div className="text-xs opacity-70">支持自动更新到此区域</div>
+          
         </div>
         <div className="grid md:grid-cols-3 gap-4">
           {blogPosts.length > 0 ? (
             blogPosts.map((post) => (
               <Link key={post._id} href={`/blog/${post.slug}`} className="glass rounded-2xl p-4 block hover:border-white/30">
                 <div className="text-xs opacity-70 mb-1">
-                  {isClient && post._createdAt ? new Date(post._createdAt).toLocaleString('zh-CN') : '加载中...'}
+                  {isClient && post._createdAt ? new Date(post._createdAt).toLocaleString('zh-CN') : t('consultationCenter.loading')}
                 </div>
                 <div className="font-bold mb-2">{post.title}</div>
                 <div className="flex flex-wrap gap-2 text-xs">
-                  <span className="chip px-2 py-0.5 rounded">博客文章</span>
+                  <span className="chip px-2 py-0.5 rounded">{t('consultationCenter.blogArticle')}</span>
                 </div>
               </Link>
             ))
@@ -989,7 +993,7 @@ export default function Home() {
             articles.map((article) => (
               <a key={article.id} href="#" className="glass rounded-2xl p-4 block hover:border-white/30">
                 <div className="text-xs opacity-70 mb-1">
-                  {isClient && article.date ? new Date(article.date).toLocaleString('zh-CN') : '加载中...'}
+                  {isClient && article.date ? new Date(article.date).toLocaleString('zh-CN') : t('consultationCenter.loading')}
                 </div>
                 <div className="font-bold mb-2">{article.title}</div>
                 <div className="flex flex-wrap gap-2 text-xs">
@@ -1008,11 +1012,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 py-8 text-sm text-white/70">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex items-center gap-3">
-              <span className="chip px-2 py-0.5 rounded">18+ 责任博彩</span>
+              <span className="chip px-2 py-0.5 rounded">18+</span>
               <span className="chip px-2 py-0.5 rounded">SEA & LATAM</span>
               <a className="chip px-2 py-0.5 rounded" href="https://t.me/">Telegram</a>
             </div>
-            <div className="text-xs opacity-60">演示页面 · 数据为示例 · 请遵循当地法律</div>
+            <div className="text-xs opacity-60">{t('common.followLocalLaws')}</div>
           </div>
         </div>
       </footer>
@@ -1022,7 +1026,7 @@ export default function Home() {
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50">
           <div className="bg-[#101830] rounded-2xl max-w-lg w-full p-6 border border-white/10">
             <div className="flex items-center justify-between">
-              <div className="text-lg font-bold">最划算渠道</div>
+              <div className="text-lg font-bold">{t('allMatches.bestChannel')}</div>
               <button onClick={closeDealModal} className="text-white/70 hover:text-white">
                 <X className="w-5 h-5" />
               </button>
@@ -1036,13 +1040,13 @@ export default function Home() {
                 <div key={index} className="glass rounded-xl p-3 flex items-center justify-between">
                   <div>
                     <div className="font-semibold">{book.name}</div>
-                    <div className="text-xs opacity-70">赔率 {book.odds} · {book.promo}</div>
+                    <div className="text-xs opacity-70">{t('consultationCenter.odds')} {book.odds} · {book.promo}</div>
                   </div>
-                  <a href={book.link} className="btn btn-primary text-sm">前往</a>
+                  <a href={book.link} className="btn btn-primary text-sm">{t('consultationCenter.goTo')}</a>
                 </div>
               ))}
             </div>
-            <p className="text-[11px] text-white/50 mt-3">根据渠道福利与当前赔率折算为&quot;等效赔率&quot;。</p>
+            <p className="text-[11px] text-white/50 mt-3">{t('consultationCenter.equivalentOddsNote')}</p>
           </div>
         </div>
       )}

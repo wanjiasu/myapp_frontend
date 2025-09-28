@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "blog": "Blog",
+    "dashboard": "Panel",
+    "login": "Iniciar sesión",
+    "signup": "Registrarse",
+    "logout": "Cerrar sesión",
+    "aiBestRecommendations": "Mejores Recomendaciones IA",
+    "allMatches": "Todos los Partidos",
+    "consultationCenter": "Centro de Consultoría",
+    "promotions": "Promociones"
+  },
+  "hero": {
+    "title": "Análisis de apuestas deportivas con IA",
+    "subtitle": "Obtén",
+    "aiRecommendation": "recomendaciones IA profesionales",
+    "subtitleEnd": "y análisis de partidos en tiempo real",
+    "cta": "Comenzar"
+  },
+  "sections": {
+    "aiRecommendations": "Recomendaciones IA",
+    "consultingCenter": "Centro de consultoría",
+    "todayMatches": "Partidos de hoy",
+    "liveChat": "Chat en vivo"
+  },
+  "betting": {
+    "recommendation": "Recomendación",
+    "prediction": "Predicción",
+    "odds": "Cuotas",
+    "reason": "Análisis",
+    "homeWin": "Victoria local",
+    "draw": "Empate",
+    "awayWin": "Victoria visitante",
+    "recommended": "Recomendado",
+    "aiBestBets": "Mejores Apuestas IA",
+    "realTimeData": "Análisis de datos en tiempo real y predicciones IA",
+    "loadingRecommendations": "Cargando recomendaciones IA..."
+  },
+  "telegram": {
+    "aiAssistant": "Asistente IA de Telegram",
+    "addTelegramTitle": "Añade Telegram para análisis IA instantáneo",
+    "features": "Obtén análisis instantáneo de partidos, consejos de apuestas y notificaciones en tiempo real directamente en Telegram",
+    "addNow": "Añadir Ahora",
+    "description": "Obtén análisis IA instantáneo y recomendaciones de apuestas",
+    "addTelegram": "Añadir Telegram"
+  },
+  "chat": {
+    "placeholder": "Pregunta sobre análisis de apuestas...",
+    "send": "Enviar",
+    "minimize": "Minimizar",
+    "close": "Cerrar"
+  },
+  "allMatches": {
+    "title": "Todos los Partidos",
+    "filters": {
+      "time": "Tiempo",
+      "all": "Todos",
+      "today": "Hoy",
+      "tomorrow": "Mañana",
+      "thisWeek": "Esta Semana",
+      "league": "Liga",
+      "search": "Buscar",
+      "searchTeams": "Buscar equipos..."
+    },
+    "table": {
+      "date": "Fecha",
+      "time": "Hora",
+      "league": "Liga",
+      "match": "Partido",
+      "homeWin": "Local",
+      "draw": "Empate",
+      "awayWin": "Visitante",
+      "ai": "IA",
+      "action": "Acción"
+    },
+    "loading": "Cargando datos de partidos...",
+    "noData": "No hay datos de partidos disponibles",
+    "followed": "Seguido",
+    "follow": "Seguir",
+    "bestChannel": "Mejor Canal",
+    "pagination": {
+      "showing": "Mostrando",
+      "of": "de",
+      "entries": "entradas",
+      "previous": "Anterior",
+      "next": "Siguiente"
+    }
+  },
+  "consultationCenter": {
+    "title": "Centro de Consulta",
+    "loading": "Cargando...",
+    "blogArticle": "Artículo del Blog",
+    "odds": "Cuotas",
+    "goTo": "Ir a",
+    "equivalentOddsNote": "Calculado como \"cuotas equivalentes\" basado en beneficios del canal y cuotas actuales."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "retry": "Reintentar",
+    "readMore": "Leer Más",
+    "viewAll": "Ver Todo",
+    "disclaimer": "Por favor, apuesta responsablemente. Esto es solo para fines de entretenimiento.",
+    "followLocalLaws": "Por favor, sigue las leyes locales"
+  },
+  "auth": {
+    "loginWithGoogle": "Iniciar sesión con Google",
+    "signupWithGoogle": "Registrarse con Google",
+    "loginWithTelegram": "Iniciar sesión con Telegram",
+    "signupWithTelegram": "Registrarse con Telegram",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "dontHaveAccount": "¿No tienes una cuenta?",
+    "loginHere": "Inicia sesión aquí",
+    "signupHere": "Regístrate aquí",
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión"
+  }
+}

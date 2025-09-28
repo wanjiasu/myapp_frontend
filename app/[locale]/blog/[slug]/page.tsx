@@ -5,7 +5,7 @@ import { LogOut, ArrowLeft, Calendar, Clock } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
-import { client } from '../../../sanity/sanity.client'
+import { client } from '../../../../sanity/sanity.client'
 import { PortableText } from '@portabletext/react'
 
 type Props = { 

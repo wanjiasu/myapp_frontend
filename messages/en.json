@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "dashboard": "Dashboard",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "aiBestRecommendations": "AI Best Recommendations",
+    "allMatches": "All Matches",
+    "consultationCenter": "Consultation Center",
+    "promotions": "Promotions"
+  },
+  "hero": {
+    "title": "AI Sports Betting Analysis Platform",
+    "subtitle": "Get professional",
+    "aiRecommendation": "AI recommendations",
+    "subtitleEnd": "and real-time match analysis",
+    "cta": "Get Started"
+  },
+  "sections": {
+    "aiRecommendations": "AI Recommendations",
+    "consultingCenter": "Consulting Center",
+    "todayMatches": "Today's Matches",
+    "liveChat": "Live Chat"
+  },
+  "betting": {
+    "recommendation": "Recommendation",
+    "prediction": "Prediction",
+    "odds": "Odds",
+    "reason": "Analysis",
+    "homeWin": "Home Win",
+    "draw": "Draw",
+    "awayWin": "Away Win",
+    "recommended": "Recommended",
+    "aiBestBets": "AI Best Bets",
+    "realTimeData": "Real-time data analysis and AI predictions",
+    "loadingRecommendations": "Loading AI recommendations..."
+  },
+  "telegram": {
+    "aiAssistant": "Telegram AI Assistant",
+    "addTelegramTitle": "Add Telegram for instant AI analysis",
+    "features": "Get instant match analysis, betting tips, and real-time notifications directly in Telegram",
+    "addNow": "Add Now",
+    "description": "Get instant AI analysis and betting recommendations",
+    "addTelegram": "Add Telegram"
+  },
+  "chat": {
+    "placeholder": "Ask about betting analysis...",
+    "send": "Send",
+    "minimize": "Minimize",
+    "close": "Close"
+  },
+  "allMatches": {
+    "title": "All Matches",
+    "filters": {
+      "time": "Time",
+      "all": "All",
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "thisWeek": "This Week",
+      "league": "League",
+      "search": "Search",
+      "searchTeams": "Search teams..."
+    },
+    "table": {
+      "date": "Date",
+      "time": "Time",
+      "league": "League",
+      "match": "Match",
+      "homeWin": "Home",
+      "draw": "Draw",
+      "awayWin": "Away",
+      "ai": "AI",
+      "action": "Action"
+    },
+    "loading": "Loading match data...",
+    "noData": "No match data available",
+    "followed": "Followed",
+    "follow": "Follow",
+    "bestChannel": "Best Channel",
+    "pagination": {
+      "showing": "Showing",
+      "of": "of",
+      "entries": "entries",
+      "previous": "Previous",
+      "next": "Next"
+    }
+  },
+  "consultationCenter": {
+    "title": "Consultation Center",
+    "loading": "Loading...",
+    "blogArticle": "Blog Article",
+    "odds": "Odds",
+    "goTo": "Go To",
+    "equivalentOddsNote": "Calculated as \"equivalent odds\" based on channel benefits and current odds."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "readMore": "Read More",
+    "viewAll": "View All",
+    "disclaimer": "Please bet responsibly. This is for entertainment purposes only.",
+    "followLocalLaws": "Please follow local laws"
+  },
+  "auth": {
+    "loginWithGoogle": "Login with Google",
+    "signupWithGoogle": "Sign up with Google",
+    "loginWithTelegram": "Login with Telegram",
+    "signupWithTelegram": "Sign up with Telegram",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "loginHere": "Login here",
+    "signupHere": "Sign up here",
+    "login": "Login",
+    "logout": "Logout"
+  }
+}

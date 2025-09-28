@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "home": "首页",
+    "blog": "博客",
+    "dashboard": "仪表板",
+    "login": "登录",
+    "signup": "注册",
+    "logout": "退出登录",
+    "aiBestRecommendations": "AI最佳推荐",
+    "allMatches": "所有比赛",
+    "consultationCenter": "咨询中心",
+    "promotions": "优惠活动"
+  },
+  "hero": {
+    "title": "AI体育博彩分析平台",
+    "subtitle": "获得专业的",
+    "aiRecommendation": "AI推荐",
+    "subtitleEnd": "和实时比赛分析",
+    "cta": "开始使用"
+  },
+  "sections": {
+    "aiRecommendations": "AI推荐",
+    "consultingCenter": "咨询中心",
+    "todayMatches": "今日比赛",
+    "liveChat": "在线聊天"
+  },
+  "betting": {
+    "recommendation": "推荐",
+    "prediction": "预测",
+    "odds": "赔率",
+    "reason": "分析",
+    "homeWin": "主胜",
+    "draw": "平局",
+    "awayWin": "客胜",
+    "recommended": "推荐",
+    "aiBestBets": "AI最佳投注",
+    "realTimeData": "实时数据分析和AI预测",
+    "loadingRecommendations": "正在加载AI推荐..."
+  },
+  "telegram": {
+    "aiAssistant": "Telegram AI助手",
+    "addTelegramTitle": "添加Telegram获取即时AI分析",
+    "features": "在Telegram中直接获取即时比赛分析、投注建议和实时通知",
+    "addNow": "立即添加",
+    "description": "获取即时AI分析和投注建议",
+    "addTelegram": "添加Telegram"
+  },
+  "chat": {
+    "placeholder": "询问投注分析...",
+    "send": "发送",
+    "minimize": "最小化",
+    "close": "关闭"
+  },
+  "allMatches": {
+    "title": "全部比赛",
+    "filters": {
+      "time": "时间",
+      "all": "全部",
+      "today": "今天",
+      "tomorrow": "明天",
+      "thisWeek": "本周",
+      "league": "联赛",
+      "search": "搜索",
+      "searchTeams": "搜索队伍..."
+    },
+    "table": {
+      "date": "日期",
+      "time": "时间",
+      "league": "联赛",
+      "match": "对阵",
+      "homeWin": "主胜",
+      "draw": "平",
+      "awayWin": "客胜",
+      "ai": "AI",
+      "action": "操作"
+    },
+    "loading": "加载比赛数据中...",
+    "noData": "暂无比赛数据",
+    "followed": "已关注",
+    "follow": "关注",
+    "bestChannel": "最划算渠道",
+    "pagination": {
+      "showing": "显示",
+      "of": "条，共",
+      "entries": "条",
+      "previous": "上一页",
+      "next": "下一页"
+    }
+  },
+  "consultationCenter": {
+    "title": "咨询中心",
+    "loading": "加载中...",
+    "blogArticle": "博客文章",
+    "odds": "赔率",
+    "goTo": "前往",
+    "equivalentOddsNote": "根据渠道福利与当前赔率折算为\"等效赔率\"。"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "retry": "重试",
+    "readMore": "阅读更多",
+    "viewAll": "查看全部",
+    "disclaimer": "请理性投注，仅供娱乐。",
+    "followLocalLaws": "请遵循当地法律"
+  },
+  "auth": {
+    "loginWithGoogle": "使用Google登录",
+    "signupWithGoogle": "使用Google注册",
+    "loginWithTelegram": "使用Telegram登录",
+    "signupWithTelegram": "使用Telegram注册",
+    "alreadyHaveAccount": "已有账户？",
+    "dontHaveAccount": "没有账户？",
+    "loginHere": "在此登录",
+    "signupHere": "在此注册",
+    "login": "登录",
+    "logout": "退出登录"
+  }
+}

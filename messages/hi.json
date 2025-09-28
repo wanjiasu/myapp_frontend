@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "home": "होम",
+    "blog": "ब्लॉग",
+    "dashboard": "डैशबोर्ड",
+    "login": "लॉगिन",
+    "signup": "साइन अप",
+    "logout": "लॉगआउट",
+    "aiBestRecommendations": "AI सर्वोत्तम सिफारिशें",
+    "allMatches": "सभी मैच",
+    "consultationCenter": "परामर्श केंद्र",
+    "promotions": "प्रमोशन"
+  },
+  "hero": {
+    "title": "AI स्पोर्ट्स बेटिंग विश्लेषण",
+    "subtitle": "पेशेवर",
+    "aiRecommendation": "AI सिफारिशें",
+    "subtitleEnd": "और रियल-टाइम मैच विश्लेषण प्राप्त करें",
+    "cta": "शुरू करें"
+  },
+  "sections": {
+    "aiRecommendations": "AI सिफारिशें",
+    "consultingCenter": "परामर्श केंद्र",
+    "todayMatches": "आज के मैच",
+    "liveChat": "लाइव चैट"
+  },
+  "betting": {
+    "recommendation": "सिफारिश",
+    "prediction": "भविष्यवाणी",
+    "odds": "ऑड्स",
+    "reason": "विश्लेषण",
+    "homeWin": "होम जीत",
+    "draw": "ड्रॉ",
+    "awayWin": "अवे जीत",
+    "recommended": "सिफारिश की गई",
+    "aiBestBets": "AI सर्वोत्तम बेट्स",
+    "realTimeData": "रियल-टाइम डेटा विश्लेषण और AI भविष्यवाणियां",
+    "loadingRecommendations": "AI सिफारिशें लोड हो रही हैं..."
+  },
+  "telegram": {
+    "aiAssistant": "टेलीग्राम AI असिस्टेंट",
+    "addTelegramTitle": "तत्काल AI विश्लेषण के लिए टेलीग्राम जोड़ें",
+    "features": "टेलीग्राम में सीधे तत्काल मैच विश्लेषण, बेटिंग टिप्स और रियल-टाइम नोटिफिकेशन प्राप्त करें",
+    "addNow": "अभी जोड़ें",
+    "description": "तत्काल AI विश्लेषण और बेटिंग सिफारिशें प्राप्त करें",
+    "addTelegram": "टेलीग्राम जोड़ें"
+  },
+  "chat": {
+    "placeholder": "बेटिंग विश्लेषण के बारे में पूछें...",
+    "send": "भेजें",
+    "minimize": "छोटा करें",
+    "close": "बंद करें"
+  },
+  "allMatches": {
+    "title": "सभी मैच",
+    "filters": {
+      "time": "समय",
+      "all": "सभी",
+      "today": "आज",
+      "tomorrow": "कल",
+      "thisWeek": "इस सप्ताह",
+      "league": "लीग",
+      "search": "खोजें",
+      "searchTeams": "टीमें खोजें..."
+    },
+    "table": {
+      "date": "तारीख",
+      "time": "समय",
+      "league": "लीग",
+      "match": "मैच",
+      "homeWin": "घरेलू",
+      "draw": "ड्रॉ",
+      "awayWin": "बाहरी",
+      "ai": "AI",
+      "action": "कार्रवाई"
+    },
+    "loading": "मैच डेटा लोड हो रहा है...",
+    "noData": "कोई मैच डेटा उपलब्ध नहीं",
+    "followed": "फॉलो किया गया",
+    "follow": "फॉलो करें",
+    "bestChannel": "सर्वोत्तम चैनल",
+    "pagination": {
+      "showing": "दिखा रहे हैं",
+      "of": "में से",
+      "entries": "प्रविष्टियां",
+      "previous": "पिछला",
+      "next": "अगला"
+    }
+  },
+  "consultationCenter": {
+    "title": "परामर्श केंद्र",
+    "loading": "लोड हो रहा है...",
+    "blogArticle": "ब्लॉग लेख",
+    "odds": "ऑड्स",
+    "goTo": "जाएं",
+    "equivalentOddsNote": "चैनल लाभ और वर्तमान ऑड्स के आधार पर \"समकक्ष ऑड्स\" के रूप में गणना की गई।"
+  },
+  "common": {
+    "loading": "लोड हो रहा है...",
+    "error": "त्रुटि",
+    "retry": "पुनः प्रयास करें",
+    "readMore": "और पढ़ें",
+    "viewAll": "सभी देखें",
+    "disclaimer": "कृपया जिम्मेदारी से दांव लगाएं। यह केवल मनोरंजन के उद्देश्यों के लिए है।",
+    "followLocalLaws": "कृपया स्थानीय कानूनों का पालन करें"
+  },
+  "auth": {
+    "loginWithGoogle": "Google से लॉगिन करें",
+    "signupWithGoogle": "Google से साइन अप करें",
+    "loginWithTelegram": "Telegram से लॉगिन करें",
+    "signupWithTelegram": "Telegram से साइन अप करें",
+    "alreadyHaveAccount": "पहले से खाता है?",
+    "dontHaveAccount": "खाता नहीं है?",
+    "loginHere": "यहाँ लॉगिन करें",
+    "signupHere": "यहाँ साइन अप करें",
+    "login": "लॉगिन",
+    "logout": "लॉगआउट"
+  }
+}

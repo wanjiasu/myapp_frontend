@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "blog": "Blog",
+    "dashboard": "Bảng điều khiển",
+    "login": "Đăng nhập",
+    "signup": "Đăng ký",
+    "logout": "Đăng xuất",
+    "aiBestRecommendations": "Khuyến nghị AI tốt nhất",
+    "allMatches": "Tất cả trận đấu",
+    "consultationCenter": "Trung tâm tư vấn",
+    "promotions": "Khuyến mãi"
+  },
+  "hero": {
+    "title": "Phân tích cá cược thể thao AI",
+    "subtitle": "Nhận được chuyên nghiệp",
+    "aiRecommendation": "Khuyến nghị AI",
+    "subtitleEnd": "và phân tích trận đấu thời gian thực",
+    "cta": "Bắt đầu"
+  },
+  "sections": {
+    "aiRecommendations": "Khuyến nghị AI",
+    "consultingCenter": "Trung tâm tư vấn",
+    "todayMatches": "Trận đấu hôm nay",
+    "liveChat": "Trò chuyện trực tiếp"
+  },
+  "betting": {
+    "recommendation": "Khuyến nghị",
+    "prediction": "Dự đoán",
+    "odds": "Tỷ lệ cược",
+    "reason": "Phân tích",
+    "homeWin": "Thắng nhà",
+    "draw": "Hòa",
+    "awayWin": "Thắng khách",
+    "recommended": "Được khuyến nghị",
+    "aiBestBets": "Cược tốt nhất AI",
+    "realTimeData": "Phân tích dữ liệu thời gian thực và dự đoán AI",
+    "loadingRecommendations": "Đang tải khuyến nghị AI..."
+  },
+  "telegram": {
+    "aiAssistant": "Trợ lý AI Telegram",
+    "addTelegramTitle": "Thêm Telegram để phân tích AI tức thì",
+    "features": "Nhận phân tích trận đấu tức thì, mẹo cá cược và thông báo thời gian thực trực tiếp trong Telegram",
+    "addNow": "Thêm ngay",
+    "description": "Nhận phân tích AI tức thì và khuyến nghị cá cược",
+    "addTelegram": "Thêm Telegram"
+  },
+  "chat": {
+    "placeholder": "Hỏi về phân tích cá cược...",
+    "send": "Gửi",
+    "minimize": "Thu nhỏ",
+    "close": "Đóng"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "retry": "Thử lại",
+    "readMore": "Đọc thêm",
+    "viewAll": "Xem tất cả",
+    "disclaimer": "Vui lòng cá cược có trách nhiệm. Điều này chỉ dành cho mục đích giải trí."
+  },
+  "auth": {
+    "loginWithGoogle": "Đăng nhập bằng Google",
+    "signupWithGoogle": "Đăng ký bằng Google",
+    "loginWithTelegram": "Đăng nhập bằng Telegram",
+    "signupWithTelegram": "Đăng ký bằng Telegram",
+    "alreadyHaveAccount": "Đã có tài khoản?",
+    "dontHaveAccount": "Chưa có tài khoản?",
+    "loginHere": "Đăng nhập tại đây",
+    "signupHere": "Đăng ký tại đây",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất"
+  }
+}
