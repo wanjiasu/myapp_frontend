@@ -7,7 +7,7 @@ import { eq, and } from "drizzle-orm";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { bind_token, tg_start_param } = body;
+    const { bind_token } = body;
 
     if (!bind_token) {
       return NextResponse.json(

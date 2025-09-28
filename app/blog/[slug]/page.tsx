@@ -14,7 +14,22 @@ type Props = {
 
 interface Post {
   title: string;
-  body: any;
+  body: Array<{
+    _type: string;
+    _key: string;
+    children?: Array<{
+      _type: string;
+      _key: string;
+      text: string;
+      marks?: string[];
+    }>;
+    style?: string;
+    markDefs?: Array<{
+      _type: string;
+      _key: string;
+      href?: string;
+    }>;
+  }>;
   _createdAt: string;
   _updatedAt: string;
 }
@@ -28,7 +43,6 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
 
 export default function PostPage({ params }: Props) {
   const [post, setPost] = useState<Post | null>(null);
-  const [slug, setSlug] = useState<string>("");
   const [user, setUser] = useState<{id: string; email: string; name?: string} | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -48,7 +62,6 @@ export default function PostPage({ params }: Props) {
       try {
         // 获取参数
         const resolvedParams = await params;
-        setSlug(resolvedParams.slug);
 
         // 获取用户会话信息
         const session = await authClient.getSession();

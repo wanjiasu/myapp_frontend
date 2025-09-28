@@ -26,7 +26,7 @@ import {
 import { z } from "zod";
 import { toast } from "sonner"
 import { useRouter, useSearchParams } from "next/navigation"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { authClient } from "@/lib/auth-client"
 
 const formSchema = z.object({
@@ -54,33 +54,8 @@ export function SignupForm({
   // 检查是否来自 Telegram
   const isFromTelegram = !!(tgUserId && tgChatId)
   
-  // 处理 Google 登录回调后的自动绑定
-  useEffect(() => {
-    const handleGoogleCallback = async () => {
-      if (googleCallback === 'true' && isFromTelegram) {
-        // 等待一下让登录状态更新
-        setTimeout(async () => {
-          const session = await authClient.getSession()
-          if (session?.data?.user) {
-            await autoBindTelegram()
-          }
-        }, 1000)
-      }
-    }
-    
-    handleGoogleCallback()
-  }, [googleCallback, isFromTelegram])
-  
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  })
-
   // 自动绑定 Telegram 账户的函数
-  const autoBindTelegram = async () => {
+  const autoBindTelegram = useCallback(async () => {
     if (!isFromTelegram) return
     
     try {
@@ -146,7 +121,7 @@ export function SignupForm({
             // 如果不是弹出窗口，尝试返回上一页或关闭标签页
             try {
               window.close()
-            } catch (e) {
+            } catch {
               // 如果无法关闭，显示提示
               toast.info('请手动关闭此页面返回 Telegram')
             }
@@ -160,7 +135,33 @@ export function SignupForm({
       console.error('Auto binding error:', error)
       toast.error('自动绑定过程中发生错误')
     }
-  }
+  }, [isFromTelegram, tgUserId, tgChatId, tgStartParam])
+  
+  // 处理 Google 登录回调和自动绑定
+  useEffect(() => {
+    const handleGoogleCallback = async () => {
+      if (googleCallback && isFromTelegram) {
+        // 延迟执行自动绑定，确保用户已经登录
+        setTimeout(async () => {
+          try {
+            await autoBindTelegram()
+          } catch (error) {
+            console.error('Auto binding failed:', error)
+          }
+        }, 1000)
+      }
+    }
+    
+    handleGoogleCallback()
+  }, [googleCallback, isFromTelegram, autoBindTelegram])
+  
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  })
 
   // Google 登录并自动绑定
   const signInWithGoogle = async () => {
@@ -169,7 +170,6 @@ export function SignupForm({
       // 如果是从 Telegram 来的，构建带参数的回调 URL
       let callbackURL = "/"
       if (isFromTelegram) {
-        const currentUrl = new URL(window.location.href)
         callbackURL = `/signup?tg_user_id=${tgUserId}&tg_chat_id=${tgChatId}&tg_start_param=${tgStartParam}&google_callback=true`
       }
       
