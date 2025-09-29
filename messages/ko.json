@@ -62,6 +62,8 @@
     "filters": {
       "time": "시간",
       "all": "전체",
+      "allDates": "모든 날짜",
+      "allLeagues": "모든 리그",
       "today": "오늘",
       "tomorrow": "내일",
       "thisWeek": "이번 주",

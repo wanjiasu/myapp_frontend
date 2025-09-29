@@ -62,6 +62,8 @@
     "filters": {
       "time": "समय",
       "all": "सभी",
+      "allDates": "सभी तारीखें",
+      "allLeagues": "सभी लीग",
       "today": "आज",
       "tomorrow": "कल",
       "thisWeek": "इस सप्ताह",

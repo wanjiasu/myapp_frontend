@@ -287,27 +287,47 @@ export default function Home() {
     setShowDealModal(false);
   };
 
+  // 获取所有可用的日期选项（基于实际数据）
+  const getAvailableDates = () => {
+    if (!matches.length) return [];
+    
+    const dates = matches.map(match => {
+      const date = new Date(match.fixture_date);
+      return {
+        value: date.toISOString().split('T')[0], // YYYY-MM-DD格式
+        label: date.toLocaleDateString(locale, { 
+          month: 'short', 
+          day: 'numeric',
+          weekday: 'short'
+        })
+      };
+    });
+    
+    // 去重并排序
+    const uniqueDates = Array.from(
+      new Map(dates.map(d => [d.value, d])).values()
+    ).sort((a, b) => a.value.localeCompare(b.value));
+    
+    return uniqueDates;
+  };
+
+  // 获取所有可用的联赛选项（基于实际数据去重）
+  const getAvailableLeagues = () => {
+    if (!matches.length) return [];
+    
+    const leagues = [...new Set(matches.map(match => match.league))];
+    return leagues.sort();
+  };
+
   // Filter matches
   const filteredMatches = matches.filter(match => {
     if (!isClient) return true;
     
-    // 时间筛选
+    // 时间筛选（基于具体日期）
     if (filters.time) {
-      const matchDate = new Date(match.fixture_date);
-      const today = new Date();
-      const tomorrow = new Date(today);
-      tomorrow.setDate(today.getDate() + 1);
-      
-      if (filters.time === 'today' && matchDate.toDateString() !== today.toDateString()) {
+      const matchDate = new Date(match.fixture_date).toISOString().split('T')[0];
+      if (matchDate !== filters.time) {
         return false;
-      }
-      if (filters.time === 'tomorrow' && matchDate.toDateString() !== tomorrow.toDateString()) {
-        return false;
-      }
-      if (filters.time === 'week') {
-        const weekFromNow = new Date(today);
-        weekFromNow.setDate(today.getDate() + 7);
-        if (matchDate > weekFromNow) return false;
       }
     }
     
@@ -800,10 +820,12 @@ export default function Home() {
                 value={filters.time}
                 onChange={(e) => setFilters({...filters, time: e.target.value})}
               >
-                <option value="">{t('allMatches.filters.all')}</option>
-                <option value="today">{t('allMatches.filters.today')}</option>
-                <option value="tomorrow">{t('allMatches.filters.tomorrow')}</option>
-                <option value="week">{t('allMatches.filters.thisWeek')}</option>
+                <option value="">{t('allMatches.filters.allDates')}</option>
+                {getAvailableDates().map(date => (
+                  <option key={date.value} value={date.value}>
+                    {date.label}
+                  </option>
+                ))}
               </select>
             </div>
             <div>
@@ -813,11 +835,12 @@ export default function Home() {
                 value={filters.league}
                 onChange={(e) => setFilters({...filters, league: e.target.value})}
               >
-                <option value="">{t('allMatches.filters.all')}</option>
-                <option value="Premier League">Premier League</option>
-                <option value="La Liga">La Liga</option>
-                <option value="Série A">Série A</option>
-                <option value="THA League 1">THA League 1</option>
+                <option value="">{t('allMatches.filters.allLeagues')}</option>
+                {getAvailableLeagues().map(league => (
+                  <option key={league} value={league}>
+                    {league}
+                  </option>
+                ))}
               </select>
             </div>
             <div>

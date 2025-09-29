@@ -62,6 +62,8 @@
     "filters": {
       "time": "Tiempo",
       "all": "Todos",
+      "allDates": "Todas las fechas",
+      "allLeagues": "Todas las ligas",
       "today": "Hoy",
       "tomorrow": "Mañana",
       "thisWeek": "Esta Semana",

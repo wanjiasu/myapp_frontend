@@ -61,7 +61,9 @@
     "title": "Todas as Partidas",
     "filters": {
       "time": "Tempo",
-      "all": "Todas",
+      "all": "Todos",
+      "allDates": "Todas as datas",
+      "allLeagues": "Todas as ligas",
       "today": "Hoje",
       "tomorrow": "Amanhã",
       "thisWeek": "Esta Semana",

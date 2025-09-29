@@ -62,6 +62,8 @@
     "filters": {
       "time": "Time",
       "all": "All",
+      "allDates": "All Dates",
+      "allLeagues": "All Leagues",
       "today": "Today",
       "tomorrow": "Tomorrow",
       "thisWeek": "This Week",

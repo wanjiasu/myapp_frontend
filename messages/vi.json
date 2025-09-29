@@ -57,13 +57,61 @@
     "minimize": "Thu nhỏ",
     "close": "Đóng"
   },
+  "allMatches": {
+    "title": "Tất cả trận đấu",
+    "filters": {
+      "time": "Thời gian",
+      "all": "Tất cả",
+      "allDates": "Tất cả ngày",
+      "allLeagues": "Tất cả giải đấu",
+      "today": "Hôm nay",
+      "tomorrow": "Ngày mai",
+      "thisWeek": "Tuần này",
+      "league": "Giải đấu",
+      "search": "Tìm kiếm",
+      "searchTeams": "Tìm kiếm đội..."
+    },
+    "table": {
+      "date": "Ngày",
+      "time": "Thời gian",
+      "league": "Giải đấu",
+      "match": "Trận đấu",
+      "homeWin": "Thắng nhà",
+      "draw": "Hòa",
+      "awayWin": "Thắng khách",
+      "ai": "AI",
+      "favorite": "Yêu thích",
+      "action": "Hành động"
+    },
+    "loading": "Đang tải dữ liệu trận đấu...",
+    "noData": "Không có dữ liệu trận đấu",
+    "followed": "Đã theo dõi",
+    "follow": "Theo dõi",
+    "bestChannel": "Kênh tốt nhất",
+    "pagination": {
+      "showing": "Hiển thị",
+      "of": "của",
+      "entries": "mục",
+      "previous": "Trước",
+      "next": "Tiếp"
+    }
+  },
+  "consultationCenter": {
+    "title": "Trung tâm tư vấn",
+    "loading": "Đang tải...",
+    "blogArticle": "Bài viết blog",
+    "odds": "Tỷ lệ cược",
+    "goTo": "Đi tới",
+    "equivalentOddsNote": "Được tính như \"tỷ lệ cược tương đương\" dựa trên lợi ích kênh và tỷ lệ cược hiện tại"
+  },
   "common": {
     "loading": "Đang tải...",
     "error": "Lỗi",
     "retry": "Thử lại",
     "readMore": "Đọc thêm",
     "viewAll": "Xem tất cả",
-    "disclaimer": "Vui lòng cá cược có trách nhiệm. Điều này chỉ dành cho mục đích giải trí."
+    "disclaimer": "Vui lòng cá cược có trách nhiệm. Điều này chỉ dành cho mục đích giải trí.",
+    "followLocalLaws": "Vui lòng tuân thủ luật pháp địa phương"
   },
   "auth": {
     "loginWithGoogle": "Đăng nhập bằng Google",

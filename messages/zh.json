@@ -62,6 +62,8 @@
     "filters": {
       "time": "时间",
       "all": "全部",
+      "allDates": "全部日期",
+      "allLeagues": "全部联赛",
       "today": "今天",
       "tomorrow": "明天",
       "thisWeek": "本周",

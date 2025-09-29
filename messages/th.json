@@ -67,6 +67,8 @@
     "filters": {
       "time": "เวลา",
       "all": "ทั้งหมด",
+      "allDates": "ทุกวันที่",
+      "allLeagues": "ทุกลีก",
       "today": "วันนี้",
       "tomorrow": "พรุ่งนี้",
       "thisWeek": "สัปดาห์นี้",
