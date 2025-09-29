@@ -5,6 +5,7 @@ import { LogOut, Newspaper } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from 'next-intl';
 // 从正确的相对路径导入 sanity client
 import { client } from '../../../sanity/sanity.client'
 
@@ -20,6 +21,7 @@ const QUERY = `*[_type == "post"] | order(_createdAt desc){
 }`
 
 export default function BlogIndex() {
+  const t = useTranslations();
   const [posts, setPosts] = useState<Post[]>([]);
   const [user, setUser] = useState<{id: string; email: string; name?: string} | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -91,12 +93,12 @@ export default function BlogIndex() {
             </Link>
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm" style={{color: '#E5E8E9'}}>
-            <Link href="/" className="hover:text-white transition-colors duration-200 hover:scale-105">首页</Link>
-            <Link href="/blog" className="text-white font-medium">博客</Link>
+            <Link href="/" className="hover:text-white transition-colors duration-200 hover:scale-105">{t('nav.home')}</Link>
+            <Link href="/blog" className="text-white font-medium">{t('blog.title')}</Link>
           </nav>
           <div className="flex items-center gap-2">
             {isLoading ? (
-              <div className="text-sm" style={{color: '#8A9499'}}>加载中...</div>
+              <div className="text-sm" style={{color: '#8A9499'}}>{t('blog.loading')}</div>
             ) : user ? (
               <div className="relative">
                 <div 
@@ -130,7 +132,7 @@ export default function BlogIndex() {
                         className="w-full flex items-center gap-2 px-3 py-2 text-sm text-white rounded-md transition-colors duration-200 hover:bg-white/10"
                       >
                         <LogOut size={16} />
-                        登出
+                        {t('auth.logout')}
                       </button>
                     </div>
                   </div>
@@ -145,7 +147,7 @@ export default function BlogIndex() {
                   color: '#FFFFFF'
                 }}
               >
-                登录
+                {t('auth.login')}
               </Link>
             )}
           </div>
@@ -161,10 +163,10 @@ export default function BlogIndex() {
           <div className="text-center">
             <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4 flex items-center justify-center gap-3">
               <Newspaper className="w-8 h-8 md:w-12 md:h-12" style={{color: '#00B8C8'}} />
-              咨询中心
+              {t('blog.title')}
             </h1>
             <p className="text-lg max-w-2xl mx-auto" style={{color: '#E5E8E9'}}>
-              深度分析、投注策略、市场洞察 - 让数据为您的决策提供支持
+              {t('blog.subtitle')}
             </p>
           </div>
         </div>
@@ -204,7 +206,7 @@ export default function BlogIndex() {
                       color: '#FFFFFF'
                     }}
                   >
-                    阅读全文
+                    {t('blog.readMore')}
                   </Link>
                 </div>
               </article>
@@ -216,9 +218,9 @@ export default function BlogIndex() {
                 borderColor: 'rgba(255, 255, 255, 0.1)'
               }}>
                 <Newspaper className="w-16 h-16 mx-auto mb-4" style={{color: '#8A9499'}} />
-                <h3 className="text-xl font-bold mb-2">暂无文章</h3>
+                <h3 className="text-xl font-bold mb-2">{t('blog.noArticles')}</h3>
                 <p className="text-sm mb-4" style={{color: '#8A9499'}}>
-                  我们正在准备精彩的内容，敬请期待！
+                  {t('blog.noArticlesDesc')}
                 </p>
                 <Link 
                   href="/"
@@ -228,7 +230,7 @@ export default function BlogIndex() {
                     color: '#FFFFFF'
                   }}
                 >
-                  返回首页
+                  {t('blog.backToHome')}
                 </Link>
               </div>
             </div>

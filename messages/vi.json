@@ -104,6 +104,19 @@
     "goTo": "Đi tới",
     "equivalentOddsNote": "Được tính như \"tỷ lệ cược tương đương\" dựa trên lợi ích kênh và tỷ lệ cược hiện tại"
   },
+  "blog": {
+    "title": "Trung tâm tư vấn",
+    "subtitle": "Phân tích sâu, chiến lược cá cược, thông tin thị trường - để dữ liệu hỗ trợ quyết định của bạn",
+    "loading": "Đang tải...",
+    "readMore": "Đọc thêm",
+    "noArticles": "Chưa có bài viết",
+    "noArticlesDesc": "Chúng tôi đang chuẩn bị nội dung thú vị, hãy theo dõi!",
+    "backToHome": "Về trang chủ",
+    "backToBlog": "Quay lại danh sách blog",
+    "articleNotFound": "Không tìm thấy bài viết",
+    "articleNotFoundDesc": "Xin lỗi, bài viết bạn tìm kiếm không tồn tại hoặc đã bị xóa.",
+    "updatedAt": "Cập nhật vào"
+  },
   "common": {
     "loading": "Đang tải...",
     "error": "Lỗi",

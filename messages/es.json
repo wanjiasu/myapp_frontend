@@ -103,6 +103,19 @@
     "goTo": "Ir a",
     "equivalentOddsNote": "Calculado como \"cuotas equivalentes\" basado en beneficios del canal y cuotas actuales."
   },
+  "blog": {
+    "title": "Centro de Consulta",
+    "subtitle": "Análisis en profundidad, estrategias de apuestas, perspectivas del mercado - deja que los datos apoyen tus decisiones",
+    "loading": "Cargando...",
+    "readMore": "Leer Más",
+    "noArticles": "Sin Artículos",
+    "noArticlesDesc": "Estamos preparando contenido emocionante, ¡mantente atento!",
+    "backToHome": "Volver al Inicio",
+    "backToBlog": "Volver a la Lista de Blog",
+    "articleNotFound": "Artículo No Encontrado",
+    "articleNotFoundDesc": "Lo siento, el artículo que buscas no existe o ha sido eliminado.",
+    "updatedAt": "Actualizado el"
+  },
   "common": {
     "loading": "Cargando...",
     "error": "Error",

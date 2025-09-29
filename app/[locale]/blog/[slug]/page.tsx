@@ -5,6 +5,7 @@ import { LogOut, ArrowLeft, Calendar, Clock } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from 'next-intl';
 import { client } from '../../../../sanity/sanity.client'
 import { PortableText } from '@portabletext/react'
 
@@ -42,6 +43,7 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
 }`
 
 export default function PostPage({ params }: Props) {
+  const t = useTranslations();
   const [post, setPost] = useState<Post | null>(null);
   const [user, setUser] = useState<{id: string; email: string; name?: string} | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -121,8 +123,8 @@ export default function PostPage({ params }: Props) {
               </Link>
             </div>
             <nav className="hidden md:flex items-center gap-8 text-sm" style={{color: '#E5E8E9'}}>
-              <Link href="/" className="hover:text-white transition-colors duration-200 hover:scale-105">首页</Link>
-              <Link href="/blog" className="text-white font-medium">博客</Link>
+              <Link href="/" className="hover:text-white transition-colors duration-200 hover:scale-105">{t('nav.home')}</Link>
+              <Link href="/blog" className="text-white font-medium">{t('blog.title')}</Link>
             </nav>
             <div className="flex items-center gap-2">
               {user ? (
@@ -157,7 +159,7 @@ export default function PostPage({ params }: Props) {
                           className="w-full flex items-center gap-2 px-3 py-2 text-sm text-white rounded-md transition-colors duration-200 hover:bg-white/10"
                         >
                           <LogOut size={16} />
-                          登出
+                          {t('auth.logout')}
                         </button>
                       </div>
                     </div>
@@ -172,7 +174,7 @@ export default function PostPage({ params }: Props) {
                     color: '#FFFFFF'
                   }}
                 >
-                  登录
+                  {t('auth.login')}
                 </Link>
               )}
             </div>
@@ -185,9 +187,9 @@ export default function PostPage({ params }: Props) {
               background: 'rgba(42, 59, 64, 0.3)',
               borderColor: 'rgba(255, 255, 255, 0.1)'
             }}>
-              <h1 className="text-2xl font-bold mb-4">文章不存在</h1>
+              <h1 className="text-2xl font-bold mb-4">{t('blog.articleNotFound')}</h1>
               <p className="text-lg mb-6" style={{color: '#8A9499'}}>
-                抱歉，您访问的文章不存在或已被删除。
+                {t('blog.articleNotFoundDesc')}
               </p>
               <Link 
                 href="/blog"
@@ -198,7 +200,7 @@ export default function PostPage({ params }: Props) {
                 }}
               >
                 <ArrowLeft size={20} />
-                返回博客列表
+                {t('blog.backToBlog')}
               </Link>
             </div>
           </div>
@@ -230,8 +232,8 @@ export default function PostPage({ params }: Props) {
             </Link>
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm" style={{color: '#E5E8E9'}}>
-            <Link href="/" className="hover:text-white transition-colors duration-200 hover:scale-105">首页</Link>
-            <Link href="/blog" className="text-white font-medium">博客</Link>
+            <Link href="/" className="hover:text-white transition-colors duration-200 hover:scale-105">{t('nav.home')}</Link>
+            <Link href="/blog" className="text-white font-medium">{t('blog.title')}</Link>
           </nav>
           <div className="flex items-center gap-2">
             {user ? (
@@ -262,12 +264,12 @@ export default function PostPage({ params }: Props) {
                   >
                     <div className="p-2">
                       <button
-                        onClick={handleLogout}
-                        className="w-full flex items-center gap-2 px-3 py-2 text-sm text-white rounded-md transition-colors duration-200 hover:bg-white/10"
-                      >
-                        <LogOut size={16} />
-                        登出
-                      </button>
+                          onClick={handleLogout}
+                          className="w-full flex items-center gap-2 px-3 py-2 text-sm text-white rounded-md transition-colors duration-200 hover:bg-white/10"
+                        >
+                          <LogOut size={16} />
+                          {t('auth.logout')}
+                        </button>
                     </div>
                   </div>
                 )}
@@ -281,7 +283,7 @@ export default function PostPage({ params }: Props) {
                   color: '#FFFFFF'
                 }}
               >
-                登录
+                {t('auth.login')}
               </Link>
             )}
           </div>
@@ -302,7 +304,7 @@ export default function PostPage({ params }: Props) {
             }}
           >
             <ArrowLeft size={16} />
-            返回博客列表
+            {t('blog.backToBlog')}
           </Link>
         </div>
 
@@ -335,7 +337,7 @@ export default function PostPage({ params }: Props) {
                 <div className="flex items-center gap-2">
                   <Clock size={16} />
                   <span>
-                    更新于 {new Date(post._updatedAt).toLocaleDateString('en-US', {
+                    {t('blog.updatedAt')} {new Date(post._updatedAt).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric'

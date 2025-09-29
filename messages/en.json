@@ -103,6 +103,19 @@
     "goTo": "Go To",
     "equivalentOddsNote": "Calculated as \"equivalent odds\" based on channel benefits and current odds."
   },
+  "blog": {
+    "title": "Consultation Center",
+    "subtitle": "In-depth analysis, betting strategies, market insights - let data support your decisions",
+    "loading": "Loading...",
+    "readMore": "Read More",
+    "noArticles": "No Articles",
+    "noArticlesDesc": "We are preparing exciting content, stay tuned!",
+    "backToHome": "Back to Home",
+    "backToBlog": "Back to Blog List",
+    "articleNotFound": "Article Not Found",
+    "articleNotFoundDesc": "Sorry, the article you are looking for does not exist or has been deleted.",
+    "updatedAt": "Updated on"
+  },
   "common": {
     "loading": "Loading...",
     "error": "Error",

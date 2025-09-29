@@ -103,6 +103,19 @@
     "goTo": "前往",
     "equivalentOddsNote": "根据渠道福利与当前赔率折算为\"等效赔率\"。"
   },
+  "blog": {
+    "title": "咨询中心",
+    "subtitle": "深度分析、投注策略、市场洞察 - 让数据为您的决策提供支持",
+    "loading": "加载中...",
+    "readMore": "阅读全文",
+    "noArticles": "暂无文章",
+    "noArticlesDesc": "我们正在准备精彩的内容，敬请期待！",
+    "backToHome": "返回首页",
+    "backToBlog": "返回博客列表",
+    "articleNotFound": "文章不存在",
+    "articleNotFoundDesc": "抱歉，您访问的文章不存在或已被删除。",
+    "updatedAt": "更新于"
+  },
   "common": {
     "loading": "加载中...",
     "error": "错误",

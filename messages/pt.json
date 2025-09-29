@@ -103,6 +103,19 @@
     "goTo": "Ir para",
     "equivalentOddsNote": "Calculado como \"odds equivalentes\" baseado nos benefícios do canal e odds atuais."
   },
+  "blog": {
+    "title": "Centro de Consulta",
+    "subtitle": "Análise aprofundada, estratégias de apostas, insights de mercado - deixe os dados apoiarem suas decisões",
+    "loading": "Carregando...",
+    "readMore": "Leia Mais",
+    "noArticles": "Sem Artigos",
+    "noArticlesDesc": "Estamos preparando conteúdo emocionante, fique ligado!",
+    "backToHome": "Voltar ao Início",
+    "backToBlog": "Voltar à Lista do Blog",
+    "articleNotFound": "Artigo Não Encontrado",
+    "articleNotFoundDesc": "Desculpe, o artigo que você está procurando não existe ou foi excluído.",
+    "updatedAt": "Atualizado em"
+  },
   "common": {
     "loading": "Carregando...",
     "error": "Erro",
