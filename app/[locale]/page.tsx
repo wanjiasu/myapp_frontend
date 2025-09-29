@@ -568,7 +568,7 @@ export default function Home() {
                     background: 'linear-gradient(135deg, #FF3B5C 0%, #FF6B7A 100%)'
                   }}>
                     <span className="animate-pulse text-xs">🔥</span>
-                    限时推荐
+                    {t('betting.limitedTimeRecommendation')}
                   </div>
                   
                   <div className="p-6 flex-1 flex flex-col">
@@ -628,7 +628,7 @@ export default function Home() {
                         borderColor: 'rgba(0, 208, 132, 0.3)'
                       }}>
                         <span className="text-sm">🎯</span>
-                        推荐指数 {Math.round(recommendation.recommendation_index * 100)}
+                        {t('betting.recommendationIndex')} {Math.round(recommendation.recommendation_index * 100)}
                       </div>
                       {recommendation.prediction_result && (
                         <div className="px-3 py-1.5 rounded-full text-xs font-bold border flex items-center gap-1 transition-all duration-200 hover:scale-105" style={{
@@ -650,32 +650,32 @@ export default function Home() {
                     }}>
                       <div className="font-medium text-white mb-2 flex items-center gap-2">
                         <span className="text-sm">📊</span>
-                        赔率分析
+                        {t('betting.oddsAnalysis')}
                       </div>
                       <div className="grid grid-cols-3 gap-2 text-center">
-                        <div>
-                          <div className="text-xs" style={{color: '#8A9499'}}>主胜</div>
-                          <div className="font-bold" style={{color: '#FFFFFF'}}>
-                            {recommendation.odds.home_avg.toFixed(2)}
+                          <div>
+                            <div className="text-xs" style={{color: '#8A9499'}}>{t('betting.homeWin')}</div>
+                            <div className="font-bold" style={{color: '#FFFFFF'}}>
+                              {recommendation.odds.home_avg.toFixed(2)}
+                            </div>
+                          </div>
+                          <div>
+                            <div className="text-xs" style={{color: '#8A9499'}}>{t('betting.draw')}</div>
+                            <div className="font-bold" style={{color: '#FFFFFF'}}>
+                              {recommendation.odds.draw_avg.toFixed(2)}
+                            </div>
+                          </div>
+                          <div>
+                            <div className="text-xs" style={{color: '#8A9499'}}>{t('betting.awayWin')}</div>
+                            <div className="font-bold" style={{color: '#FFFFFF'}}>
+                              {recommendation.odds.away_avg.toFixed(2)}
+                            </div>
                           </div>
                         </div>
-                        <div>
-                          <div className="text-xs" style={{color: '#8A9499'}}>平局</div>
-                          <div className="font-bold" style={{color: '#FFFFFF'}}>
-                            {recommendation.odds.draw_avg.toFixed(2)}
-                          </div>
-                        </div>
-                        <div>
-                          <div className="text-xs" style={{color: '#8A9499'}}>客胜</div>
-                          <div className="font-bold" style={{color: '#FFFFFF'}}>
-                            {recommendation.odds.away_avg.toFixed(2)}
-                          </div>
-                        </div>
-                      </div>
                       <div className="text-xs mt-2 flex items-center justify-center gap-1" style={{color: '#8A9499'}}>
-                        <div className="w-1 h-1 rounded-full" style={{backgroundColor: '#00D084'}}></div>
-                        实时数据
-                      </div>
+                          <div className="w-1 h-1 rounded-full" style={{backgroundColor: '#00D084'}}></div>
+                          {t('betting.realTimeDataShort')}
+                        </div>
                     </div>
 
                     {/* AI 分析 */}
@@ -687,7 +687,7 @@ export default function Home() {
                       }}>
                         <div className="font-medium mb-1 flex items-center gap-2" style={{color: '#00B8C8'}}>
                           <span className="text-sm">🤖</span>
-                          AI 分析
+                          {t('betting.aiAnalysis')}
                         </div>
                         <div className="leading-relaxed overflow-y-auto flex-1">
                           {recommendation.analysis}
@@ -716,7 +716,7 @@ export default function Home() {
                   background: 'linear-gradient(135deg, #FF3B5C 0%, #FF6B7A 100%)'
                 }}>
                   <span className="animate-pulse text-xs">🔥</span>
-                  限时推荐
+                  {t('betting.limitedTimeRecommendation')}
                 </div>
                 
                 <div className="p-6 flex-1 flex flex-col">
@@ -736,7 +736,7 @@ export default function Home() {
                       borderColor: 'rgba(0, 208, 132, 0.3)'
                     }}>
                       <span className="text-sm">🎯</span>
-                      推荐指数 {bet.recommendation}
+                      {t('betting.recommendationIndex')} {bet.recommendation}
                     </div>
                     <div className="px-3 py-1.5 rounded-full text-xs font-bold border flex items-center gap-1 transition-all duration-200 hover:scale-105" style={{
                       background: 'rgba(79, 207, 217, 0.2)',
@@ -756,7 +756,7 @@ export default function Home() {
                   }}>
                     <div className="font-medium text-white mb-2 flex items-center gap-2">
                       <span className="text-sm">💰</span>
-                      推荐赔率: {bet.odds}
+                      {t('betting.recommendedOdds')}: {bet.odds}
                     </div>
                   </div>
 
@@ -768,7 +768,7 @@ export default function Home() {
                   }}>
                     <div className="font-medium mb-1 flex items-center gap-2" style={{color: '#00B8C8'}}>
                       <span className="text-sm">🤖</span>
-                      AI 分析
+                      {t('betting.aiAnalysis')}
                     </div>
                     <div className="leading-relaxed overflow-y-auto flex-1">
                       {bet.reason}

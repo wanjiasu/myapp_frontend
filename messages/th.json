@@ -35,7 +35,13 @@
     "recommended": "แนะนำ",
     "aiBestBets": "การเดิมพัน AI ที่ดีที่สุด",
     "realTimeData": "ข้อมูลแบบเรียลไทม์",
-    "loadingRecommendations": "กำลังโหลดคำแนะนำ..."
+    "loadingRecommendations": "กำลังโหลดคำแนะนำ...",
+    "limitedTimeRecommendation": "คำแนะนำเวลาจำกัด",
+    "recommendationIndex": "ดัชนีคำแนะนำ",
+    "oddsAnalysis": "การวิเคราะห์อัตราต่อรอง",
+    "realTimeDataShort": "ข้อมูลเรียลไทม์",
+    "aiAnalysis": "การวิเคราะห์ AI",
+    "recommendedOdds": "อัตราต่อรองที่แนะนำ"
   },
   "telegram": {
     "joinChannel": "เข้าร่วมช่อง Telegram",

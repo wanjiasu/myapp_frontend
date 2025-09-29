@@ -35,7 +35,13 @@
     "recommended": "Được khuyến nghị",
     "aiBestBets": "Cược tốt nhất AI",
     "realTimeData": "Phân tích dữ liệu thời gian thực và dự đoán AI",
-    "loadingRecommendations": "Đang tải khuyến nghị AI..."
+    "loadingRecommendations": "Đang tải khuyến nghị AI...",
+    "limitedTimeRecommendation": "Khuyến nghị có thời hạn",
+    "recommendationIndex": "Chỉ số khuyến nghị",
+    "oddsAnalysis": "Phân tích tỷ lệ cược",
+    "realTimeDataShort": "Dữ liệu thời gian thực",
+    "aiAnalysis": "Phân tích AI",
+    "recommendedOdds": "Tỷ lệ cược được khuyến nghị"
   },
   "telegram": {
     "aiAssistant": "Trợ lý AI Telegram",

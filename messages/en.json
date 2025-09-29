@@ -35,7 +35,13 @@
     "recommended": "Recommended",
     "aiBestBets": "AI Best Bets",
     "realTimeData": "Real-time data analysis and AI predictions",
-    "loadingRecommendations": "Loading AI recommendations..."
+    "loadingRecommendations": "Loading AI recommendations...",
+    "limitedTimeRecommendation": "Limited Time Recommendation",
+    "recommendationIndex": "Recommendation Index",
+    "oddsAnalysis": "Odds Analysis",
+    "realTimeDataShort": "Real-time Data",
+    "aiAnalysis": "AI Analysis",
+    "recommendedOdds": "Recommended Odds"
   },
   "telegram": {
     "aiAssistant": "Telegram AI Assistant",

@@ -35,7 +35,13 @@
     "recommended": "सिफारिश की गई",
     "aiBestBets": "AI सर्वोत्तम बेट्स",
     "realTimeData": "रियल-टाइम डेटा विश्लेषण और AI भविष्यवाणियां",
-    "loadingRecommendations": "AI सिफारिशें लोड हो रही हैं..."
+    "loadingRecommendations": "AI सिफारिशें लोड हो रही हैं...",
+    "limitedTimeRecommendation": "सीमित समय की सिफारिश",
+    "recommendationIndex": "सिफारिश सूचकांक",
+    "oddsAnalysis": "ऑड्स विश्लेषण",
+    "realTimeDataShort": "रियल-टाइम डेटा",
+    "aiAnalysis": "AI विश्लेषण",
+    "recommendedOdds": "सिफारिश किए गए ऑड्स"
   },
   "telegram": {
     "aiAssistant": "टेलीग्राम AI असिस्टेंट",

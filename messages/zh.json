@@ -35,7 +35,13 @@
     "recommended": "推荐",
     "aiBestBets": "AI最佳投注",
     "realTimeData": "实时数据分析和AI预测",
-    "loadingRecommendations": "正在加载AI推荐..."
+    "loadingRecommendations": "正在加载AI推荐...",
+    "limitedTimeRecommendation": "限时推荐",
+    "recommendationIndex": "推荐指数",
+    "oddsAnalysis": "赔率分析",
+    "realTimeDataShort": "实时数据",
+    "aiAnalysis": "AI 分析",
+    "recommendedOdds": "推荐赔率"
   },
   "telegram": {
     "aiAssistant": "Telegram AI助手",

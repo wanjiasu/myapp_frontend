@@ -35,7 +35,13 @@
     "recommended": "추천됨",
     "aiBestBets": "AI 최고 베팅",
     "realTimeData": "실시간 데이터 분석 및 AI 예측",
-    "loadingRecommendations": "AI 추천 로딩 중..."
+    "loadingRecommendations": "AI 추천 로딩 중...",
+    "limitedTimeRecommendation": "한정 시간 추천",
+    "recommendationIndex": "추천 지수",
+    "oddsAnalysis": "배당률 분석",
+    "realTimeDataShort": "실시간 데이터",
+    "aiAnalysis": "AI 분석",
+    "recommendedOdds": "추천 배당률"
   },
   "telegram": {
     "aiAssistant": "텔레그램 AI 어시스턴트",

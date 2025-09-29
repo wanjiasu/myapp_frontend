@@ -35,7 +35,13 @@
     "recommended": "Recomendado",
     "aiBestBets": "Melhores Apostas IA",
     "realTimeData": "Análise de dados em tempo real e previsões IA",
-    "loadingRecommendations": "Carregando recomendações IA..."
+    "loadingRecommendations": "Carregando recomendações IA...",
+    "limitedTimeRecommendation": "Recomendação por tempo limitado",
+    "recommendationIndex": "Índice de recomendação",
+    "oddsAnalysis": "Análise de odds",
+    "realTimeDataShort": "Dados em tempo real",
+    "aiAnalysis": "Análise IA",
+    "recommendedOdds": "Odds recomendadas"
   },
   "telegram": {
     "aiAssistant": "Assistente IA do Telegram",
