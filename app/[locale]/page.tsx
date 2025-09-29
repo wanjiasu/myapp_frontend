@@ -7,7 +7,7 @@ import TelegramQRModal from "@/components/telegram-qr-modal";
 import Image from "next/image";
 import Link from "next/link";
 import { client } from '../../sanity/sanity.client';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import LanguageSwitcher from '@/components/language-switcher';
 
 // Generate timestamps on client side to avoid hydration mismatch
@@ -32,6 +32,7 @@ interface AIRecommendation {
   recommendation_index: number;
   analysis: string;
   prediction_result: string;
+  reason_dict?: {[key: string]: string}; // 添加reason_dict字段
 }
 
 // 比赛数据接口
@@ -113,6 +114,7 @@ const articles = [
 
 export default function Home() {
   const t = useTranslations();
+  const locale = useLocale(); // 获取当前用户语言
   const [favorites, setFavorites] = useState<{[key: string]: boolean}>({});
   const [filters, setFilters] = useState({
     time: '',
@@ -140,7 +142,7 @@ export default function Home() {
     try {
       setLoadingRecommendations(true);
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001';
-      const response = await fetch(`${apiUrl}/api/ai-recommendations`);
+      const response = await fetch(`${apiUrl}/api/ai-recommendations?locale=${locale}`);
       if (response.ok) {
         const data = await response.json();
         setAiRecommendations(data);
@@ -243,6 +245,11 @@ export default function Home() {
     // 获取博客文章数据
     fetchBlogPosts();
   }, [])
+
+  // 当locale变化时重新获取AI推荐数据
+  useEffect(() => {
+    fetchAIRecommendations();
+  }, [locale]);
 
   // Load favorites from localStorage
   useEffect(() => {
