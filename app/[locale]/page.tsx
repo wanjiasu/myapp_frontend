@@ -869,6 +869,33 @@ export default function Home() {
                 paginatedMatches.map((match) => {
                   const isFav = favorites[match.home_team];
                   
+                  // 解析AI预测数据，提取百分比和预测结果
+                  const parseAIPrediction = (prediction: string) => {
+                    if (!prediction) return { percentage: '', predictedTeam: 'none' };
+                    
+                    // 尝试从预测字符串中提取百分比
+                    const percentageMatch = prediction.match(/(\d+)%/);
+                    const percentage = percentageMatch ? `${percentageMatch[1]}%` : '';
+                    
+                    // 判断预测的获胜球队
+                    const lowerPrediction = prediction.toLowerCase();
+                    let predictedTeam = 'none';
+                    
+                    if (lowerPrediction.includes('主胜') || lowerPrediction.includes('home') || 
+                        lowerPrediction.includes(match.home_team.toLowerCase())) {
+                      predictedTeam = 'home';
+                    } else if (lowerPrediction.includes('客胜') || lowerPrediction.includes('away') || 
+                               lowerPrediction.includes(match.away_team.toLowerCase())) {
+                      predictedTeam = 'away';
+                    } else if (lowerPrediction.includes('平局') || lowerPrediction.includes('draw')) {
+                      predictedTeam = 'draw';
+                    }
+                    
+                    return { percentage, predictedTeam };
+                  };
+                  
+                  const { percentage, predictedTeam } = parseAIPrediction(match.ai_prediction);
+                  
                   return (
                     <tr key={match.id} className="border-b border-white/10">
                       <td>{match.date}</td>
@@ -882,12 +909,22 @@ export default function Home() {
                         >
                           <Heart className="w-4 h-4" fill={isFav ? 'currentColor' : 'none'} />
                         </button>
-                        <span>{match.home_team} <span className="opacity-60">vs</span> {match.away_team}</span>
+                        <span>
+                          <span className={predictedTeam === 'home' ? 'text-yellow-400 font-semibold' : ''}>
+                            {match.home_team}
+                          </span>
+                          <span className="opacity-60 mx-1">vs</span>
+                          <span className={predictedTeam === 'away' ? 'text-yellow-400 font-semibold' : ''}>
+                            {match.away_team}
+                          </span>
+                        </span>
                       </td>
                       <td>{match.home_odds.toFixed(2)}</td>
                       <td>{match.draw_odds.toFixed(2)}</td>
                       <td>{match.away_odds.toFixed(2)}</td>
-                      <td>{match.ai_prediction || ''}</td>
+                      <td className="text-center">
+                        <span className="text-blue-400 font-medium">{percentage}</span>
+                      </td>
                       <td>
                         <button 
                         className="btn btn-secondary text-xs"
