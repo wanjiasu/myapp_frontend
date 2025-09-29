@@ -603,12 +603,13 @@ export default function Home() {
                           backgroundColor: 'rgba(0, 184, 200, 0.1)',
                           borderColor: 'rgba(0, 184, 200, 0.3)'
                         }}>
-                          {new Date(recommendation.fixture_date).toLocaleDateString('zh-CN', {
+                          {new Date(recommendation.fixture_date).toLocaleDateString('en-US', {
                             month: 'short',
                             day: 'numeric'
-                          })} {new Date(recommendation.fixture_date).toLocaleTimeString('zh-CN', {
+                          })} {new Date(recommendation.fixture_date).toLocaleTimeString('en-US', {
                             hour: '2-digit',
-                            minute: '2-digit'
+                            minute: '2-digit',
+                            hour12: false
                           })}
                         </div>
                       )}
@@ -1047,7 +1048,14 @@ export default function Home() {
             blogPosts.map((post) => (
               <Link key={post._id} href={`/blog/${post.slug}`} className="glass rounded-2xl p-4 block hover:border-white/30">
                 <div className="text-xs opacity-70 mb-1">
-                  {isClient && post._createdAt ? new Date(post._createdAt).toLocaleString('zh-CN') : t('consultationCenter.loading')}
+                  {isClient && post._createdAt ? new Date(post._createdAt).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                  }) : t('consultationCenter.loading')}
                 </div>
                 <div className="font-bold mb-2">{post.title}</div>
                 <div className="flex flex-wrap gap-2 text-xs">
@@ -1060,7 +1068,14 @@ export default function Home() {
             articles.map((article) => (
               <a key={article.id} href="#" className="glass rounded-2xl p-4 block hover:border-white/30">
                 <div className="text-xs opacity-70 mb-1">
-                  {isClient && article.date ? new Date(article.date).toLocaleString('zh-CN') : t('consultationCenter.loading')}
+                  {isClient && article.date ? new Date(article.date).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                  }) : t('consultationCenter.loading')}
                 </div>
                 <div className="font-bold mb-2">{article.title}</div>
                 <div className="flex flex-wrap gap-2 text-xs">

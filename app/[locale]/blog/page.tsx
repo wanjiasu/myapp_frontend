@@ -188,7 +188,7 @@ export default function BlogIndex() {
                     </h2>
                     <div className="flex items-center gap-4 text-sm" style={{color: '#8A9499'}}>
                       <time dateTime={post._createdAt}>
-                        {new Date(post._createdAt).toLocaleDateString('zh-CN', {
+                        {new Date(post._createdAt).toLocaleDateString('en-US', {
                           year: 'numeric',
                           month: 'long',
                           day: 'numeric'

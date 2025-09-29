@@ -323,7 +323,7 @@ export default function PostPage({ params }: Props) {
                 <div className="flex items-center gap-2">
                   <Calendar size={16} />
                   <time dateTime={post._createdAt}>
-                    {new Date(post._createdAt).toLocaleDateString('zh-CN', {
+                    {new Date(post._createdAt).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric'
@@ -335,7 +335,7 @@ export default function PostPage({ params }: Props) {
                 <div className="flex items-center gap-2">
                   <Clock size={16} />
                   <span>
-                    更新于 {new Date(post._updatedAt).toLocaleDateString('zh-CN', {
+                    更新于 {new Date(post._updatedAt).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric'
