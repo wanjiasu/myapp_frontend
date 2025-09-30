@@ -26,17 +26,37 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
   const modal = (
     <div 
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
       role="dialog"
       aria-modal="true"
-      onClick={onClose}
     >
-      <div className="relative z-[10000] w-full max-w-md" onClick={(e) => e.stopPropagation()}>
+      {/* 背景遮罩 - 模糊背景但不阻止页面滚动 */}
+      <div 
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+        onClick={onClose}
+        style={{ position: 'fixed' }}
+      />
+      
+      {/* 弹窗内容 - 固定在视口中央 */}
+      <div 
+        className="fixed z-10 w-full max-w-md"
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          maxWidth: '28rem',
+          width: 'calc(100% - 2rem)'
+        }}
+      >
         <div 
-          className="relative rounded-xl p-6 border bg-white shadow-2xl max-h-[80vh] overflow-auto"
+          className="relative rounded-xl p-6 border bg-white shadow-2xl"
           style={{
             borderColor: 'rgba(0, 0, 0, 0.1)',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)'
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
+            maxHeight: 'calc(100vh - 2rem)',
+            overflowY: 'auto'
           }}
         >
           {/* 关闭按钮 */}

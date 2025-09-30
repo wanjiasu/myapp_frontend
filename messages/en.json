@@ -116,13 +116,30 @@
     "articleNotFoundDesc": "Sorry, the article you are looking for does not exist or has been deleted.",
     "updatedAt": "Updated on"
   },
+  "ageVerification": {
+    "title": "Age Verification",
+    "question": "Are you 18 years or older?",
+    "yes": "Yes",
+    "no": "No"
+  },
   "common": {
     "loading": "Loading...",
-    "error": "Error",
-    "retry": "Retry",
-    "readMore": "Read More",
-    "viewAll": "View All",
-    "disclaimer": "Please bet responsibly. This is for entertainment purposes only.",
+    "error": "Error occurred",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "filter": "Filter",
+    "all": "All",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "thisWeek": "This Week",
+    "nextWeek": "Next Week",
+    "disclaimer": "Betting involves risk, please bet responsibly",
     "followLocalLaws": "Please follow local laws"
   },
   "auth": {

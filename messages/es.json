@@ -116,14 +116,31 @@
     "articleNotFoundDesc": "Lo siento, el artículo que buscas no existe o ha sido eliminado.",
     "updatedAt": "Actualizado el"
   },
+  "ageVerification": {
+    "title": "Verificación de Edad",
+    "question": "¿Tienes 18 años o más?",
+    "yes": "Sí",
+    "no": "No"
+  },
   "common": {
     "loading": "Cargando...",
-    "error": "Error",
-    "retry": "Reintentar",
-    "readMore": "Leer Más",
-    "viewAll": "Ver Todo",
-    "disclaimer": "Por favor, apuesta responsablemente. Esto es solo para fines de entretenimiento.",
-    "followLocalLaws": "Por favor, sigue las leyes locales"
+    "error": "Error ocurrido",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "close": "Cerrar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "all": "Todo",
+    "today": "Hoy",
+    "tomorrow": "Mañana",
+    "thisWeek": "Esta Semana",
+    "nextWeek": "Próxima Semana",
+    "disclaimer": "Las apuestas implican riesgo, por favor apuesta responsablemente",
+    "followLocalLaws": "Por favor sigue las leyes locales"
   },
   "auth": {
     "loginWithGoogle": "Iniciar sesión con Google",

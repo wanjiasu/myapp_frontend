@@ -5,7 +5,7 @@ import { Heart, Sparkles, ListFilter, Newspaper, Send, Bot, X, LogOut } from "lu
 import { authClient } from "@/lib/auth-client";
 import TelegramQRModal from "@/components/telegram-qr-modal";
 import { LoginModal } from "@/components/login-modal";
-import { AgeVerificationModal } from "@/components/age-verification-modal";
+import AgeVerificationModal from "@/components/age-verification-modal";
 import Image from "next/image";
 import Link from "next/link";
 import { client } from '../../sanity/sanity.client';
@@ -432,7 +432,7 @@ export default function Home() {
       {/* 动态背景 */}
       <AnimatedBackground />
       {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-md border-b" style={{
+      <header className="sticky top-0 z-40 backdrop-blur-md border-b" style={{
         backgroundColor: 'rgba(26, 34, 38, 0.9)',
         borderColor: 'rgba(255, 255, 255, 0.08)'
       }}>
@@ -475,7 +475,7 @@ export default function Home() {
                 {/* 下拉菜单 */}
                 {showDropdown && (
                   <div 
-                    className="absolute right-0 top-full mt-2 w-48 backdrop-blur-md border rounded-lg shadow-lg z-50"
+                    className="absolute right-0 top-full mt-2 w-48 backdrop-blur-md border rounded-lg shadow-lg z-30"
                     style={{
                       backgroundColor: 'rgba(42, 59, 64, 0.9)',
                       borderColor: 'rgba(255, 255, 255, 0.2)'

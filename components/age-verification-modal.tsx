@@ -1,76 +1,46 @@
-'use client'
+'use client';
 
-import { X } from "lucide-react"
-import { createPortal } from 'react-dom'
+import { createPortal } from 'react-dom';
+import { useTranslations } from 'next-intl';
 
 interface AgeVerificationModalProps {
-  isOpen: boolean
-  onConfirm: () => void
-  onCancel: () => void
+  isOpen: boolean;
+  onConfirm: () => void;
+  onCancel: () => void;
 }
 
-export function AgeVerificationModal({ isOpen, onConfirm, onCancel }: AgeVerificationModalProps) {
-  console.log('AgeVerificationModal render:', { isOpen });
+export default function AgeVerificationModal({ isOpen, onConfirm, onCancel }: AgeVerificationModalProps) {
+  const t = useTranslations('ageVerification');
   
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
-  console.log('AgeVerificationModal: Rendering modal content');
-
-  const modal = (
-    <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-      role="dialog"
-      aria-modal="true"
-      onClick={onCancel}
+  return createPortal(
+    <div 
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]"
     >
-      <div 
-        className="relative z-[10000] w-full max-w-sm"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div 
-          className="relative rounded-xl p-6 border bg-white shadow-2xl max-h-[80vh] overflow-auto"
-          style={{
-            borderColor: 'rgba(0, 0, 0, 0.1)',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)'
-          }}
-        >
-          {/* 关闭按钮 */}
+      <div className="bg-white rounded-lg p-8 max-w-md w-full mx-4 shadow-2xl">
+        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+          {t('title')}
+        </h2>
+        <p className="text-gray-600 mb-8 text-center text-lg">
+          {t('question')}
+        </p>
+        <div className="flex gap-4 justify-center">
+          <button
+            onClick={onConfirm}
+            className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+          >
+            {t('yes')}
+          </button>
           <button
             onClick={onCancel}
-            className="absolute top-4 right-4 p-2 rounded-lg transition-colors hover:bg-gray-100"
+            className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
           >
-            <X className="w-5 h-5 text-gray-600" />
+            {t('no')}
           </button>
-          
-          {/* 内容 */}
-          <div className="text-center">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              年龄确认
-            </h3>
-            <p className="text-gray-600 mb-6">
-              您是否已满18周岁？
-            </p>
-            
-            {/* 按钮组 */}
-            <div className="flex gap-3">
-              <button
-                onClick={onCancel}
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
-              >
-                否
-              </button>
-              <button
-                onClick={onConfirm}
-                className="flex-1 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                是
-              </button>
-            </div>
-          </div>
         </div>
       </div>
-    </div>
-  )
-
-  return createPortal(modal, document.body)
+    </div>,
+    document.body
+  );
 }

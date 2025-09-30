@@ -116,14 +116,31 @@
     "articleNotFoundDesc": "抱歉，您访问的文章不存在或已被删除。",
     "updatedAt": "更新于"
   },
+  "ageVerification": {
+    "title": "年龄确认",
+    "question": "您是否已满18周岁？",
+    "yes": "是",
+    "no": "否"
+  },
   "common": {
     "loading": "加载中...",
-    "error": "错误",
-    "retry": "重试",
-    "readMore": "阅读更多",
-    "viewAll": "查看全部",
-    "disclaimer": "请理性投注，仅供娱乐。",
-    "followLocalLaws": "请遵循当地法律"
+    "error": "出错了",
+    "success": "成功",
+    "cancel": "取消",
+    "confirm": "确认",
+    "close": "关闭",
+    "save": "保存",
+    "edit": "编辑",
+    "delete": "删除",
+    "search": "搜索",
+    "filter": "筛选",
+    "all": "全部",
+    "today": "今天",
+    "tomorrow": "明天",
+    "thisWeek": "本周",
+    "nextWeek": "下周",
+    "disclaimer": "投注有风险，请理性投注",
+    "followLocalLaws": "请遵守当地法律"
   },
   "auth": {
     "loginWithGoogle": "使用Google登录",

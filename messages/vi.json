@@ -137,5 +137,34 @@
     "signupHere": "Đăng ký tại đây",
     "login": "Đăng nhập",
     "logout": "Đăng xuất"
+  },
+  "ageVerification": {
+    "title": "Xác Minh Tuổi",
+    "question": "Bạn đã đủ 18 tuổi chưa?",
+    "yes": "Có",
+    "no": "Không"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi",
+    "success": "Thành công",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "close": "Đóng",
+    "save": "Lưu",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "search": "Tìm kiếm",
+    "filter": "Lọc",
+    "all": "Tất cả",
+    "today": "Hôm nay",
+    "tomorrow": "Ngày mai",
+    "thisWeek": "Tuần này",
+    "nextWeek": "Tuần tới",
+    "retry": "Thử lại",
+    "readMore": "Đọc thêm",
+    "viewAll": "Xem tất cả",
+    "disclaimer": "Cá cược có rủi ro, vui lòng cá cược có trách nhiệm",
+    "followLocalLaws": "Vui lòng tuân thủ luật pháp địa phương"
   }
 }
