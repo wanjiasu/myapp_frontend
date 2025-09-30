@@ -185,3 +185,98 @@
 .table th, .table td {
   padding: 0.65rem 0.75rem;
 }
+
+/* 动画关键帧 */
+@keyframes wave {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(-5px) translateY(-5px); }
+  50% { transform: translateX(5px) translateY(-10px); }
+  75% { transform: translateX(-5px) translateY(-5px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+@keyframes fade-in-out {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes particle {
+  0% { transform: translateY(100vh) translateX(0px) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100px) translateX(50px) rotate(360deg); opacity: 0; }
+}
+
+/* 新增动画关键帧 */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+@keyframes glow-rotate {
+  0% { opacity: 0.2; transform: rotate(0deg) scale(1); }
+  50% { opacity: 0.4; transform: rotate(180deg) scale(1.2); }
+  100% { opacity: 0.2; transform: rotate(360deg) scale(1); }
+}
+
+@keyframes meteor {
+  0% { transform: translateY(-100px) translateX(-100px) rotate(45deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh) translateX(100vw) rotate(45deg); opacity: 0; }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 0.3; }
+  100% { transform: scale(0.8); opacity: 0.8; }
+}
+
+@keyframes grid-move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* 动画类 */
+.animate-wave-1 { animation: wave 8s ease-in-out infinite; }
+.animate-wave-2 { animation: wave 12s ease-in-out infinite reverse; }
+.animate-float-slow { animation: float 6s ease-in-out infinite; }
+.animate-float-medium { animation: float 4s ease-in-out infinite; }
+.animate-float-fast { animation: float 3s ease-in-out infinite; }
+.animate-float-reverse { animation: float 5s ease-in-out infinite reverse; }
+.animate-rotate-slow { animation: rotate 20s linear infinite; }
+.animate-rotate-reverse { animation: rotate 25s linear infinite reverse; }
+.animate-pulse-slow { animation: pulse 4s ease-in-out infinite; }
+.animate-pulse-medium { animation: pulse 2s ease-in-out infinite; }
+.animate-pulse-fast { animation: pulse 1s ease-in-out infinite; }
+.animate-fade-in-out { animation: fade-in-out 3s ease-in-out infinite; }
+.animate-fade-in-out-delayed { animation: fade-in-out 3s ease-in-out infinite 1.5s; }
+.animate-particle { animation: particle 12s linear infinite; }
+
+/* 新增动画类 */
+.animate-glow-pulse { animation: glow-pulse 4s ease-in-out infinite; }
+.animate-glow-pulse-delayed { animation: glow-pulse 4s ease-in-out infinite 2s; }
+.animate-glow-rotate { animation: glow-rotate 8s ease-in-out infinite; }
+.animate-meteor { animation: meteor 4s linear infinite; }
+.animate-pulse-ring { animation: pulse-ring 3s ease-in-out infinite; }
+.animate-pulse-ring-delayed { animation: pulse-ring 3s ease-in-out infinite 1s; }
+.animate-pulse-ring-slow { animation: pulse-ring 5s ease-in-out infinite; }
+
+/* 径向渐变背景 */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}

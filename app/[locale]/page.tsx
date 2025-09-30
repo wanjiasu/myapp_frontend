@@ -11,6 +11,7 @@ import Link from "next/link";
 import { client } from '../../sanity/sanity.client';
 import { useTranslations, useLocale } from 'next-intl';
 import LanguageSwitcher from '@/components/language-switcher';
+import AnimatedBackground from '@/components/animated-background';
 
 // Generate timestamps on client side to avoid hydration mismatch
 // AI推荐数据接口
@@ -414,10 +415,12 @@ export default function Home() {
   };
 
   return (
-    <div className={`min-h-screen transition-all duration-1000 ${pageLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{
+    <div className={`min-h-screen transition-all duration-1000 relative ${pageLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{
       background: 'linear-gradient(135deg, #1A2226 0%, #152A35 50%, #1A2226 100%)',
       color: '#FFFFFF'
     }}>
+      {/* 动态背景 */}
+      <AnimatedBackground />
       {/* Header */}
       <header className="sticky top-0 z-50 backdrop-blur-md border-b" style={{
         backgroundColor: 'rgba(26, 34, 38, 0.9)',
