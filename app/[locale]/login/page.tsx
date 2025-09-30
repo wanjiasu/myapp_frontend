@@ -4,16 +4,19 @@ import { GalleryVerticalEnd } from "lucide-react"
 import Link from "next/link"
 import { LoginForm } from "@/components/login-form"
 import { Suspense } from "react"
+import { useTranslations } from 'next-intl'
 
 function LoginFormFallback() {
+  const t = useTranslations('common')
   return (
     <div className="flex items-center justify-center p-4">
-      <div className="text-sm text-muted-foreground">Loading...</div>
+      <div className="text-sm text-muted-foreground">{t('loading') || 'Loading...'}</div>
     </div>
   )
 }
 
 export default function LoginPage() {
+  const t = useTranslations('auth')
   return (
     <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
       <div className="flex w-full max-w-sm flex-col gap-6">
@@ -21,7 +24,7 @@ export default function LoginPage() {
           <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
             <GalleryVerticalEnd className="size-4" />
           </div>
-          Acme Inc.
+          {'BetAIOne'}
         </Link>
         <Suspense fallback={<LoginFormFallback />}>
           <LoginForm />

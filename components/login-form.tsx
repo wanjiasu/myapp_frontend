@@ -29,6 +29,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { useState, useEffect, useCallback } from "react"
 import { authClient } from "@/lib/auth-client"
 import Link from "next/link"
+import { useTranslations } from 'next-intl'
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -43,6 +44,7 @@ export function LoginForm({
   onShowSignup?: () => void
 }) {
 
+  const t = useTranslations('auth')
   const [isloading, setIsloading] = useState(false)
   const [isGoogleLoading, setIsGoogleLoading] = useState(false)
   const router = useRouter()
@@ -219,12 +221,12 @@ export function LoginForm({
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">
-            {isFromTelegram ? "绑定 Telegram 账号" : "Welcome back"}
+            {isFromTelegram ? t('bindTelegramAccount') : t('login')}
           </CardTitle>
           <CardDescription>
             {isFromTelegram 
-              ? "检测到来自 Telegram，登录后将自动绑定您的 Telegram 账号" 
-              : "Login with your Google account"
+              ? t('telegramBindingDescription') 
+              : t('loginWithGoogle')
             }
           </CardDescription>
         </CardHeader>
@@ -247,16 +249,16 @@ export function LoginForm({
                     />
                   </svg>
                   {isGoogleLoading 
-                    ? "登录中..." 
+                    ? t('signingIn') 
                     : isFromTelegram 
-                      ? "🔗 使用 Google 立即绑定账号" 
-                      : "Login with Google"
+                      ? t('bindWithGoogle') 
+                      : t('loginWithGoogle')
                   }
                 </Button>
               </div>
               <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                 <span className="bg-card text-muted-foreground relative z-10 px-2">
-                  Or continue with
+                  {t('orContinueWith')}
                 </span>
               </div>
               <div className="grid gap-6">
@@ -266,9 +268,9 @@ export function LoginForm({
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{t('email')}</FormLabel>
               <FormControl>
-                <Input placeholder="Email" {...field} />
+                <Input placeholder={t('emailPlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -282,9 +284,9 @@ export function LoginForm({
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>{t('password')}</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} type="password" />
+                <Input placeholder={t('passwordPlaceholder')} {...field} type="password" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -295,10 +297,10 @@ export function LoginForm({
                 </div>
                 <Button type="submit" className="w-full" disabled={isloading}>
                   {isloading 
-                    ? "登录中..." 
+                    ? t('processing') 
                     : isFromTelegram 
-                      ? "🔗 登录并绑定 Telegram" 
-                      : "Login"
+                      ? t('loginAndBind') 
+                      : t('login')
                   }
                 </Button>
               </div>
@@ -306,13 +308,13 @@ export function LoginForm({
           </form>
           </Form>
           <div className="text-center text-sm">
-            Don&apos;t have an account?{" "}
+            {t('dontHaveAccount')}{" "}
             {onShowSignup ? (
               <button 
                 onClick={onShowSignup}
                 className="underline underline-offset-4 hover:text-primary cursor-pointer"
               >
-                Sign up
+                {isFromTelegram ? t('signupAndBindTelegram') : t('signup')}
               </button>
             ) : (
               <Link 
@@ -322,15 +324,17 @@ export function LoginForm({
                 } 
                 className="underline underline-offset-4 hover:text-primary cursor-pointer"
               >
-                {isFromTelegram ? "注册并绑定" : "Sign up"}
+                {isFromTelegram ? t('signupAndBindTelegram') : t('signup')}
               </Link>
             )}
           </div>
         </CardContent>
       </Card>
       <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
+        {t('agreementText') || 'By clicking continue, you agree to our'}{" "}
+        <Link href="/termsofservice">{t('termsOfService')}</Link>{" "}
+        {t('and') || 'and'}{" "}
+        <Link href="/privacypolicy">{t('privacyPolicy')}</Link>.
       </div>
     </div>
   )

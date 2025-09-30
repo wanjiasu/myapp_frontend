@@ -29,11 +29,15 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { useState, useEffect, useCallback } from "react"
 import { authClient } from "@/lib/auth-client"
 import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 
 export function SignupForm({
   className,
+  fromTelegram,
   ...props
-}: React.ComponentProps<"div">) {
+}: React.ComponentProps<"div"> & {
+  fromTelegram?: boolean
+}) {
   const t = useTranslations('auth')
 
   // 创建动态的表单验证schema，使用翻译
@@ -221,128 +225,123 @@ export function SignupForm({
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">
-            {isFromTelegram ? t('bindTelegramAccount') : t('createAccount')}
+            {fromTelegram ? t('signupAndBindTelegram') : t('signup')}
           </CardTitle>
           <CardDescription>
-            {isFromTelegram 
-              ? t('telegramBindingDescription')
-              : t('signupDescription')
+            {fromTelegram 
+              ? t('telegramBindingDescription') 
+              : t('loginWithGoogle')
             }
           </CardDescription>
         </CardHeader>
         <CardContent>
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <div className="grid gap-6">
-              
-              <div className="flex flex-col gap-4">
-                <Button 
-                  variant="outline" 
-                  className="w-full" 
-                  type="button" 
-                  onClick={signInWithGoogle}
-                  disabled={isGoogleLoading}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  {isGoogleLoading 
-                    ? t('signingIn')
-                    : isFromTelegram 
-                      ? t('bindWithGoogle')
-                      : t('signupWithGoogle')
-                  }
-                </Button>
-              </div>
-              <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
-                <span className="bg-card text-muted-foreground relative z-10 px-2">
-                  {t('orContinueWith')}
-                </span>
-              </div>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="grid gap-6">
-
-                <div className="grid gap-3">
+                <div className="flex flex-col gap-4">
+                  <Button 
+                    variant="outline" 
+                    className="w-full" 
+                    type="button" 
+                    onClick={signInWithGoogle}
+                    disabled={isGoogleLoading}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path
+                        d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                    {isGoogleLoading 
+                      ? t('signingIn') 
+                      : fromTelegram 
+                        ? t('bindWithGoogle') 
+                        : t('loginWithGoogle')
+                    }
+                  </Button>
+                </div>
+                <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
+                  <span className="bg-card text-muted-foreground relative z-10 px-2">
+                    {t('orContinueWith')}
+                  </span>
+                </div>
+                <div className="grid gap-6">
+                  <div className="grid gap-3">
                     <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t('username')}</FormLabel>
-              <FormControl>
-                <Input placeholder={t('usernamePlaceholder')} {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        </div>
-        <div className="grid gap-3">
+                      control={form.control}
+                      name="username"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t('username') || 'Username'}</FormLabel>
+                          <FormControl>
+                            <Input placeholder={t('usernamePlaceholder') || 'Enter username'} {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="grid gap-3">
                     <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t('email')}</FormLabel>
-              <FormControl>
-                <Input placeholder={t('emailPlaceholder')} {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        </div>
-                <div className="grid gap-3">
-                  <div className="flex flex-col gap-2">
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t('email')}</FormLabel>
+                          <FormControl>
+                            <Input placeholder={t('emailPlaceholder')} {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="grid gap-3">
                     <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t('password')}</FormLabel>
-              <FormControl>
-                <Input placeholder={t('passwordPlaceholder')} {...field} type="password" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-    
+                      control={form.control}
+                      name="password"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t('password')}</FormLabel>
+                          <FormControl>
+                            <Input type="password" placeholder={t('passwordPlaceholder')} {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
                   </div>
                 </div>
                 <Button type="submit" className="w-full" disabled={isloading}>
                   {isloading 
-                    ? t('processing')
-                    : isFromTelegram 
-                      ? t('signupAndBindTelegram')
+                    ? t('processing') 
+                    : fromTelegram 
+                      ? t('signupAndBindTelegram') 
                       : t('signup')
                   }
                 </Button>
               </div>
-              <div className="text-center text-sm">
-                {t('alreadyHaveAccount')}{" "}
-                <a 
-                  href={isFromTelegram 
-                    ? `/login?tg_user_id=${tgUserId}&tg_chat_id=${tgChatId}${tgStartParam ? `&tg_start_param=${tgStartParam}` : ''}` 
-                    : "/login"
-                  } 
-                  className="underline underline-offset-4"
-                >
-                  {isFromTelegram ? t('loginAndBind') : t('login')}
-                </a>
-              </div>
-            </div>
-          </form>
+            </form>
           </Form>
+          <div className="text-center text-sm">
+            {t('alreadyHaveAccount') || 'Already have an account?'}{" "}
+            <Link 
+              href={fromTelegram
+                ? `/login?tg_user_id=${tgUserId}&tg_chat_id=${tgChatId}${tgStartParam ? `&tg_start_param=${tgStartParam}` : ''}` 
+                : "/login"
+              }
+              className="underline underline-offset-4 hover:text-primary cursor-pointer"
+            >
+              {t('login')}
+            </Link>
+          </div>
         </CardContent>
       </Card>
       <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-        {t('agreementText')}{" "}
-        <a href="/terms-of-service">{t('termsOfService')}</a>{" "}
-        {t('and')}{" "}
-        <a href="/privacy-policy">{t('privacyPolicy')}</a>.
+        {t('agreementText') || 'By clicking continue, you agree to our'} {" "}
+        <Link href="/termsofservice">{t('termsOfService')}</Link>{" "}
+        {t('and') || 'and'} {" "}
+        <Link href="/privacypolicy">{t('privacyPolicy')}</Link>.
       </div>
     </div>
   )
