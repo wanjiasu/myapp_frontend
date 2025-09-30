@@ -715,6 +715,22 @@ export default function Home() {
                         </div>
                       </div>
                     )}
+                    
+                    {/* 下注按钮 */}
+                    <div className="mt-3">
+                      <button
+                        onClick={() => window.open('http://mkvip486.net', '_blank')}
+                        className="w-full py-2 px-4 rounded-lg font-medium text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2"
+                        style={{
+                          background: '#FFFFFF',
+                          color: '#1A2226',
+                          border: '1px solid rgba(255, 255, 255, 0.2)'
+                        }}
+                      >
+                        <span className="text-base">🎯</span>
+                        点我下注
+                      </button>
+                    </div>
                   </div>
                 </div>
               )
@@ -794,6 +810,22 @@ export default function Home() {
                     <div className="leading-relaxed overflow-y-auto flex-1">
                       {bet.reason}
                     </div>
+                  </div>
+                  
+                  {/* 下注按钮 */}
+                  <div className="mt-3">
+                    <button
+                      onClick={() => window.open('http://mkvip486.net', '_blank')}
+                      className="w-full py-2 px-4 rounded-lg font-medium text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2"
+                      style={{
+                        background: '#FFFFFF',
+                        color: '#1A2226',
+                        border: '1px solid rgba(255, 255, 255, 0.2)'
+                      }}
+                    >
+                      <span className="text-base">🎯</span>
+                      点我下注
+                    </button>
                   </div>
                 </div>
               </div>
