@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { X } from "lucide-react"
 import { SignupForm } from "@/components/signup-form"
+import { createPortal } from 'react-dom'
 
 interface SignupModalProps {
   isOpen: boolean
@@ -12,11 +13,11 @@ interface SignupModalProps {
 export function SignupModal({ isOpen, onClose }: SignupModalProps) {
   if (!isOpen) return null
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+  const modal = (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center">
       {/* 背景遮罩 */}
       <div 
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
       
@@ -45,4 +46,6 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
       </div>
     </div>
   )
+
+  return createPortal(modal, document.body)
 }

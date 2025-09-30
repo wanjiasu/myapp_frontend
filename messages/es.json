@@ -152,7 +152,31 @@
     "loginHere": "Inicia sesión aquí",
     "signupHere": "Regístrate aquí",
     "login": "Iniciar sesión",
-    "logout": "Cerrar sesión"
+    "logout": "Cerrar sesión",
+    "bindTelegramAccount": "Vincular cuenta de Telegram",
+    "createAccount": "Crear cuenta",
+    "telegramBindingDescription": "Vincula tu cuenta con Telegram para recibir notificaciones instantáneas",
+    "signupDescription": "Crea tu cuenta para comenzar a usar el análisis de apuestas con IA",
+    "signingIn": "Iniciando sesión...",
+    "bindWithGoogle": "🔗 Vincular con Google al instante",
+    "orContinueWith": "O continúa con",
+    "username": "Nombre de usuario",
+    "usernamePlaceholder": "Ingresa nombre de usuario",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "Ingresa dirección de correo",
+    "password": "Contraseña",
+    "passwordPlaceholder": "Ingresa contraseña",
+    "processing": "Procesando...",
+    "signup": "Registrarse",
+    "signupAndBindTelegram": "🔗 Registrarse y vincular Telegram",
+    "loginAndBind": "Iniciar sesión y vincular",
+    "agreementText": "Al hacer clic en continuar, aceptas nuestros",
+    "termsOfService": "Términos de Servicio",
+    "and": "y",
+    "privacyPolicy": "Política de Privacidad",
+    "usernameRequired": "El nombre de usuario es obligatorio",
+    "invalidEmail": "Dirección de correo inválida",
+    "passwordMinLength": "La contraseña debe tener al menos 8 caracteres"
   },
   "privacyPolicy": {
     "title": "Política de Privacidad",
@@ -227,7 +251,7 @@
     },
     "disclaimer": {
       "title": "Aviso Importante",
-      "content": "Esta plataforma es solo para entretenimiento. Las apuestas conllevan riesgos. Por favor, apueste responsablemente. Siga las leyes locales."
+      "content": "Esta plataforma es solo para entretenimiento. Las apuestas conllevan riesgos. Por favor, apuesta responsablemente. Siga las leyes locales."
     }
   },
   "termsOfService": {

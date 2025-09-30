@@ -28,6 +28,7 @@ import { toast } from "sonner"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useState, useEffect, useCallback } from "react"
 import { authClient } from "@/lib/auth-client"
+import Link from "next/link"
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -301,30 +302,30 @@ export function LoginForm({
                   }
                 </Button>
               </div>
-              <div className="text-center text-sm">
-                Don&apos;t have an account?{" "}
-                {onShowSignup ? (
-                  <button 
-                    onClick={onShowSignup}
-                    className="underline underline-offset-4 hover:text-primary"
-                  >
-                    Sign up
-                  </button>
-                ) : (
-                  <a 
-                    href={isFromTelegram 
-                      ? `/signup?tg_user_id=${tgUserId}&tg_chat_id=${tgChatId}${tgStartParam ? `&tg_start_param=${tgStartParam}` : ''}` 
-                      : "/signup"
-                    } 
-                    className="underline underline-offset-4"
-                  >
-                    {isFromTelegram ? "注册并绑定" : "Sign up"}
-                  </a>
-                )}
-              </div>
             </div>
           </form>
           </Form>
+          <div className="text-center text-sm">
+            Don&apos;t have an account?{" "}
+            {onShowSignup ? (
+              <button 
+                onClick={onShowSignup}
+                className="underline underline-offset-4 hover:text-primary cursor-pointer"
+              >
+                Sign up
+              </button>
+            ) : (
+              <Link 
+                href={isFromTelegram 
+                  ? `/signup?tg_user_id=${tgUserId}&tg_chat_id=${tgChatId}${tgStartParam ? `&tg_start_param=${tgStartParam}` : ''}` 
+                  : "/signup"
+                } 
+                className="underline underline-offset-4 hover:text-primary cursor-pointer"
+              >
+                {isFromTelegram ? "注册并绑定" : "Sign up"}
+              </Link>
+            )}
+          </div>
         </CardContent>
       </Card>
       <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
