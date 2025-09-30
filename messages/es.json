@@ -153,5 +153,182 @@
     "signupHere": "Regístrate aquí",
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión"
+  },
+  "privacyPolicy": {
+    "title": "Política de Privacidad",
+    "backToHome": "Volver al Inicio",
+    "lastUpdated": "Última actualización",
+    "introduction": {
+      "title": "Introducción",
+      "content": "Bienvenido a BetAIOne. Valoramos la protección de su información personal y garantizamos la seguridad de sus datos privados. Esta política de privacidad describe cómo recopilamos, usamos, divulgamos y protegemos su información cuando utiliza nuestra plataforma de análisis de apuestas deportivas impulsada por IA."
+    },
+    "informationWeCollect": {
+      "title": "Información que Recopilamos",
+      "personalInfo": {
+        "title": "Información Personal",
+        "email": "Dirección de correo electrónico",
+        "name": "Nombre",
+        "age": "Información de verificación de edad",
+        "location": "Información de ubicación (para cumplimiento legal)"
+      },
+      "usageData": {
+        "title": "Datos de Uso",
+        "browsing": "Patrones de navegación y preferencias",
+        "preferences": "Preferencias de apuestas e intereses",
+        "interactions": "Interacciones y participación en la plataforma",
+        "device": "Información del dispositivo y datos técnicos"
+      }
+    },
+    "howWeUse": {
+      "title": "Cómo Usamos Su Información",
+      "aiRecommendations": "Proporcionar recomendaciones de apuestas IA personalizadas",
+      "personalizedContent": "Ofrecer contenido personalizado y análisis de partidos",
+      "serviceImprovement": "Mejorar nuestra plataforma y algoritmos de IA",
+      "communication": "Enviar actualizaciones importantes y notificaciones",
+      "security": "Mantener la seguridad de la plataforma y prevenir fraudes",
+      "compliance": "Garantizar el cumplimiento de los requisitos legales"
+    },
+    "informationSharing": {
+      "title": "Compartir y Divulgar Información",
+      "intro": "No vendemos, intercambiamos ni alquilamos su información personal a terceros. Solo podemos compartir su información en las siguientes circunstancias:",
+      "serviceProviders": "Con proveedores de servicios confiables que nos ayudan a operar nuestra plataforma",
+      "legalRequirements": "Cuando lo requiera la ley o procesos legales",
+      "businessTransfer": "En fusiones, adquisiciones o ventas de activos",
+      "consent": "Con su consentimiento explícito"
+    },
+    "dataSecurity": {
+      "title": "Seguridad de Datos",
+      "content": "Empleamos medidas de seguridad estándar de la industria para proteger su información personal, incluyendo encriptación, servidores seguros y auditorías de seguridad regulares."
+    },
+    "ageVerification": {
+      "title": "Verificación de Edad",
+      "content": "Nuestra plataforma está destinada únicamente a usuarios de 18 años o más. No recopilamos intencionalmente información personal de menores."
+    },
+    "cookies": {
+      "title": "Cookies y Tecnologías de Seguimiento",
+      "content": "Utilizamos cookies y tecnologías similares para mejorar su experiencia y analizar el uso de la plataforma. Puede gestionar las cookies a través de la configuración de su navegador."
+    },
+    "yourRights": {
+      "title": "Sus Derechos",
+      "access": "Acceder a su información personal",
+      "correction": "Corregir información inexacta",
+      "deletion": "Solicitar la eliminación de sus datos",
+      "portability": "Portabilidad de datos",
+      "objection": "Oponerse a ciertas actividades de procesamiento"
+    },
+    "changes": {
+      "title": "Cambios en la Política",
+      "content": "Podemos actualizar esta política de privacidad ocasionalmente. Le notificaremos sobre cambios significativos."
+    },
+    "contact": {
+      "title": "Información de Contacto",
+      "content": "Si tiene preguntas sobre esta política de privacidad, contáctenos:",
+      "responseTime": "Dentro de 48 horas"
+    },
+    "disclaimer": {
+      "title": "Aviso Importante",
+      "content": "Esta plataforma es solo para entretenimiento. Las apuestas conllevan riesgos. Por favor, apueste responsablemente. Siga las leyes locales."
+    }
+  },
+  "termsOfService": {
+    "title": "Términos de Servicio",
+    "backToHome": "Volver al Inicio",
+    "lastUpdated": "Última actualización",
+    "introduction": {
+      "title": "Introducción",
+      "content": "Bienvenido a nuestro servicio. Al acceder y usar esta plataforma, usted acepta cumplir con los términos de servicio establecidos a continuación."
+    },
+    "acceptance": {
+      "title": "Aceptación de Términos",
+      "content": "Al usar nuestro servicio, usted confirma que ha leído, entendido y acepta estar sujeto a estos términos."
+    },
+    "serviceDescription": {
+      "title": "Descripción del Servicio",
+      "intro": "BetAIOne proporciona análisis y recomendaciones de apuestas deportivas impulsadas por IA. Nuestros servicios incluyen:",
+      "aiRecommendations": "Recomendaciones y análisis de apuestas generadas por IA",
+      "personalizedMatching": "Predicciones de partidos e insights personalizados",
+      "contentCuration": "Contenido deportivo curado y análisis de mercado",
+      "userProfiles": "Gestión de perfiles de usuario y preferencias",
+      "communicationTools": "Funciones de comunidad y servicios de consultoría"
+    },
+    "ageRequirements": {
+      "title": "Requisitos de Edad",
+      "content": "Debe tener al menos 18 años para usar nuestra plataforma. Al usar nuestro servicio, usted declara y garantiza que cumple con este requisito de edad y tiene la capacidad legal para aceptar estos términos."
+    },
+    "userAccounts": {
+      "title": "Cuentas de Usuario",
+      "intro": "Debe crear una cuenta para acceder a ciertas funciones. Usted es responsable de:",
+      "responsibilities": {
+        "title": "Responsabilidades de la Cuenta",
+        "accurate": "Proporcionar información precisa y completa",
+        "secure": "Mantener la seguridad de las credenciales de su cuenta",
+        "notify": "Notificarnos sobre acceso no autorizado",
+        "liable": "Todas las actividades que ocurran bajo su cuenta"
+      }
+    },
+    "acceptableUse": {
+      "title": "Política de Uso Aceptable",
+      "intro": "Usted acepta no usar nuestra plataforma para actividades ilegales o prohibidas, incluyendo:",
+      "prohibited": {
+        "title": "Actividades Prohibidas",
+        "illegal": "Actividades ilegales o violación de leyes aplicables",
+        "harassment": "Acosar, abusar o dañar a otros usuarios",
+        "spam": "Enviar spam, comunicaciones no deseadas o publicidad",
+        "impersonation": "Suplantar identidad o proporcionar información falsa",
+        "malware": "Distribuir malware, virus o código dañino",
+        "copyright": "Infringir derechos de propiedad intelectual",
+        "minors": "Facilitar el acceso de menores a contenido restringido por edad",
+        "interference": "Interferir con las operaciones o seguridad de la plataforma"
+      }
+    },
+    "aiRecommendations": {
+      "title": "Limitación de Responsabilidad de Recomendaciones IA",
+      "intro": "Nuestras recomendaciones impulsadas por IA se proporcionan únicamente con fines informativos y de entretenimiento.",
+      "disclaimer": {
+        "title": "Descargo de Responsabilidad Importante",
+        "content": "Las recomendaciones de IA no garantizan resultados. Todas las apuestas conllevan riesgos, y no debe apostar más de lo que puede permitirse perder. El rendimiento pasado no indica resultados futuros."
+      }
+    },
+    "privacyData": {
+      "title": "Privacidad y Protección de Datos",
+      "content": "Su privacidad es importante para nosotros. Nuestra",
+      "policyLink": "Política de Privacidad"
+    },
+    "intellectualProperty": {
+      "title": "Propiedad Intelectual",
+      "ownership": "Todo el contenido, características y funcionalidad en nuestra plataforma son propiedad de BetAIOne y están protegidos por derechos de autor, marcas comerciales y otras leyes de propiedad intelectual.",
+      "userContent": "Al enviar contenido a nuestra plataforma, nos otorga una licencia no exclusiva, mundial y libre de regalías para usar, modificar y mostrar dicho contenido en relación con nuestros servicios."
+    },
+    "disclaimers": {
+      "title": "Descargos de Responsabilidad",
+      "content": "Nuestra plataforma se proporciona 'tal como está' sin garantías de ningún tipo. No garantizamos la precisión, integridad o confiabilidad del contenido o recomendaciones. El uso de nuestro servicio es bajo su propio riesgo."
+    },
+    "limitationLiability": {
+      "title": "Limitación de Responsabilidad",
+      "content": "En la máxima medida permitida por la ley, BetAIOne no será responsable de daños indirectos, incidentales, especiales, consecuentes o punitivos que surjan del uso de nuestra plataforma."
+    },
+    "termination": {
+      "title": "Terminación",
+      "byUser": "Puede terminar su cuenta en cualquier momento contactándonos o usando la configuración de la cuenta",
+      "byUs": "Nos reservamos el derecho de suspender o terminar cuentas que violen estos términos o participen en actividades prohibidas",
+      "effect": "Al terminar, su derecho a usar nuestros servicios cesará inmediatamente, y podemos eliminar su cuenta y datos"
+    },
+    "governingLaw": {
+      "title": "Ley Aplicable",
+      "content": "Estos términos se rigen e interpretan de acuerdo con las leyes aplicables. Cualquier disputa se resolverá a través de arbitraje vinculante o tribunales de jurisdicción competente."
+    },
+    "changes": {
+      "title": "Cambios en los Términos",
+      "content": "Nos reservamos el derecho de modificar estos términos en cualquier momento. Notificaremos a los usuarios sobre cambios significativos, y el uso continuado de nuestra plataforma constituye aceptación de los términos actualizados."
+    },
+    "contact": {
+      "title": "Información de Contacto",
+      "content": "Si tiene preguntas sobre estos términos de servicio, contáctenos:",
+      "responseTime": "Dentro de 48 horas"
+    },
+    "effectiveDate": {
+      "title": "Fecha de Vigencia",
+      "content": "Estos términos de servicio entran en vigor desde la fecha de su primer uso de nuestra plataforma y permanecerán en vigor hasta que se terminen de acuerdo con estos términos."
+    }
   }
 }

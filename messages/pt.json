@@ -153,5 +153,189 @@
     "signupHere": "Cadastre-se aqui",
     "login": "Entrar",
     "logout": "Sair"
+  },
+  "privacyPolicy": {
+    "title": "Política de Privacidade",
+    "backToHome": "Voltar ao Início",
+    "lastUpdated": "Última Atualização",
+    "introduction": {
+      "title": "Introdução",
+      "content": "Bem-vindo ao BetAIOne. Estamos comprometidos em proteger sua privacidade e garantir a segurança de suas informações pessoais. Esta Política de Privacidade explica como coletamos, usamos, divulgamos e protegemos suas informações quando você usa nossa plataforma de análise de apostas esportivas com IA."
+    },
+    "informationWeCollect": {
+      "title": "Informações que Coletamos",
+      "personalInfo": {
+        "title": "Informações Pessoais",
+        "email": "Endereço de e-mail",
+        "name": "Nome completo",
+        "age": "Informações de verificação de idade",
+        "location": "Dados de localização (para conformidade legal)"
+      },
+      "usageData": {
+        "title": "Dados de Uso",
+        "browsing": "Padrões de navegação e preferências",
+        "preferences": "Preferências e interesses de apostas",
+        "interactions": "Interações e engajamento na plataforma",
+        "device": "Informações do dispositivo e dados técnicos"
+      }
+    },
+    "howWeUse": {
+      "title": "Como Usamos Suas Informações",
+      "aiRecommendations": "Fornecer recomendações personalizadas de apostas com IA",
+      "personalizedContent": "Entregar conteúdo personalizado e análise de partidas",
+      "serviceImprovement": "Melhorar nossa plataforma e algoritmos de IA",
+      "communication": "Enviar atualizações importantes e notificações",
+      "security": "Manter a segurança da plataforma e prevenir fraudes",
+      "compliance": "Garantir conformidade com requisitos legais"
+    },
+    "informationSharing": {
+      "title": "Compartilhamento e Divulgação de Informações",
+      "intro": "Não vendemos, comercializamos ou alugamos suas informações pessoais para terceiros. Podemos compartilhar suas informações apenas nas seguintes circunstâncias:",
+      "serviceProviders": "Com provedores de serviços confiáveis que auxiliam nas operações da plataforma",
+      "legalRequirements": "Quando exigido por lei ou processo legal",
+      "businessTransfer": "Em conexão com uma fusão, aquisição ou venda de ativos",
+      "consent": "Com seu consentimento explícito"
+    },
+    "dataSecurity": {
+      "title": "Segurança de Dados",
+      "content": "Implementamos medidas de segurança padrão da indústria para proteger suas informações pessoais, incluindo criptografia, servidores seguros e auditorias de segurança regulares. No entanto, nenhum método de transmissão pela internet é 100% seguro."
+    },
+    "ageVerification": {
+      "title": "Verificação de Idade",
+      "content": "Nossa plataforma é destinada a usuários com 18 anos ou mais. Implementamos medidas de verificação de idade para garantir conformidade com requisitos legais e práticas de jogo responsável."
+    },
+    "cookies": {
+      "title": "Cookies e Tecnologias de Rastreamento",
+      "content": "Usamos cookies e tecnologias similares para melhorar sua experiência, analisar padrões de uso e fornecer conteúdo personalizado. Você pode controlar as configurações de cookies através das preferências do seu navegador."
+    },
+    "yourRights": {
+      "title": "Seus Direitos",
+      "access": "Acessar suas informações pessoais",
+      "correction": "Corrigir informações imprecisas",
+      "deletion": "Solicitar exclusão de seus dados",
+      "portability": "Portabilidade de dados",
+      "objection": "Objetar a certas atividades de processamento"
+    },
+    "changes": {
+      "title": "Alterações nesta Política",
+      "content": "Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos você sobre quaisquer alterações materiais publicando a nova política em nossa plataforma e atualizando a data de 'Última Atualização'."
+    },
+    "contact": {
+      "title": "Entre em Contato",
+      "content": "Se você tiver dúvidas sobre esta Política de Privacidade ou nossas práticas de dados, entre em contato conosco:",
+      "responseTime": "Dentro de 48 horas"
+    },
+    "disclaimer": {
+      "title": "Aviso Importante",
+      "content": "Esta plataforma é apenas para fins de entretenimento e informação. Apostas envolvem risco e devem ser feitas com responsabilidade. Cumpra as leis e regulamentações locais."
+    },
+    "cookiesAndTracking": "Usamos cookies e tecnologias similares para melhorar sua experiência, analisar o uso do site e auxiliar em nossos esforços de marketing.",
+    "thirdPartyServices": "Nosso serviço pode conter links para sites de terceiros. Não somos responsáveis pelas práticas de privacidade desses sites.",
+    "dataRetention": "Retemos suas informações pessoais pelo tempo necessário para cumprir os propósitos descritos nesta política, a menos que um período de retenção mais longo seja exigido ou permitido por lei.",
+    "internationalTransfers": "Suas informações podem ser transferidas e mantidas em computadores localizados fora do seu estado, província, país ou outra jurisdição governamental.",
+    "childrenPrivacy": "Nosso serviço não se destina a menores de 18 anos. Não coletamos intencionalmente informações pessoais identificáveis de menores de 18 anos.",
+    "changesToPolicy": "Podemos atualizar nossa Política de Privacidade periodicamente. Notificaremos você sobre quaisquer alterações publicando a nova Política de Privacidade nesta página.",
+    "contactUs": "Se você tiver dúvidas sobre esta Política de Privacidade, entre em contato conosco em privacy@example.com."
+  },
+  "termsOfService": {
+    "title": "Termos de Serviço",
+    "backToHome": "Voltar ao Início",
+    "lastUpdated": "Última Atualização",
+    "introduction": {
+      "title": "Introdução",
+      "content": "Bem-vindo ao BetAIOne, uma plataforma de análise de apostas esportivas com IA. Estes Termos de Serviço regem o uso de nosso site, aplicativo móvel e serviços relacionados. Ao acessar ou usar nossa plataforma, você concorda em ficar vinculado a estes termos."
+    },
+    "acceptance": {
+      "title": "Aceitação dos Termos",
+      "content": "Ao criar uma conta, acessar ou usar nossos serviços, você reconhece que leu, entendeu e concorda em ficar vinculado a estes Termos de Serviço e nossa Política de Privacidade."
+    },
+    "serviceDescription": {
+      "title": "Descrição do Serviço",
+      "intro": "O BetAIOne fornece análise e recomendações de apostas esportivas com IA. Nossos serviços incluem:",
+      "aiRecommendations": "Recomendações e análises de apostas geradas por IA",
+      "personalizedMatching": "Previsões e insights personalizados de partidas",
+      "contentCuration": "Conteúdo esportivo curado e análise de mercado",
+      "userProfiles": "Perfis de usuário e gerenciamento de preferências",
+      "communicationTools": "Recursos da comunidade e serviços de consultoria"
+    },
+    "ageRequirements": {
+      "title": "Requisitos de Idade",
+      "content": "Você deve ter pelo menos 18 anos para usar nossa plataforma. Ao usar nossos serviços, você declara e garante que atende a este requisito de idade e tem capacidade legal para aceitar estes termos."
+    },
+    "userAccounts": {
+      "title": "Contas de Usuário",
+      "intro": "Para acessar certas funcionalidades, você deve criar uma conta. Você é responsável por:",
+      "responsibilities": {
+        "title": "Responsabilidades da Conta",
+        "accurate": "Fornecer informações precisas e completas",
+        "secure": "Manter a segurança das credenciais da sua conta",
+        "notify": "Nos notificar sobre qualquer acesso não autorizado",
+        "liable": "Todas as atividades que ocorrem em sua conta"
+      }
+    },
+    "acceptableUse": {
+      "title": "Política de Uso Aceitável",
+      "intro": "Você concorda em não usar nossa plataforma para atividades ilegais ou proibidas, incluindo:",
+      "prohibited": {
+        "title": "Atividades Proibidas",
+        "illegal": "Quaisquer atividades ilegais ou violações das leis aplicáveis",
+        "harassment": "Assédio, abuso ou dano a outros usuários",
+        "spam": "Envio de spam, comunicações não solicitadas ou anúncios",
+        "impersonation": "Personificar outros ou fornecer informações falsas",
+        "malware": "Distribuir malware, vírus ou código prejudicial",
+        "copyright": "Violar direitos de propriedade intelectual",
+        "minors": "Facilitar o acesso de menores a conteúdo restrito por idade",
+        "interference": "Interferir nas operações ou segurança da plataforma"
+      }
+    },
+    "aiRecommendations": {
+      "title": "Isenção de Responsabilidade sobre Recomendações de IA",
+      "intro": "Nossas recomendações com IA são apenas para fins informativos e de entretenimento.",
+      "disclaimer": {
+        "title": "Isenção Importante",
+        "content": "As recomendações de IA não garantem resultados. Todas as apostas envolvem risco, e você nunca deve apostar mais do que pode perder. O desempenho passado não indica resultados futuros."
+      }
+    },
+    "privacyData": {
+      "title": "Privacidade e Proteção de Dados",
+      "content": "Sua privacidade é importante para nós. Revise nossa",
+      "policyLink": "Política de Privacidade"
+    },
+    "intellectualProperty": {
+      "title": "Propriedade Intelectual",
+      "ownership": "Todo o conteúdo, recursos e funcionalidades em nossa plataforma são de propriedade do BetAIOne e são protegidos por direitos autorais, marcas registradas e outras leis de propriedade intelectual.",
+      "userContent": "Ao enviar conteúdo para nossa plataforma, você nos concede uma licença não exclusiva, mundial e livre de royalties para usar, modificar e exibir tal conteúdo em conexão com nossos serviços."
+    },
+    "disclaimers": {
+      "title": "Isenções de Responsabilidade",
+      "content": "Nossa plataforma é fornecida 'como está' sem garantias de qualquer tipo. Não garantimos a precisão, completude ou confiabilidade de qualquer conteúdo ou recomendações. Use nossos serviços por sua própria conta e risco."
+    },
+    "limitationLiability": {
+      "title": "Limitação de Responsabilidade",
+      "content": "Na máxima extensão permitida por lei, o BetAIOne não será responsável por quaisquer danos indiretos, incidentais, especiais, consequenciais ou punitivos decorrentes do uso de nossa plataforma."
+    },
+    "termination": {
+      "title": "Rescisão",
+      "byUser": "Você pode encerrar sua conta a qualquer momento entrando em contato conosco ou usando as configurações da conta.",
+      "byUs": "Reservamo-nos o direito de suspender ou encerrar contas que violem estes termos ou se envolvam em atividades proibidas.",
+      "effect": "Após a rescisão, seu direito de usar nossos serviços cessará imediatamente, e podemos excluir sua conta e dados."
+    },
+    "governingLaw": {
+      "title": "Lei Aplicável",
+      "content": "Estes termos são regidos e interpretados de acordo com as leis aplicáveis. Quaisquer disputas serão resolvidas através de arbitragem vinculante ou em tribunais de jurisdição competente."
+    },
+    "changes": {
+      "title": "Alterações nos Termos",
+      "content": "Reservamo-nos o direito de modificar estes termos a qualquer momento. Notificaremos os usuários sobre alterações materiais, e o uso continuado de nossa plataforma constitui aceitação dos termos atualizados."
+    },
+    "contact": {
+      "title": "Informações de Contato",
+      "content": "Para dúvidas sobre estes Termos de Serviço, entre em contato conosco:",
+      "responseTime": "Dentro de 48 horas"
+    },
+    "effectiveDate": {
+      "title": "Data de Vigência",
+      "content": "Estes Termos de Serviço são efetivos a partir da data do seu primeiro uso de nossa plataforma e permanecerão em vigor até serem rescindidos de acordo com estes termos."
+    }
   }
 }

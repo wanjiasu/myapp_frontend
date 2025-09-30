@@ -153,5 +153,182 @@
     "signupHere": "在此注册",
     "login": "登录",
     "logout": "退出登录"
+  },
+  "privacyPolicy": {
+    "title": "隐私政策",
+    "backToHome": "返回首页",
+    "lastUpdated": "最后更新",
+    "introduction": {
+      "title": "简介",
+      "content": "欢迎使用BetAIOne。我们致力于保护您的隐私并确保您个人信息的安全。本隐私政策说明了当您使用我们的AI驱动体育博彩分析平台时，我们如何收集、使用、披露和保护您的信息。"
+    },
+    "informationWeCollect": {
+      "title": "我们收集的信息",
+      "personalInfo": {
+        "title": "个人信息",
+        "email": "电子邮件地址",
+        "name": "全名",
+        "age": "年龄验证信息",
+        "location": "位置数据（用于法律合规）"
+      },
+      "usageData": {
+        "title": "使用数据",
+        "browsing": "浏览模式和偏好",
+        "preferences": "投注偏好和兴趣",
+        "interactions": "平台交互和参与度",
+        "device": "设备信息和技术数据"
+      }
+    },
+    "howWeUse": {
+      "title": "我们如何使用您的信息",
+      "aiRecommendations": "提供个性化AI投注推荐",
+      "personalizedContent": "提供定制内容和比赛分析",
+      "serviceImprovement": "改进我们的平台和AI算法",
+      "communication": "发送重要更新和通知",
+      "security": "维护平台安全并防止欺诈",
+      "compliance": "确保符合法律要求"
+    },
+    "informationSharing": {
+      "title": "信息共享和披露",
+      "intro": "我们不会向第三方出售、交易或出租您的个人信息。我们仅在以下情况下共享您的信息：",
+      "serviceProviders": "与协助平台运营的可信服务提供商",
+      "legalRequirements": "法律或法律程序要求时",
+      "businessTransfer": "与合并、收购或资产出售相关时",
+      "consent": "经您明确同意"
+    },
+    "dataSecurity": {
+      "title": "数据安全",
+      "content": "我们实施行业标准的安全措施来保护您的个人信息，包括加密、安全服务器和定期安全审计。但是，没有任何通过互联网传输的方法是100%安全的。"
+    },
+    "ageVerification": {
+      "title": "年龄验证",
+      "content": "我们的平台面向18岁及以上用户。我们实施年龄验证措施以确保符合法律要求和负责任的博彩实践。"
+    },
+    "cookies": {
+      "title": "Cookie和跟踪技术",
+      "content": "我们使用Cookie和类似技术来增强您的体验、分析使用模式并提供个性化内容。您可以通过浏览器偏好设置控制Cookie设置。"
+    },
+    "yourRights": {
+      "title": "您的权利",
+      "access": "访问您的个人信息",
+      "correction": "更正不准确的信息",
+      "deletion": "请求删除您的数据",
+      "portability": "数据可携性",
+      "objection": "反对某些处理活动"
+    },
+    "changes": {
+      "title": "政策变更",
+      "content": "我们可能会不时更新本隐私政策。我们将通过在平台上发布新政策并更新\"最后更新\"日期来通知您任何重大变更。"
+    },
+    "contact": {
+      "title": "联系我们",
+      "content": "如果您对本隐私政策或我们的数据实践有任何疑问，请联系我们：",
+      "responseTime": "48小时内"
+    },
+    "disclaimer": {
+      "title": "重要声明",
+      "content": "本平台仅供娱乐和信息目的。投注涉及风险，应负责任地进行。请遵守当地法律法规。"
+    }
+  },
+  "termsOfService": {
+    "title": "服务条款",
+    "backToHome": "返回首页",
+    "lastUpdated": "最后更新",
+    "introduction": {
+      "title": "简介",
+      "content": "欢迎使用BetAIOne，一个AI驱动的体育博彩分析平台。本服务条款管辖您对我们网站、移动应用程序和相关服务的使用。通过访问或使用我们的平台，您同意受这些条款的约束。"
+    },
+    "acceptance": {
+      "title": "条款接受",
+      "content": "通过创建账户、访问或使用我们的服务，您确认已阅读、理解并同意受本服务条款和我们的隐私政策约束。"
+    },
+    "serviceDescription": {
+      "title": "服务描述",
+      "intro": "BetAIOne提供AI驱动的体育博彩分析和推荐。我们的服务包括：",
+      "aiRecommendations": "AI生成的投注推荐和分析",
+      "personalizedMatching": "个性化比赛预测和洞察",
+      "contentCuration": "精选体育内容和市场分析",
+      "userProfiles": "用户档案和偏好管理",
+      "communicationTools": "社区功能和咨询服务"
+    },
+    "ageRequirements": {
+      "title": "年龄要求",
+      "content": "您必须年满18岁才能使用我们的平台。通过使用我们的服务，您声明并保证您满足此年龄要求并具有签订这些条款的法律能力。"
+    },
+    "userAccounts": {
+      "title": "用户账户",
+      "intro": "要访问某些功能，您必须创建一个账户。您负责：",
+      "responsibilities": {
+        "title": "账户责任",
+        "accurate": "提供准确和完整的信息",
+        "secure": "维护您账户凭据的安全",
+        "notify": "通知我们任何未经授权的访问",
+        "liable": "您账户下发生的所有活动"
+      }
+    },
+    "acceptableUse": {
+      "title": "可接受使用政策",
+      "intro": "您同意不将我们的平台用于任何非法或禁止的活动，包括：",
+      "prohibited": {
+        "title": "禁止活动",
+        "illegal": "任何非法活动或违反适用法律",
+        "harassment": "骚扰、辱骂或伤害其他用户",
+        "spam": "发送垃圾邮件、未经请求的通信或广告",
+        "impersonation": "冒充他人或提供虚假信息",
+        "malware": "分发恶意软件、病毒或有害代码",
+        "copyright": "违反知识产权",
+        "minors": "促进未成年人访问年龄限制内容",
+        "interference": "干扰平台运营或安全"
+      }
+    },
+    "aiRecommendations": {
+      "title": "AI推荐免责声明",
+      "intro": "我们的AI驱动推荐仅供信息和娱乐目的。",
+      "disclaimer": {
+        "title": "重要免责声明",
+        "content": "AI推荐不保证结果。所有投注都涉及风险，您永远不应该投注超过您能承受损失的金额。过去的表现不代表未来的结果。"
+      }
+    },
+    "privacyData": {
+      "title": "隐私和数据保护",
+      "content": "您的隐私对我们很重要。请查看我们的",
+      "policyLink": "隐私政策"
+    },
+    "intellectualProperty": {
+      "title": "知识产权",
+      "ownership": "我们平台上的所有内容、功能和功能均由BetAIOne拥有，并受版权、商标和其他知识产权法保护。",
+      "userContent": "通过向我们的平台提交内容，您授予我们非独家、全球、免版税的许可，以在与我们的服务相关的情况下使用、修改和显示此类内容。"
+    },
+    "disclaimers": {
+      "title": "免责声明",
+      "content": "我们的平台按\"原样\"提供，不提供任何形式的保证。我们不保证任何内容或推荐的准确性、完整性或可靠性。使用我们的服务风险自负。"
+    },
+    "limitationLiability": {
+      "title": "责任限制",
+      "content": "在法律允许的最大范围内，BetAIOne不对因您使用我们平台而产生的任何间接、偶然、特殊、后果性或惩罚性损害承担责任。"
+    },
+    "termination": {
+      "title": "终止",
+      "byUser": "您可以随时通过联系我们或使用账户设置来终止您的账户。",
+      "byUs": "我们保留暂停或终止违反这些条款或从事禁止活动的账户的权利。",
+      "effect": "终止后，您使用我们服务的权利将立即停止，我们可能会删除您的账户和数据。"
+    },
+    "governingLaw": {
+      "title": "管辖法律",
+      "content": "这些条款受适用法律管辖并按其解释。任何争议将通过有约束力的仲裁或在有管辖权的法院解决。"
+    },
+    "changes": {
+      "title": "条款变更",
+      "content": "我们保留随时修改这些条款的权利。我们将通知用户重大变更，继续使用我们的平台即表示接受更新的条款。"
+    },
+    "contact": {
+      "title": "联系信息",
+      "content": "有关这些服务条款的问题，请联系我们：",
+      "responseTime": "48小时内"
+    },
+    "effectiveDate": {
+      "title": "生效日期",
+      "content": "本服务条款自您首次使用我们平台之日起生效，并将保持有效直至根据这些条款终止。"
+    }
   }
 }

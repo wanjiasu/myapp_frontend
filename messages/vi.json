@@ -166,5 +166,182 @@
     "viewAll": "Xem tất cả",
     "disclaimer": "Cá cược có rủi ro, vui lòng cá cược có trách nhiệm",
     "followLocalLaws": "Vui lòng tuân thủ luật pháp địa phương"
+  },
+  "privacyPolicy": {
+    "title": "Chính sách bảo mật",
+    "backToHome": "Quay lại trang chủ",
+    "lastUpdated": "Cập nhật lần cuối",
+    "introduction": {
+      "title": "Giới thiệu",
+      "content": "Chào mừng bạn đến với BetAIOne. Chúng tôi cam kết bảo vệ quyền riêng tư của bạn và đảm bảo an toàn thông tin cá nhân của bạn. Chính sách bảo mật này giải thích cách chúng tôi thu thập, sử dụng, tiết lộ và bảo vệ thông tin của bạn khi bạn sử dụng nền tảng phân tích cá cược thể thao được hỗ trợ bởi AI của chúng tôi."
+    },
+    "informationWeCollect": {
+      "title": "Thông tin chúng tôi thu thập",
+      "personalInfo": {
+        "title": "Thông tin cá nhân",
+        "email": "Địa chỉ email",
+        "name": "Họ và tên đầy đủ",
+        "age": "Thông tin xác minh độ tuổi",
+        "location": "Dữ liệu vị trí (để tuân thủ pháp luật)"
+      },
+      "usageData": {
+        "title": "Dữ liệu sử dụng",
+        "browsing": "Mẫu duyệt web và sở thích",
+        "preferences": "Sở thích cá cược và quan tâm",
+        "interactions": "Tương tác và tham gia nền tảng",
+        "device": "Thông tin thiết bị và dữ liệu kỹ thuật"
+      }
+    },
+    "howWeUse": {
+      "title": "Cách chúng tôi sử dụng thông tin của bạn",
+      "aiRecommendations": "Cung cấp khuyến nghị cá cược AI được cá nhân hóa",
+      "personalizedContent": "Cung cấp nội dung tùy chỉnh và phân tích trận đấu",
+      "serviceImprovement": "Cải thiện nền tảng và thuật toán AI của chúng tôi",
+      "communication": "Gửi cập nhật và thông báo quan trọng",
+      "security": "Duy trì bảo mật nền tảng và ngăn chặn gian lận",
+      "compliance": "Đảm bảo tuân thủ các yêu cầu pháp lý"
+    },
+    "informationSharing": {
+      "title": "Chia sẻ và tiết lộ thông tin",
+      "intro": "Chúng tôi không bán, trao đổi hoặc cho thuê thông tin cá nhân của bạn cho bên thứ ba. Chúng tôi chỉ có thể chia sẻ thông tin của bạn trong các trường hợp sau:",
+      "serviceProviders": "Với các nhà cung cấp dịch vụ đáng tin cậy hỗ trợ hoạt động nền tảng",
+      "legalRequirements": "Khi được yêu cầu bởi pháp luật hoặc quy trình pháp lý",
+      "businessTransfer": "Liên quan đến việc sáp nhập, mua lại hoặc bán tài sản",
+      "consent": "Với sự đồng ý rõ ràng của bạn"
+    },
+    "dataSecurity": {
+      "title": "Bảo mật dữ liệu",
+      "content": "Chúng tôi thực hiện các biện pháp bảo mật tiêu chuẩn ngành để bảo vệ thông tin cá nhân của bạn, bao gồm mã hóa, máy chủ an toàn và kiểm tra bảo mật thường xuyên. Tuy nhiên, không có phương pháp truyền tải qua internet nào là 100% an toàn."
+    },
+    "ageVerification": {
+      "title": "Xác minh độ tuổi",
+      "content": "Nền tảng của chúng tôi dành cho người dùng từ 18 tuổi trở lên. Chúng tôi thực hiện các biện pháp xác minh độ tuổi để đảm bảo tuân thủ các yêu cầu pháp lý và thực hành cá cược có trách nhiệm."
+    },
+    "cookies": {
+      "title": "Cookie và công nghệ theo dõi",
+      "content": "Chúng tôi sử dụng cookie và các công nghệ tương tự để nâng cao trải nghiệm của bạn, phân tích mẫu sử dụng và cung cấp nội dung được cá nhân hóa. Bạn có thể kiểm soát cài đặt cookie thông qua tùy chọn trình duyệt của mình."
+    },
+    "yourRights": {
+      "title": "Quyền của bạn",
+      "access": "Truy cập thông tin cá nhân của bạn",
+      "correction": "Sửa chữa thông tin không chính xác",
+      "deletion": "Yêu cầu xóa dữ liệu của bạn",
+      "portability": "Tính di động của dữ liệu",
+      "objection": "Phản đối một số hoạt động xử lý"
+    },
+    "changes": {
+      "title": "Thay đổi chính sách này",
+      "content": "Chúng tôi có thể cập nhật Chính sách bảo mật này theo thời gian. Chúng tôi sẽ thông báo cho bạn về bất kỳ thay đổi quan trọng nào bằng cách đăng chính sách mới trên nền tảng của chúng tôi và cập nhật ngày 'Cập nhật lần cuối'."
+    },
+    "contact": {
+      "title": "Liên hệ với chúng tôi",
+      "content": "Nếu bạn có bất kỳ câu hỏi nào về Chính sách bảo mật này hoặc thực hành dữ liệu của chúng tôi, vui lòng liên hệ với chúng tôi:",
+      "responseTime": "Trong vòng 48 giờ"
+    },
+    "disclaimer": {
+      "title": "Thông báo quan trọng",
+      "content": "Nền tảng này chỉ dành cho mục đích giải trí và thông tin. Cá cược có rủi ro và nên được thực hiện một cách có trách nhiệm. Vui lòng tuân thủ luật pháp và quy định địa phương."
+    }
+  },
+  "termsOfService": {
+    "title": "Điều khoản dịch vụ",
+    "lastUpdated": "Cập nhật lần cuối",
+    "backToHome": "Quay lại trang chủ",
+    "introduction": {
+      "title": "Giới thiệu",
+      "content": "Chào mừng bạn đến với dịch vụ của chúng tôi. Bằng cách truy cập và sử dụng nền tảng này, bạn đồng ý tuân thủ các điều khoản và điều kiện được nêu dưới đây."
+    },
+    "acceptance": {
+      "title": "Chấp nhận điều khoản",
+      "content": "Bằng cách sử dụng dịch vụ của chúng tôi, bạn xác nhận rằng bạn đã đọc, hiểu và đồng ý bị ràng buộc bởi các điều khoản này."
+    },
+    "serviceDescription": {
+      "title": "Mô tả dịch vụ",
+      "intro": "BetAIOne cung cấp phân tích và khuyến nghị cá cược thể thao được hỗ trợ bởi AI. Dịch vụ của chúng tôi bao gồm:",
+      "aiRecommendations": "Khuyến nghị và phân tích cá cược được tạo bởi AI",
+      "personalizedMatching": "Dự đoán trận đấu và thông tin chi tiết được cá nhân hóa",
+      "contentCuration": "Nội dung thể thao được tuyển chọn và phân tích thị trường",
+      "userProfiles": "Hồ sơ người dùng và quản lý sở thích",
+      "communicationTools": "Tính năng cộng đồng và dịch vụ tư vấn"
+    },
+    "ageRequirements": {
+      "title": "Yêu cầu về độ tuổi",
+      "content": "Bạn phải từ 18 tuổi trở lên để sử dụng nền tảng của chúng tôi. Bằng cách sử dụng dịch vụ của chúng tôi, bạn tuyên bố và đảm bảo rằng bạn đáp ứng yêu cầu về độ tuổi này và có năng lực pháp lý để tham gia vào các điều khoản này."
+    },
+    "userAccounts": {
+      "title": "Tài khoản người dùng",
+      "intro": "Để truy cập một số tính năng nhất định, bạn phải tạo tài khoản. Bạn có trách nhiệm về:",
+      "responsibilities": {
+        "title": "Trách nhiệm tài khoản",
+        "accurate": "Cung cấp thông tin chính xác và đầy đủ",
+        "secure": "Duy trì bảo mật thông tin đăng nhập tài khoản của bạn",
+        "notify": "Thông báo cho chúng tôi về bất kỳ truy cập trái phép nào",
+        "liable": "Tất cả các hoạt động xảy ra dưới tài khoản của bạn"
+      }
+    },
+    "acceptableUse": {
+      "title": "Chính sách sử dụng chấp nhận được",
+      "intro": "Bạn đồng ý không sử dụng nền tảng của chúng tôi cho bất kỳ hoạt động bất hợp pháp hoặc bị cấm nào, bao gồm:",
+      "prohibited": {
+        "title": "Hoạt động bị cấm",
+        "illegal": "Bất kỳ hoạt động bất hợp pháp hoặc vi phạm luật pháp hiện hành",
+        "harassment": "Quấy rối, lạm dụng hoặc gây hại cho người dùng khác",
+        "spam": "Gửi spam, thông tin liên lạc không được yêu cầu hoặc quảng cáo",
+        "impersonation": "Mạo danh người khác hoặc cung cấp thông tin sai lệch",
+        "malware": "Phân phối phần mềm độc hại, virus hoặc mã có hại",
+        "copyright": "Vi phạm quyền sở hữu trí tuệ",
+        "minors": "Tạo điều kiện cho trẻ vị thành niên truy cập nội dung hạn chế độ tuổi",
+        "interference": "Can thiệp vào hoạt động hoặc bảo mật của nền tảng"
+      }
+    },
+    "aiRecommendations": {
+      "title": "Tuyên bố từ chối trách nhiệm về khuyến nghị AI",
+      "intro": "Các khuyến nghị được hỗ trợ bởi AI của chúng tôi chỉ mang tính chất thông tin và giải trí.",
+      "disclaimer": {
+        "title": "Tuyên bố từ chối trách nhiệm quan trọng",
+        "content": "Khuyến nghị AI không đảm bảo kết quả. Tất cả cá cược đều có rủi ro, và bạn không bao giờ nên đặt cược nhiều hơn số tiền bạn có thể mất. Hiệu suất trong quá khứ không cho thấy kết quả trong tương lai."
+      }
+    },
+    "privacyData": {
+      "title": "Quyền riêng tư và bảo vệ dữ liệu",
+      "content": "Quyền riêng tư của bạn rất quan trọng đối với chúng tôi. Vui lòng xem lại",
+      "policyLink": "Chính sách bảo mật"
+    },
+    "intellectualProperty": {
+      "title": "Sở hữu trí tuệ",
+      "ownership": "Tất cả nội dung, tính năng và chức năng trên nền tảng của chúng tôi thuộc sở hữu của BetAIOne và được bảo vệ bởi bản quyền, thương hiệu và các luật sở hữu trí tuệ khác.",
+      "userContent": "Bằng cách gửi nội dung lên nền tảng của chúng tôi, bạn cấp cho chúng tôi giấy phép không độc quyền, toàn cầu, miễn phí bản quyền để sử dụng, sửa đổi và hiển thị nội dung đó liên quan đến dịch vụ của chúng tôi."
+    },
+    "disclaimers": {
+      "title": "Tuyên bố từ chối trách nhiệm",
+      "content": "Nền tảng của chúng tôi được cung cấp 'như hiện tại' mà không có bảo đảm dưới bất kỳ hình thức nào. Chúng tôi không đảm bảo tính chính xác, đầy đủ hoặc độ tin cậy của bất kỳ nội dung hoặc khuyến nghị nào. Sử dụng dịch vụ của chúng tôi với rủi ro của riêng bạn."
+    },
+    "limitationLiability": {
+      "title": "Giới hạn trách nhiệm pháp lý",
+      "content": "Trong phạm vi tối đa được pháp luật cho phép, BetAIOne sẽ không chịu trách nhiệm pháp lý đối với bất kỳ thiệt hại gián tiếp, ngẫu nhiên, đặc biệt, hậu quả hoặc trừng phạt nào phát sinh từ việc bạn sử dụng nền tảng của chúng tôi."
+    },
+    "termination": {
+      "title": "Chấm dứt",
+      "byUser": "Bạn có thể chấm dứt tài khoản của mình bất cứ lúc nào bằng cách liên hệ với chúng tôi hoặc sử dụng cài đặt tài khoản.",
+      "byUs": "Chúng tôi có quyền đình chỉ hoặc chấm dứt các tài khoản vi phạm các điều khoản này hoặc tham gia vào các hoạt động bị cấm.",
+      "effect": "Khi chấm dứt, quyền sử dụng dịch vụ của bạn sẽ chấm dứt ngay lập tức, và chúng tôi có thể xóa tài khoản và dữ liệu của bạn."
+    },
+    "governingLaw": {
+      "title": "Luật điều chỉnh",
+      "content": "Các điều khoản này được điều chỉnh và giải thích theo luật pháp hiện hành. Mọi tranh chấp sẽ được giải quyết thông qua trọng tài ràng buộc hoặc tại các tòa án có thẩm quyền."
+    },
+    "changes": {
+      "title": "Thay đổi điều khoản",
+      "content": "Chúng tôi có quyền sửa đổi các điều khoản này bất cứ lúc nào. Chúng tôi sẽ thông báo cho người dùng về những thay đổi quan trọng, và việc tiếp tục sử dụng nền tảng của chúng tôi đồng nghĩa với việc chấp nhận các điều khoản đã cập nhật."
+    },
+    "contact": {
+      "title": "Thông tin liên hệ",
+      "content": "Nếu có câu hỏi về Điều khoản dịch vụ này, vui lòng liên hệ với chúng tôi:",
+      "responseTime": "Trong vòng 48 giờ"
+    },
+    "effectiveDate": {
+      "title": "Ngày có hiệu lực",
+      "content": "Điều khoản dịch vụ này có hiệu lực kể từ ngày bạn lần đầu tiên sử dụng nền tảng của chúng tôi và sẽ có hiệu lực cho đến khi được chấm dứt theo các điều khoản này."
+    }
   }
 }
