@@ -1,8 +1,51 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const AnimatedBackground: React.FC = () => {
+  const [isClient, setIsClient] = useState(false);
+  
+  // 使用固定的种子值生成一致的"随机"配置
+  const meteorConfigs = Array.from({ length: 5 }, (_, i) => { // 减少流星数量从8个到5个
+    // 使用索引作为种子，确保服务端和客户端生成相同的值
+    const seed1 = (i * 9301 + 49297) % 233280;
+    const seed2 = (i * 1234 + 5678) % 100000;
+    const seed3 = (i * 4321 + 8765) % 200000;
+    const seed4 = (i * 1111 + 2222) % 60000;
+    const seed5 = (i * 7777 + 3333) % 90000;
+    
+    return {
+      id: i,
+      left: (seed1 / 233280) * 100,
+      top: (seed2 / 100000) * 50,
+      delay: (seed3 / 200000) * 20,
+      duration: 12 + (seed4 / 60000) * 8, // 进一步增加持续时间，从 8-14秒 改为 12-20秒
+      rotation: -30 + (seed5 / 90000) * 60
+    };
+  });
+
+  // 生成固定的粒子配置以避免 hydration 错误
+  const particleConfigs = Array.from({ length: 40 }, (_, i) => {
+    // 使用不同的种子值确保粒子和流星的位置不同
+    const seed1 = (i * 7919 + 65537) % 100000;
+    const seed2 = (i * 2357 + 11111) % 100000;
+    const seed3 = (i * 5431 + 22222) % 200000;
+    const seed4 = (i * 8888 + 33333) % 180000;
+    
+    return {
+      id: i,
+      left: (seed1 / 100000) * 100,
+      top: (seed2 / 100000) * 100,
+      delay: (seed3 / 200000) * 20,
+      duration: 10 + (seed4 / 180000) * 8,
+      type: i % 4
+    };
+  });
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       {/* 网格背景 */}
@@ -89,16 +132,16 @@ const AnimatedBackground: React.FC = () => {
 
       {/* 流星效果 */}
       <div className="absolute inset-0">
-        {Array.from({ length: 12 }).map((_, i) => (
+        {meteorConfigs.map((config) => (
           <div
-            key={`meteor-${i}`}
+            key={`meteor-${config.id}`}
             className="absolute w-1 h-20 bg-gradient-to-b from-white/40 via-cyan-400/30 to-transparent animate-meteor blur-sm"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 50}%`,
-              animationDelay: `${Math.random() * 20}s`,
-              animationDuration: `${3 + Math.random() * 3}s`,
-              transform: `rotate(${-30 + Math.random() * 60}deg)`
+              left: `${config.left}%`,
+              top: `${config.top}%`,
+              animationDelay: `${config.delay}s`,
+              animationDuration: `${config.duration}s`,
+              transform: `rotate(${config.rotation}deg)`
             }}
           />
         ))}
@@ -106,20 +149,20 @@ const AnimatedBackground: React.FC = () => {
 
       {/* 增强的粒子效果 */}
       <div className="absolute inset-0">
-        {Array.from({ length: 40 }).map((_, i) => (
+        {particleConfigs.map((config) => (
           <div
-            key={`particle-${i}`}
+            key={`particle-${config.id}`}
             className={`absolute rounded-full animate-particle ${
-              i % 4 === 0 ? 'w-2 h-2 bg-cyan-400/30' :
-              i % 4 === 1 ? 'w-1 h-1 bg-purple-400/25' :
-              i % 4 === 2 ? 'w-1.5 h-1.5 bg-green-400/20' :
+              config.type === 0 ? 'w-2 h-2 bg-cyan-400/30' :
+              config.type === 1 ? 'w-1 h-1 bg-purple-400/25' :
+              config.type === 2 ? 'w-1.5 h-1.5 bg-green-400/20' :
               'w-1 h-1 bg-pink-400/30'
             }`}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 20}s`,
-              animationDuration: `${10 + Math.random() * 8}s`
+              left: `${config.left}%`,
+              top: `${config.top}%`,
+              animationDelay: `${config.delay}s`,
+              animationDuration: `${config.duration}s`
             }}
           />
         ))}

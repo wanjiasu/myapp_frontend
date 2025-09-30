@@ -94,24 +94,30 @@ const bestBets = [
   }
 ];
 
+// 使用固定的时间戳避免 hydration 错误，同时保持 SEO 友好
+const getStaticDate = (hoursAgo: number = 0) => {
+  const baseDate = new Date('2024-01-15T10:00:00Z'); // 使用固定的基准时间
+  return new Date(baseDate.getTime() - hoursAgo * 3600000).toISOString();
+};
+
 const articles = [
   {
     id: 201,
     title: '[TH] 今晚 3 场性价比汇总',
     tag: ['Value', '等效赔率'],
-    date: typeof window !== 'undefined' ? new Date().toISOString() : ''
+    date: getStaticDate(0)
   },
   {
     id: 202,
     title: '[BR Série A] 主胜价值票：弗拉门戈 vs 帕尔梅拉斯',
     tag: ['主胜', '盘口背离'],
-    date: typeof window !== 'undefined' ? new Date(Date.now() - 3600e3).toISOString() : ''
+    date: getStaticDate(1)
   },
   {
     id: 203,
     title: '[电竞] 今日 2 场稳胆 & 1 场冷门',
     tag: ['LOL', 'CS2'],
-    date: typeof window !== 'undefined' ? new Date(Date.now() - 7200e3).toISOString() : ''
+    date: getStaticDate(2)
   }
 ];
 
@@ -285,15 +291,17 @@ export default function Home() {
     fetchAIRecommendations();
   }, [locale]);
 
-  // Load favorites from localStorage
+  // Load favorites from localStorage - 使用 useEffect 避免 hydration 错误
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem('betaione:favTeams');
-      if (saved) {
-        setFavorites(JSON.parse(saved));
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('betaione:favTeams');
+        if (saved) {
+          setFavorites(JSON.parse(saved));
+        }
+      } catch (e) {
+        console.error('Failed to load favorites:', e);
       }
-    } catch (e) {
-      console.error('Failed to load favorites:', e);
     }
   }, []);
 
@@ -306,10 +314,12 @@ export default function Home() {
     });
   }, [showAgeVerification, showLoginModal, showTelegramModal]);
 
-  // Save favorites to localStorage
+  // Save favorites to localStorage - 确保只在客户端执行
   const saveFavorites = (newFavorites: {[key: string]: boolean}) => {
     setFavorites(newFavorites);
-    localStorage.setItem('betaione:favTeams', JSON.stringify(newFavorites));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('betaione:favTeams', JSON.stringify(newFavorites));
+    }
   };
 
   const toggleFavorite = (teamId: string) => {
