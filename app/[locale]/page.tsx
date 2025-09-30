@@ -984,7 +984,7 @@ export default function Home() {
                       <td>
                         <button 
                         className="btn btn-secondary text-xs"
-                        onClick={() => openDealModal()}
+                        onClick={() => window.open('http://mkvip486.net', '_blank')}
                       >
                         {t('allMatches.bestChannel')}
                       </button>
