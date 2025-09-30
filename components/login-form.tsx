@@ -36,8 +36,11 @@ const formSchema = z.object({
 
 export function LoginForm({
   className,
+  onShowSignup,
   ...props
-}: React.ComponentProps<"div">) {
+}: React.ComponentProps<"div"> & {
+  onShowSignup?: () => void
+}) {
 
   const [isloading, setIsloading] = useState(false)
   const [isGoogleLoading, setIsGoogleLoading] = useState(false)
@@ -300,15 +303,24 @@ export function LoginForm({
               </div>
               <div className="text-center text-sm">
                 Don&apos;t have an account?{" "}
-                <a 
-                  href={isFromTelegram 
-                    ? `/signup?tg_user_id=${tgUserId}&tg_chat_id=${tgChatId}${tgStartParam ? `&tg_start_param=${tgStartParam}` : ''}` 
-                    : "/signup"
-                  } 
-                  className="underline underline-offset-4"
-                >
-                  {isFromTelegram ? "注册并绑定" : "Sign up"}
-                </a>
+                {onShowSignup ? (
+                  <button 
+                    onClick={onShowSignup}
+                    className="underline underline-offset-4 hover:text-primary"
+                  >
+                    Sign up
+                  </button>
+                ) : (
+                  <a 
+                    href={isFromTelegram 
+                      ? `/signup?tg_user_id=${tgUserId}&tg_chat_id=${tgChatId}${tgStartParam ? `&tg_start_param=${tgStartParam}` : ''}` 
+                      : "/signup"
+                    } 
+                    className="underline underline-offset-4"
+                  >
+                    {isFromTelegram ? "注册并绑定" : "Sign up"}
+                  </a>
+                )}
               </div>
             </div>
           </form>
