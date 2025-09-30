@@ -5,6 +5,7 @@ import { Heart, Sparkles, ListFilter, Newspaper, Send, Bot, X, LogOut } from "lu
 import { authClient } from "@/lib/auth-client";
 import TelegramQRModal from "@/components/telegram-qr-modal";
 import { LoginModal } from "@/components/login-modal";
+import { AgeVerificationModal } from "@/components/age-verification-modal";
 import Image from "next/image";
 import Link from "next/link";
 import { client } from '../../sanity/sanity.client';
@@ -129,6 +130,7 @@ export default function Home() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showTelegramModal, setShowTelegramModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showAgeVerification, setShowAgeVerification] = useState(false);
   const [aiRecommendations, setAiRecommendations] = useState<AIRecommendation[]>([]);
   const [loadingRecommendations, setLoadingRecommendations] = useState(true);
   const [matches, setMatches] = useState<Match[]>([]);
@@ -195,12 +197,22 @@ export default function Home() {
     }
   };
 
-  // 处理普通登录按钮点击 - 显示弹窗
+  // 处理普通登录按钮点击 - 先显示年龄验证弹窗
   const handleLoginClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    setShowAgeVerification(true);
+  };
+
+  // 处理年龄验证确认 - 显示登录弹窗
+  const handleAgeVerificationConfirm = () => {
+    setShowAgeVerification(false);
     setShowLoginModal(true);
   };
 
+  // 处理年龄验证取消
+  const handleAgeVerificationCancel = () => {
+    setShowAgeVerification(false);
+  };
   const handleLogout = async () => {
     try {
       await authClient.signOut();
@@ -1184,6 +1196,13 @@ export default function Home() {
       <LoginModal 
         isOpen={showLoginModal} 
         onClose={() => setShowLoginModal(false)} 
+      />
+
+      {/* Age Verification Modal */}
+      <AgeVerificationModal 
+        isOpen={showAgeVerification}
+        onConfirm={handleAgeVerificationConfirm}
+        onCancel={handleAgeVerificationCancel}
       />
     </div>
   );
