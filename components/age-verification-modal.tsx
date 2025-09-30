@@ -1,6 +1,7 @@
 'use client'
 
 import { X } from "lucide-react"
+import { createPortal } from 'react-dom'
 
 interface AgeVerificationModalProps {
   isOpen: boolean
@@ -9,20 +10,25 @@ interface AgeVerificationModalProps {
 }
 
 export function AgeVerificationModal({ isOpen, onConfirm, onCancel }: AgeVerificationModalProps) {
+  console.log('AgeVerificationModal render:', { isOpen });
+  
   if (!isOpen) return null
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      {/* 背景遮罩 */}
+  console.log('AgeVerificationModal: Rendering modal content');
+
+  const modal = (
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      onClick={onCancel}
+    >
       <div 
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-        onClick={onCancel}
-      />
-      
-      {/* 弹窗内容 */}
-      <div className="relative z-10 w-full max-w-sm mx-4">
+        className="relative z-[10000] w-full max-w-sm"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div 
-          className="relative rounded-xl p-6 backdrop-blur-md border bg-white"
+          className="relative rounded-xl p-6 border bg-white shadow-2xl max-h-[80vh] overflow-auto"
           style={{
             borderColor: 'rgba(0, 0, 0, 0.1)',
             boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)'
@@ -65,4 +71,6 @@ export function AgeVerificationModal({ isOpen, onConfirm, onCancel }: AgeVerific
       </div>
     </div>
   )
+
+  return createPortal(modal, document.body)
 }

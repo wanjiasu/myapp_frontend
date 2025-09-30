@@ -136,6 +136,7 @@ export default function Home() {
   const [matches, setMatches] = useState<Match[]>([]);
   const [loadingMatches, setLoadingMatches] = useState(true);
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [pageLoaded, setPageLoaded] = useState(false);
   
   // 分页状态
   const [currentPage, setCurrentPage] = useState(1);
@@ -188,11 +189,14 @@ export default function Home() {
   };
 
   const handleTelegramClick = () => {
+    console.log('Telegram button clicked, user:', user);
     if (!user) {
-      // 未登录，跳转到登录页面
-      window.location.href = '/login';
+      // 未登录，显示年龄验证弹窗
+      console.log('User not logged in, showing age verification');
+      setShowAgeVerification(true);
     } else {
       // 已登录，显示二维码弹窗
+      console.log('User logged in, showing telegram modal');
       setShowTelegramModal(true);
     }
   };
@@ -200,17 +204,20 @@ export default function Home() {
   // 处理普通登录按钮点击 - 先显示年龄验证弹窗
   const handleLoginClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    console.log('Login button clicked, setting showAgeVerification to true');
     setShowAgeVerification(true);
   };
 
   // 处理年龄验证确认 - 显示登录弹窗
   const handleAgeVerificationConfirm = () => {
+    console.log('Age verification confirmed, showing login modal');
     setShowAgeVerification(false);
     setShowLoginModal(true);
   };
 
   // 处理年龄验证取消
   const handleAgeVerificationCancel = () => {
+    console.log('Age verification cancelled');
     setShowAgeVerification(false);
   };
   const handleLogout = async () => {
@@ -263,7 +270,13 @@ export default function Home() {
     // 获取比赛数据
     fetchMatches();
     // 获取博客文章数据
+    // 获取博客文章数据
     fetchBlogPosts();
+    
+    // 页面加载完成后的动画
+    setTimeout(() => {
+      setPageLoaded(true);
+    }, 100);
   }, [])
 
   // 当locale变化时重新获取AI推荐数据
@@ -282,6 +295,15 @@ export default function Home() {
       console.error('Failed to load favorites:', e);
     }
   }, []);
+
+  // 添加调试useEffect
+  useEffect(() => {
+    console.log('Modal states changed:', {
+      showAgeVerification,
+      showLoginModal,
+      showTelegramModal
+    });
+  }, [showAgeVerification, showLoginModal, showTelegramModal]);
 
   // Save favorites to localStorage
   const saveFavorites = (newFavorites: {[key: string]: boolean}) => {
@@ -392,7 +414,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen" style={{
+    <div className={`min-h-screen transition-all duration-1000 ${pageLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{
       background: 'linear-gradient(135deg, #1A2226 0%, #152A35 50%, #1A2226 100%)',
       color: '#FFFFFF'
     }}>
@@ -463,7 +485,7 @@ export default function Home() {
             ) : (
               <button 
                 onClick={handleLoginClick}
-                className="px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:scale-105"
+                className="px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/25 active:scale-95 transform-gpu"
                 style={{
                   background: 'linear-gradient(135deg, #00B8C8 0%, #4FCFD9 100%)',
                   color: '#FFFFFF'
@@ -593,7 +615,7 @@ export default function Home() {
               const highlightedTeam = getHighlightedTeam(recommendation.prediction_result)
               
               return (
-                <div key={recommendation.id} className="relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer hover:transform hover:-translate-y-1 w-full hover:shadow-2xl h-[540px] flex flex-col" style={{
+                <div key={recommendation.id} className="relative overflow-hidden rounded-xl transition-all duration-500 cursor-pointer hover:transform hover:-translate-y-2 hover:scale-[1.02] w-full hover:shadow-2xl hover:shadow-cyan-500/20 h-[540px] flex flex-col group" style={{
                   background: 'rgba(42, 59, 64, 0.4)',
                   border: '1px solid rgba(255, 255, 255, 0.08)',
                   backdropFilter: 'blur(14px)',
@@ -979,11 +1001,11 @@ export default function Home() {
                       <td>{match.league}</td>
                       <td className="whitespace-nowrap">
                         <button 
-                          className={`mr-2 ${isFav ? 'fav-on' : ''}`}
+                          className={`mr-2 transition-all duration-300 hover:scale-110 active:scale-95 transform-gpu ${isFav ? 'fav-on' : ''}`}
                           onClick={() => toggleFavorite(match.home_team)}
                           title={isFav ? t('allMatches.followed') : t('allMatches.follow')}
                         >
-                          <Heart className="w-4 h-4" fill={isFav ? 'currentColor' : 'none'} />
+                          <Heart className="w-4 h-4 transition-all duration-300" fill={isFav ? 'currentColor' : 'none'} />
                         </button>
                         <span>
                           <span className={predictedTeam === 'home' ? 'text-yellow-400 font-semibold' : ''}>
@@ -1185,11 +1207,11 @@ export default function Home() {
         </div>
       )}
 
-      {/* Telegram QR Modal */}
-      <TelegramQRModal 
-        isOpen={showTelegramModal} 
-        onClose={() => setShowTelegramModal(false)} 
-        userId={user?.id}
+      {/* Age Verification Modal */}
+      <AgeVerificationModal 
+        isOpen={showAgeVerification}
+        onConfirm={handleAgeVerificationConfirm}
+        onCancel={handleAgeVerificationCancel}
       />
 
       {/* Login Modal */}
@@ -1198,11 +1220,11 @@ export default function Home() {
         onClose={() => setShowLoginModal(false)} 
       />
 
-      {/* Age Verification Modal */}
-      <AgeVerificationModal 
-        isOpen={showAgeVerification}
-        onConfirm={handleAgeVerificationConfirm}
-        onCancel={handleAgeVerificationCancel}
+      {/* Telegram QR Modal */}
+      <TelegramQRModal 
+        isOpen={showTelegramModal} 
+        onClose={() => setShowTelegramModal(false)} 
+        userId={user?.id}
       />
     </div>
   );
