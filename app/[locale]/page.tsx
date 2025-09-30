@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Heart, Sparkles, ListFilter, Newspaper, Send, Bot, X, LogOut } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import TelegramQRModal from "@/components/telegram-qr-modal";
+import { LoginModal } from "@/components/login-modal";
 import Image from "next/image";
 import Link from "next/link";
 import { client } from '../../sanity/sanity.client';
@@ -127,6 +128,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showTelegramModal, setShowTelegramModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [aiRecommendations, setAiRecommendations] = useState<AIRecommendation[]>([]);
   const [loadingRecommendations, setLoadingRecommendations] = useState(true);
   const [matches, setMatches] = useState<Match[]>([]);
@@ -191,6 +193,12 @@ export default function Home() {
       // 已登录，显示二维码弹窗
       setShowTelegramModal(true);
     }
+  };
+
+  // 处理普通登录按钮点击 - 显示弹窗
+  const handleLoginClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowLoginModal(true);
   };
 
   const handleLogout = async () => {
@@ -441,8 +449,8 @@ export default function Home() {
                 )}
               </div>
             ) : (
-              <Link 
-                href="/login" 
+              <button 
+                onClick={handleLoginClick}
                 className="px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:scale-105"
                 style={{
                   background: 'linear-gradient(135deg, #00B8C8 0%, #4FCFD9 100%)',
@@ -450,7 +458,7 @@ export default function Home() {
                 }}
               >
                 {t('auth.login')}
-              </Link>
+              </button>
             )}
           </div>
         </div>
@@ -1170,6 +1178,12 @@ export default function Home() {
         isOpen={showTelegramModal} 
         onClose={() => setShowTelegramModal(false)} 
         userId={user?.id}
+      />
+
+      {/* Login Modal */}
+      <LoginModal 
+        isOpen={showLoginModal} 
+        onClose={() => setShowLoginModal(false)} 
       />
     </div>
   );
